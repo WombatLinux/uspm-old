@@ -29,7 +29,7 @@ void create_packages_file() {
 
     /* add data to uspm package */
     cJSON_AddItemToObject(uspm, "version", cJSON_CreateString(("1.0.0")));
-    cJSON_AddItemToObject(uspm, "dependencies", cJSON_CreateArray());
+    cJSON_AddItemToObject(uspm, "dependencies", cJSON_CreateObject());
 
     /* add data to root object */
     cJSON_AddItemToObject(root, "uspm", uspm);

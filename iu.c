@@ -16,6 +16,8 @@ int download_package(char *mirror, char *package) {
     CURLcode res;
     char *url = concat(mirror, package);
     url = concat(url, ".uspm");
+    printf("%s\n", url);
+
     char outfilename[FILENAME_MAX] = "";
     strcpy(outfilename, concat(package, ".uspm"));
     curl = curl_easy_init();
@@ -51,8 +53,9 @@ int install_package_file(char *package) {
 }
 
 int install_package(char *package) {
-    if (access("packages.json",F_OK) == -1) {
-        download_package("http://packages.afroraydude.com/uspm/", package);
+    char *filename = concat(package, ".uspm");
+    if (access(filename,F_OK) == -1) {
+        download_package("http://packages.afroraydude.com/", package);
     }
 
     install_package_file(package);
@@ -78,6 +81,110 @@ int uninstall_package(char *package) {
     free(command);
 
     remove_from_packages(package);
+
+    return 0;
+}
+
+int check_version(char *minversion, char *version) {
+    int mma,mmi,mmb;
+    int ma,mi,mb;
+    if(sscanf(version,"%d.%d.%d",&ma,&mi,&mb) != 3) {
+        printf("someone's versioning is wrong, assuming false\n");
+        return 0;
+    } else {
+        if(sscanf(minversion,"%d.%d.%d",&mma,&mmi,&mmb) != 3) {
+            printf("someone's versioning is wrong, assuming false\n");
+            return 0;
+        } else {
+            if (ma < mma) { // ex 1.0.0 < 2.0.0
+                return 0;
+            } else if (mi < mmi) { // ex 1.0.0 < 1.1.0
+                return 0;
+            } else if (mb < mmb) { // ex 1.0.0 < 1.0.1
+                return 0;
+            } else {
+                return 1;
+            }
+        }
+    }
+}
+
+int check_dependencies(char *package) {
+    printf("Checking dependencies...\n");
+
+    char *file = concat("./", package);
+    file = concat(file, "/PACKAGEDATA");
+
+    cJSON *packagedata = load_file(file);
+
+    cJSON *root = load_file("packages.json");
+
+    cJSON *dependencies = cJSON_GetObjectItem(packagedata, "dependencies");
+
+    cJSON *dependency = dependencies->child;
+
+    while (dependency) {
+
+        cJSON *dependency_internal = cJSON_GetObjectItem(root, dependency->string);
+
+        if (dependency_internal != NULL) {
+            char *version = dependency_internal->valuestring;
+            char *minversion = dependency->valuestring;
+
+            if (check_version(minversion, version) == 0) {
+                printf("%s (missing)\n", dependency->string);
+            } else {
+                printf("%s\n", dependency->string);
+            }
+        } else {
+            printf("Dependency not installed\n");
+        }
+        // do what we need to do
+        dependency = dependency->next;
+    }
+
+    printf("No more dependencies found\n");
+
+    return 0;
+}
+
+
+int check_dependencies_and_install(char *package) {
+    printf("Checking dependencies...\n");
+
+    char *file = concat("./", package);
+    file = concat(file, "/PACKAGEDATA");
+
+    cJSON *packagedata = load_file(file);
+
+    cJSON *root = load_file("packages.json");
+
+    cJSON *dependencies = cJSON_GetObjectItem(packagedata, "dependencies");
+
+    cJSON *dependency = dependencies->child;
+
+    while (dependency) {
+
+        cJSON *dependency_internal = cJSON_GetObjectItem(root, dependency->string);
+
+        if (dependency_internal != NULL) {
+            char *version = dependency_internal->valuestring;
+            char *minversion = dependency->valuestring;
+
+            if (check_version(minversion, version) == 0) {
+                printf("%s (missing)...installing first\n", dependency->string);
+                install_package(dependency->string);
+            } else {
+                printf("%s\n", dependency->string);
+            }
+        } else {
+            printf("Dependency not installed\n");
+        }
+        // do what we need to do
+        dependency = dependency->next;
+    }
+
+    printf("No more dependencies found\n");
 
     return 0;
 }
