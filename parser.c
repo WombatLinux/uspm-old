@@ -1,38 +1,30 @@
-//
-// Created by afroraydude on 2/2/20.
-//
+/*
+ * parser - parses JSON files used by the program
+ */
 #include <zconf.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <cjson/cJSON.h>
 #include "parser.h"
 
-void create_config();
+void create_packages_file();
 
-int check_config() {
-    if (access("config.json",F_OK) != -1) {
-        FILE *f = fopen("config.json", "rb");
-        fseek(f, 0, SEEK_END);
-        long fsize = ftell(f);
-        fseek(f, 0, SEEK_SET);  /* same as rewind(f); */
+int check_packages_file() {
+    if (access("packages.json",F_OK) != -1) {
+        cJSON *root = load_file("packages.json");
 
-        char *json = malloc(fsize + 1);
-        fread(json, 1, fsize, f);
-        fclose(f);
-
-        printf("%s\n", json);
     } else {
-        create_config();
+        create_packages_file();
     }
     return 0;
 }
 
-void create_config() {
+void create_packages_file() {
     char *out;
-
 
     /* create root node and package for uspm package */
     cJSON *root, *uspm;
+    FILE *ptr;
     root = cJSON_CreateObject();
     uspm = cJSON_CreateObject();
 
@@ -46,17 +38,21 @@ void create_config() {
     out = cJSON_Print(root);
     printf("%s\n", out);
 
-    FILE *ptr;
-
-    ptr = fopen("config.json","w");
+    ptr = fopen("packages.json","w");
 
     fprintf(ptr,"%s",out);
     fclose(ptr);
 
     free(out);
+    free(ptr);
 
     /* free all objects under root and root itself */
     cJSON_Delete(root);
+    free(root);
+}
 
+int add_to_packages(package) {
+    cJSON *root = load_file("packages.json");
 
+    return 0;
 }

@@ -3,18 +3,20 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated />
   </component>
-  <component name="CMakeSettings" AUTO_RELOAD="true">
+  <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3bf65f79-f156-4433-b607-29069eeb4429" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="638146e9-fae6-488e-9289-7a5f707aebbc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/iu.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iu.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser.c" beforeDir="false" afterPath="$PROJECT_DIR$/core/parser.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser.h" beforeDir="false" afterPath="$PROJECT_DIR$/core/parser.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser.c" beforeDir="false" afterPath="$PROJECT_DIR$/parser.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser.h" beforeDir="false" afterPath="$PROJECT_DIR$/parser.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,11 +26,48 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="CompDBLocalSettings">
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="uspm" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="uspm" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="modificationStamps">
+      <map>
+        <entry key="$PROJECT_DIR$" value="1580703533573" />
+        <entry key="$PROJECT_DIR$/compile_commands.json" value="3993799708" />
+      </map>
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1XH1vHg0T5lBCFKQSqtJ2M4fZc2" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1XHWxzqIqNSqaEYSCvr0XYJUTWM" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -37,23 +76,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/internal" />
-      <recent name="$PROJECT_DIR$/includes" />
-    </key>
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="CompDBSettings" />
   </component>
   <component name="RunManager">
-    <configuration name="uspm" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile">
-      <makefile filename="$PROJECT_DIR$/Makefile" target="uspm" workingDirectory="$PROJECT_DIR$" arguments="">
+    <configuration name="Makefile" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="uspm" workingDirectory="" arguments="">
         <envs />
       </makefile>
       <method v="2" />
@@ -64,62 +92,46 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3bf65f79-f156-4433-b607-29069eeb4429" name="Default Changelist" comment="" />
-      <created>1580688434533</created>
+      <changelist id="638146e9-fae6-488e-9289-7a5f707aebbc" name="Default Changelist" comment="" />
+      <created>1580703750098</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1580688434533</updated>
-      <workItem from="1580688438032" duration="3455000" />
-      <workItem from="1580691994612" duration="986000" />
-      <workItem from="1580692998540" duration="3213000" />
+      <updated>1580703750098</updated>
+      <workItem from="1580703751774" duration="1754000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <ignored-roots>
-      <path value="$PROJECT_DIR$/cJSON" />
-      <path value="$PROJECT_DIR$/includes/cJSON" />
-    </ignored-roots>
-  </component>
   <component name="WindowStateProjectService">
-    <state x="684" y="280" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580693677378">
+    <state x="684" y="301" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580703888526">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state x="684" y="280" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.1177@0.23.1920.1177" timestamp="1580693677378" />
-    <state x="974" y="390" key="EnvironmentVariablesDialog" timestamp="1580692032922">
+    <state x="684" y="301" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.1177@0.23.1920.1177" timestamp="1580703888526" />
+    <state x="950" y="449" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1580703919293">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state x="974" y="390" key="EnvironmentVariablesDialog/0.23.1920.1177@0.23.1920.1177" timestamp="1580692032922" />
-    <state width="1358" height="268" key="GridCell.Tab.0.bottom" timestamp="1580696589359">
+    <state x="950" y="449" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.1177@0.23.1920.1177" timestamp="1580703919293" />
+    <state width="1358" height="271" key="GridCell.Tab.0.bottom" timestamp="1580705235223">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1358" height="268" key="GridCell.Tab.0.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1580696589359" />
-    <state width="1358" height="268" key="GridCell.Tab.0.center" timestamp="1580696589358">
+    <state width="1358" height="271" key="GridCell.Tab.0.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1580705235223" />
+    <state width="1358" height="271" key="GridCell.Tab.0.center" timestamp="1580705235222">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1358" height="268" key="GridCell.Tab.0.center/0.23.1920.1177@0.23.1920.1177" timestamp="1580696589358" />
-    <state width="1358" height="268" key="GridCell.Tab.0.left" timestamp="1580696589358">
+    <state width="1358" height="271" key="GridCell.Tab.0.center/0.23.1920.1177@0.23.1920.1177" timestamp="1580705235222" />
+    <state width="1358" height="271" key="GridCell.Tab.0.left" timestamp="1580705235222">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1358" height="268" key="GridCell.Tab.0.left/0.23.1920.1177@0.23.1920.1177" timestamp="1580696589358" />
-    <state width="1358" height="268" key="GridCell.Tab.0.right" timestamp="1580696589359">
+    <state width="1358" height="271" key="GridCell.Tab.0.left/0.23.1920.1177@0.23.1920.1177" timestamp="1580705235222" />
+    <state width="1358" height="271" key="GridCell.Tab.0.right" timestamp="1580705235223">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1358" height="268" key="GridCell.Tab.0.right/0.23.1920.1177@0.23.1920.1177" timestamp="1580696589359" />
-    <state x="721" y="256" key="SettingsEditor" timestamp="1580695854448">
+    <state width="1358" height="271" key="GridCell.Tab.0.right/0.23.1920.1177@0.23.1920.1177" timestamp="1580705235223" />
+    <state x="721" y="278" key="SettingsEditor" timestamp="1580703836812">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state x="721" y="256" key="SettingsEditor/0.23.1920.1177@0.23.1920.1177" timestamp="1580695854448" />
-    <state x="637" y="443" key="com.intellij.ide.util.TipDialog" timestamp="1580693002093">
-      <screen x="0" y="23" width="1920" height="1177" />
-    </state>
-    <state x="637" y="443" key="com.intellij.ide.util.TipDialog/0.23.1920.1177@0.23.1920.1177" timestamp="1580693002093" />
-    <state x="1253" y="228" key="refactoring.ChangeSignatureDialog" timestamp="1580690897882">
-      <screen x="0" y="23" width="1920" height="1177" />
-    </state>
-    <state x="1253" y="228" key="refactoring.ChangeSignatureDialog/0.23.1920.1177@0.23.1920.1177" timestamp="1580690897882" />
+    <state x="721" y="278" key="SettingsEditor/0.23.1920.1177@0.23.1920.1177" timestamp="1580703836812" />
   </component>
 </project>

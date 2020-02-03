@@ -4,6 +4,7 @@
 
 int main() {
     printf("Welcome to USPM\n");
-    check_config();
+    check_packages_file();
+    //cJSON *test = load_packages_file();
     return 0;
 }
