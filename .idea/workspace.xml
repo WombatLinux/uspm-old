@@ -10,10 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="638146e9-fae6-488e-9289-7a5f707aebbc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/iu.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iu.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iu.c" beforeDir="false" afterPath="$PROJECT_DIR$/iu.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser.c" beforeDir="false" afterPath="$PROJECT_DIR$/parser.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser.h" beforeDir="false" afterPath="$PROJECT_DIR$/parser.h" afterDir="false" />
@@ -74,10 +74,18 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="CompDBSettings" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
     <configuration name="Makefile" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile">
@@ -97,7 +105,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1580703750098</updated>
-      <workItem from="1580703751774" duration="1754000" />
+      <workItem from="1580703751774" duration="4622000" />
+      <workItem from="1580709276179" duration="498000" />
+      <workItem from="1580709824561" duration="658000" />
     </task>
     <servers />
   </component>
@@ -105,33 +115,37 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="684" y="301" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580703888526">
+    <state x="684" y="301" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580705581740">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state x="684" y="301" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.1177@0.23.1920.1177" timestamp="1580703888526" />
-    <state x="950" y="449" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1580703919293">
+    <state x="684" y="301" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.1177@0.23.1920.1177" timestamp="1580705581740" />
+    <state x="950" y="449" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1580708035076">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state x="950" y="449" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.1177@0.23.1920.1177" timestamp="1580703919293" />
-    <state width="1358" height="271" key="GridCell.Tab.0.bottom" timestamp="1580705235223">
+    <state x="950" y="449" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.1177@0.23.1920.1177" timestamp="1580708035076" />
+    <state width="1358" height="271" key="GridCell.Tab.0.bottom" timestamp="1580706694979">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1358" height="271" key="GridCell.Tab.0.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1580705235223" />
-    <state width="1358" height="271" key="GridCell.Tab.0.center" timestamp="1580705235222">
+    <state width="1358" height="271" key="GridCell.Tab.0.bottom/0.23.1920.1177@0.23.1920.1177" timestamp="1580706694979" />
+    <state width="1358" height="271" key="GridCell.Tab.0.center" timestamp="1580706694978">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1358" height="271" key="GridCell.Tab.0.center/0.23.1920.1177@0.23.1920.1177" timestamp="1580705235222" />
-    <state width="1358" height="271" key="GridCell.Tab.0.left" timestamp="1580705235222">
+    <state width="1358" height="271" key="GridCell.Tab.0.center/0.23.1920.1177@0.23.1920.1177" timestamp="1580706694978" />
+    <state width="1358" height="271" key="GridCell.Tab.0.left" timestamp="1580706694978">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1358" height="271" key="GridCell.Tab.0.left/0.23.1920.1177@0.23.1920.1177" timestamp="1580705235222" />
-    <state width="1358" height="271" key="GridCell.Tab.0.right" timestamp="1580705235223">
+    <state width="1358" height="271" key="GridCell.Tab.0.left/0.23.1920.1177@0.23.1920.1177" timestamp="1580706694978" />
+    <state width="1358" height="271" key="GridCell.Tab.0.right" timestamp="1580706694979">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state width="1358" height="271" key="GridCell.Tab.0.right/0.23.1920.1177@0.23.1920.1177" timestamp="1580705235223" />
-    <state x="721" y="278" key="SettingsEditor" timestamp="1580703836812">
+    <state width="1358" height="271" key="GridCell.Tab.0.right/0.23.1920.1177@0.23.1920.1177" timestamp="1580706694979" />
+    <state x="721" y="278" key="SettingsEditor" timestamp="1580709264840">
       <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state x="721" y="278" key="SettingsEditor/0.23.1920.1177@0.23.1920.1177" timestamp="1580703836812" />
+    <state x="721" y="278" key="SettingsEditor/0.23.1920.1177@0.23.1920.1177" timestamp="1580709264840" />
+    <state x="897" y="471" key="com.intellij.ide.util.TipDialog" timestamp="1580709824736">
+      <screen x="0" y="23" width="1920" height="1177" />
+    </state>
+    <state x="897" y="471" key="com.intellij.ide.util.TipDialog/0.23.1920.1177@0.23.1920.1177" timestamp="1580709824736" />
   </component>
 </project>

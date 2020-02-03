@@ -33,7 +33,7 @@ cJSON *load_file(char *file) {
 
         /* memory error */
         if(buffer == NULL)
-            return 1;
+            return NULL;
 
         /* copy all the text into the buffer */
         fread(buffer, sizeof(char), numbytes, infile);
@@ -45,8 +45,6 @@ cJSON *load_file(char *file) {
 
         cJSON *root = cJSON_Parse(buffer);
 
-        cJSON_Print(root);
-
         /* free the memory we used for the buffer */
         free(buffer);
 
@@ -55,6 +53,15 @@ cJSON *load_file(char *file) {
         printf("No file\n");
         return NULL;
     }
+}
+
+void write_packages_file(char *out) {
+    FILE *ptr;
+
+    ptr = fopen("packages.json","w");
+
+    fprintf(ptr,"%s",out);
+    fclose(ptr);
 }
 
 #endif //USPM_PARSER_H

@@ -2,7 +2,6 @@
  * parser - parses JSON files used by the program
  */
 #include <zconf.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <cjson/cJSON.h>
 #include "parser.h"
@@ -13,6 +12,8 @@ int check_packages_file() {
     if (access("packages.json",F_OK) != -1) {
         cJSON *root = load_file("packages.json");
 
+        char *json = cJSON_Print(root);
+        // printf("%s\n", json);
     } else {
         create_packages_file();
     }
@@ -21,10 +22,8 @@ int check_packages_file() {
 
 void create_packages_file() {
     char *out;
-
-    /* create root node and package for uspm package */
     cJSON *root, *uspm;
-    FILE *ptr;
+
     root = cJSON_CreateObject();
     uspm = cJSON_CreateObject();
 
@@ -36,23 +35,38 @@ void create_packages_file() {
     cJSON_AddItemToObject(root, "uspm", uspm);
 
     out = cJSON_Print(root);
-    printf("%s\n", out);
-
-    ptr = fopen("packages.json","w");
-
-    fprintf(ptr,"%s",out);
-    fclose(ptr);
-
-    free(out);
-    free(ptr);
 
     /* free all objects under root and root itself */
     cJSON_Delete(root);
-    free(root);
+
+    write_packages_file(out);
+
+    free(out);
 }
 
-int add_to_packages(package) {
+int add_to_packages(char *packagename, cJSON *packagedata) {
     cJSON *root = load_file("packages.json");
+
+    cJSON_AddItemToObject(root, packagename, packagedata);
+
+    char *out = cJSON_Print(root);
+
+    write_packages_file(out);
+
+    free(out);
+
+    return 0;
+}
+
+int remove_from_packages(char *packagename) {
+    cJSON *root = load_file("packages.json");
+    cJSON_DeleteItemFromObject(root, packagename);
+
+    char *out = cJSON_Print(root);
+
+    write_packages_file(out);
+
+    free(out);
 
     return 0;
 }

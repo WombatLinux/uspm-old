@@ -1,6 +1,5 @@
 uspm: main.c parser.c
-	gcc -lcjson -o uspm main.c -lm
-
+	gcc -lcjson -lcurl -o uspm main.c -lm
 
 clean:
 	rm uspm
