@@ -1,8 +1,6 @@
 /*
  * iu - Installer/Uninstaller
  */
-
-#include "iu.h"
 #include <curl/curl.h>
 #include <string.h>
 
@@ -46,7 +44,7 @@ int downloadPackage(char *mirror, char *package) {
     return 0;
 }
 
-int installPackage(char *package) {
+int installPackageFile(char *package) {
     char *command = concat("tar -xf ", package);
     command = concat(command, ".uspm");
 
