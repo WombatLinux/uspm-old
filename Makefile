@@ -1,4 +1,4 @@
-uspm: main.c parser.c iu.c
+uspm: main.c parser.c iu.c parser.h
 	@gcc -lcjson -lcurl -o uspm main.c -lm
 
 clean:

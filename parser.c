@@ -43,30 +43,3 @@ void create_packages_file() {
 
     free(out);
 }
-
-int add_to_packages(char *packagename, cJSON *packagedata) {
-    cJSON *root = load_file("packages.json");
-
-    cJSON_AddItemToObject(root, packagename, packagedata);
-
-    char *out = cJSON_Print(root);
-
-    write_packages_file(out);
-
-    free(out);
-
-    return 0;
-}
-
-int remove_from_packages(char *packagename) {
-    cJSON *root = load_file("packages.json");
-    cJSON_DeleteItemFromObject(root, packagename);
-
-    char *out = cJSON_Print(root);
-
-    write_packages_file(out);
-
-    free(out);
-
-    return 0;
-}

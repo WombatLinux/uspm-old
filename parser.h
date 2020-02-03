@@ -8,6 +8,16 @@
 #include <cjson/cJSON.h>
 #include <stdlib.h>
 #include <zconf.h>
+#include <string.h>
+
+char* concat(const char *s1, const char *s2)
+{
+    char *result = malloc(strlen(s1) + strlen(s2) + 1); // +1 for the null-terminator
+    // in real code you would check for errors in malloc here
+    strcpy(result, s1);
+    strcat(result, s2);
+    return result;
+}
 
 cJSON *load_file(char *file) {
     if (access(file,F_OK) != -1) {
@@ -56,12 +66,43 @@ cJSON *load_file(char *file) {
 }
 
 void write_packages_file(char *out) {
+    char *outfile = concat(out, "\n");
+
     FILE *ptr;
 
     ptr = fopen("packages.json","w");
 
-    fprintf(ptr,"%s",out);
+    fprintf(ptr,"%s",outfile);
     fclose(ptr);
+
+    free(outfile);
+}
+
+int add_to_packages(char *packagename, cJSON *packagedata) {
+    cJSON *root = load_file("packages.json");
+
+    cJSON_AddItemToObject(root, packagename, packagedata);
+
+    char *out = cJSON_Print(root);
+
+    write_packages_file(out);
+
+    free(out);
+
+    return 0;
+}
+
+int remove_from_packages(char *packagename) {
+    cJSON *root = load_file("packages.json");
+    cJSON_DeleteItemFromObject(root, packagename);
+
+    char *out = cJSON_Print(root);
+
+    write_packages_file(out);
+
+    free(out);
+
+    return 0;
 }
 
 #endif //USPM_PARSER_H
