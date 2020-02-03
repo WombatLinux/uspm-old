@@ -10,6 +10,8 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
     return written;
 }
 
+int check_dependencies_and_install(char *package);
+
 int download_package(char *mirror, char *package) {
     CURL *curl;
     FILE *fp;
@@ -41,6 +43,8 @@ int install_package_file(char *package) {
     command = concat(command, ".uspm");
 
     system(command);
+
+    check_dependencies_and_install(package);
 
     command = concat("sh ./", package);
     command = concat(command, "/PACKAGECODE install");
@@ -85,29 +89,6 @@ int uninstall_package(char *package) {
     return 0;
 }
 
-int check_version(char *minversion, char *version) {
-    int mma,mmi,mmb;
-    int ma,mi,mb;
-    if(sscanf(version,"%d.%d.%d",&ma,&mi,&mb) != 3) {
-        printf("someone's versioning is wrong, assuming false\n");
-        return 0;
-    } else {
-        if(sscanf(minversion,"%d.%d.%d",&mma,&mmi,&mmb) != 3) {
-            printf("someone's versioning is wrong, assuming false\n");
-            return 0;
-        } else {
-            if (ma < mma) { // ex 1.0.0 < 2.0.0
-                return 0;
-            } else if (mi < mmi) { // ex 1.0.0 < 1.1.0
-                return 0;
-            } else if (mb < mmb) { // ex 1.0.0 < 1.0.1
-                return 0;
-            } else {
-                return 1;
-            }
-        }
-    }
-}
 
 int check_dependencies(char *package) {
     printf("Checking dependencies...\n");
@@ -131,7 +112,7 @@ int check_dependencies(char *package) {
             char *version = dependency_internal->valuestring;
             char *minversion = dependency->valuestring;
 
-            if (check_version(minversion, version) == 0) {
+            if (check_version(version, minversion) >= 0) {
                 printf("%s (missing)\n", dependency->string);
             } else {
                 printf("%s\n", dependency->string);
@@ -168,10 +149,11 @@ int check_dependencies_and_install(char *package) {
         cJSON *dependency_internal = cJSON_GetObjectItem(root, dependency->string);
 
         if (dependency_internal != NULL) {
-            char *version = dependency_internal->valuestring;
+
+            char *version = cJSON_GetObjectItem(dependency_internal, "version")->valuestring;
             char *minversion = dependency->valuestring;
 
-            if (check_version(minversion, version) == 0) {
+            if (check_version(version, minversion) <= 0) {
                 printf("%s (missing)...installing first\n", dependency->string);
                 install_package(dependency->string);
             } else {

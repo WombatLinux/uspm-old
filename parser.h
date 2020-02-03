@@ -20,6 +20,92 @@ char* concat(const char *s1, const char *s2)
     return result;
 }
 
+
+int notZero(char *p) {
+    while (*p != '\0') {
+        if (*p != '0' && *p != '.') return 1;
+        ++p;
+    }
+    return 0;
+}
+
+// utility function to compare each substring of version1 and
+// version2
+int compareSubstr(char *substr_version1, char *substr_version2,
+                  int len_substr_version1, int len_substr_version2)
+{
+    // if length of substring of version 1 is greater then
+    // it means value of substr of version1 is also greater
+    if (len_substr_version1 > len_substr_version2)
+        return 1;
+
+    else if (len_substr_version1 < len_substr_version2)
+        return -1;
+
+        // when length of the substrings of both versions is same.
+    else
+    {
+        int i = 0, j = 0;
+
+        // compare each character of both substrings and return
+        // accordingly.
+        while (i < len_substr_version1)
+        {
+            if (substr_version1[i] < substr_version2[j]) return -1;
+            else if (substr_version1[i] > substr_version2[j]) return 1;
+            i++, j++;
+        }
+        return 0;
+    }
+}
+
+// function to compare two versions.
+int check_version(char* version1, char* version2)
+{
+    int len_version1 = strlen(version1);
+    int len_version2 = strlen(version2);
+
+    char *substr_version1 = (char *) malloc(sizeof(char) * 1000);
+    char *substr_version2 = (char *) malloc(sizeof(char) * 1000);
+
+    // loop until both strings are exhausted.
+    // and extract the substrings from version1 and version2
+    int i = 0, j = 0;
+    while (i < len_version1 || j < len_version2)
+    {
+        int p = 0, q = 0;
+
+        // skip the leading zeros in version1 string.
+        while (version1[i] == '0' )
+            i++;
+
+        // skip the leading zeros in version2 string.
+        while (version2[j] == '0' )
+            j++;
+
+        // extract the substring from version1.
+        while (version1[i] != '.' && i < len_version1)
+            substr_version1[p++] = version1[i++];
+
+        //extract the substring from version2.
+        while (version2[j] != '.' && j < len_version2)
+            substr_version2[q++] = version2[j++];
+
+        int res = compareSubstr(substr_version1,
+                                substr_version2, p, q);
+
+        // if res is either -1 or +1 then simply return.
+        if (res)
+            return res;
+        i++;
+        j++;
+    }
+
+    // here both versions are exhausted it implicitly
+    // means that both strings are equal.
+    return 0;
+}
+
 cJSON *load_file(char *file) {
     if (access(file,F_OK) != -1) {
         /* declare a file pointer */
