@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "parser.h"
 #include "parser.c"
+#include "iu.c"
 
 int main(int argc, char *argv[]) {
     printf("Welcome to USPM\n");

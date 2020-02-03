@@ -10,13 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="638146e9-fae6-488e-9289-7a5f707aebbc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/iu.c" beforeDir="false" afterPath="$PROJECT_DIR$/iu.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser.c" beforeDir="false" afterPath="$PROJECT_DIR$/parser.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser.h" beforeDir="false" afterPath="$PROJECT_DIR$/parser.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,8 +46,8 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="1580703533573" />
-        <entry key="$PROJECT_DIR$/compile_commands.json" value="3993799708" />
+        <entry key="$PROJECT_DIR$" value="1580710681769" />
+        <entry key="$PROJECT_DIR$/compile_commands.json" value="2997822982" />
       </map>
     </option>
     <option name="projectSyncType">
@@ -107,7 +104,7 @@
       <updated>1580703750098</updated>
       <workItem from="1580703751774" duration="4622000" />
       <workItem from="1580709276179" duration="498000" />
-      <workItem from="1580709824561" duration="658000" />
+      <workItem from="1580709824561" duration="2673000" />
     </task>
     <servers />
   </component>
