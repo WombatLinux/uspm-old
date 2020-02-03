@@ -39,12 +39,16 @@ int downloadPackage(char *mirror, char *package) {
         curl_easy_cleanup(curl);
         fclose(fp);
     }
+
+    free(curl);
+    free(fp);
+    free(url);
     return 0;
 }
 
 int installPackage(char *package) {
-    char *command = concat("tar -xf ", *package);
-    command = concat(command, '.uspm');
+    char *command = concat("tar -xf ", package);
+    command = concat(command, ".uspm");
 
     system(command);
 
@@ -52,6 +56,8 @@ int installPackage(char *package) {
     command = concat(command, "/PACKAGECODE install");
 
     system(command);
+
+    free(command);
 
     return 0;
 }
