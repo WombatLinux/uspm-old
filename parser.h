@@ -166,6 +166,19 @@ void write_packages_file(char *out) {
     free(outfile);
 }
 
+void write_config_file(char *out) {
+    char *outfile = concat(out, "\n");
+
+    FILE *ptr;
+
+    ptr = fopen("config.json","w");
+
+    fprintf(ptr,"%s",outfile);
+    fclose(ptr);
+
+    free(outfile);
+}
+
 int add_to_packages(char *packagename, cJSON *packagedata) {
     cJSON *root = load_file("packages.json");
 
