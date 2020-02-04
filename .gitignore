@@ -54,3 +54,4 @@ dkms.conf
 *.json
 .idea
 build
+.DS_Store

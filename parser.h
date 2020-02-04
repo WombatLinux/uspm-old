@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <zconf.h>
 #include <string.h>
+#include <stdio.h>
 
 
 char* concat(const char *s1, const char *s2)
@@ -158,6 +159,19 @@ void write_packages_file(char *out) {
     FILE *ptr;
 
     ptr = fopen("packages.json","w");
+
+    fprintf(ptr,"%s",outfile);
+    fclose(ptr);
+
+    free(outfile);
+}
+
+void write_config_file(char *out) {
+    char *outfile = concat(out, "\n");
+
+    FILE *ptr;
+
+    ptr = fopen("config.json","w");
 
     fprintf(ptr,"%s",outfile);
     fclose(ptr);

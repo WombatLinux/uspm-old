@@ -41,6 +41,7 @@ int download_package(char *mirror, char *package) {
 int install_package_file(char *package) {
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) != -1) {
+        printf("File exists\n");
         char *command = concat("tar -xf ", filename);
 
         system(command);
@@ -70,18 +71,20 @@ int install_package(char *package) {
         download_package(cJSON_GetObjectItem(config, "mirror")->valuestring, package);
     }
 
-    install_package_file(package);
+    if (install_package_file(package) == 0) {
+        char *file = concat("./", package);
+        file = concat(file, "/PACKAGEDATA");
 
-    char *file = concat("./", package);
-    file = concat(file, "/PACKAGEDATA");
+        cJSON *packagedata = load_file(file);
 
-    cJSON *packagedata = load_file(file);
+        free(file);
 
-    free(file);
+        add_to_packages(package, packagedata);
 
-    add_to_packages(package, packagedata);
-
-    return 0;
+        return 0;
+    } else {
+        return 1;
+    }
 }
 
 int uninstall_package(char *package) {

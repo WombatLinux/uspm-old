@@ -1,5 +1,5 @@
-Ultra Simple Package Manager (C Edition)
-========================================
+Ultra Simple Package Manager
+============================
 
 A a simple package manager that allows the user to install and uninstall packages and their dependencies.
 
@@ -11,13 +11,26 @@ All packages come in `.uspm` files, which are just tarballs. Within the tarball 
 
 `PACKAGEDATA` is the JSON data that will get added by the package manager to the master list.
 
-## Installation
-This package requires `cJSON` ([found here](https://github.com/DaveGamble/cJSON)) and libcurl
+## Building and Installing
+This package requires **at least** `cJSON` ([found here](https://github.com/DaveGamble/cJSON)) and libcurl
 
+There are 2 ways to install:
+
+1) Through Make (this requires GCC)
 ```bash
-git clone https://github.com/afroraydude/uspm.git`
+git clone https://github.com/afroraydude/uspm.git
 cd uspm
 make uspm
+make install
+```
+
+2) Through CMake
+```bash
+git clone https://github.com/afroraydude/uspm.git
+mkdir build
+cd build
+cmake ..
+make
 make install
 ```
 

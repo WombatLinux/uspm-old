@@ -3,7 +3,6 @@
  */
 #include <zconf.h>
 #include <stdlib.h>
-#include <cjson/cJSON.h>
 #include "parser.h"
 
 void create_packages_file();
@@ -27,6 +26,8 @@ void create_packages_file() {
 
     root = cJSON_CreateObject();
     uspm = cJSON_CreateObject();
+
+    printf("Creating packages file with default values\n");
 
     /* add data to uspm package */
     cJSON_AddItemToObject(uspm, "version", cJSON_CreateString(("1.0.0")));
@@ -60,7 +61,7 @@ int check_config_file() {
 void create_config_file() {
     char *out;
     cJSON *root;
-
+    printf("Creating config file with default values\n");
     root = cJSON_CreateObject();
 
     /* add data to uspm package */
@@ -71,7 +72,7 @@ void create_config_file() {
     /* free all objects under root and root itself */
     cJSON_Delete(root);
 
-    write_packages_file(out);
+    write_config_file(out);
 
     free(out);
 }
