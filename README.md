@@ -11,7 +11,7 @@ All packages come in `.uspm` files, which are just tarballs. Within the tarball 
 
 `PACKAGEDATA` is the JSON data that will get added by the package manager to the master list.
 
-## Installation
+## Building and Installing
 This package requires `cJSON` ([found here](https://github.com/DaveGamble/cJSON)) and libcurl
 
 ```bash
