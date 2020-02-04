@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <zconf.h>
 #include <string.h>
+#include <stdio.h>
 
 
 char* concat(const char *s1, const char *s2)

@@ -3,7 +3,6 @@
  */
 #include <zconf.h>
 #include <stdlib.h>
-#include <cjson/cJSON.h>
 #include "parser.h"
 
 void create_packages_file();
