@@ -52,5 +52,5 @@ Mkfile.old
 dkms.conf
 
 *.json
-uspm
 .idea
+build

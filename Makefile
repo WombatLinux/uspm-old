@@ -1,11 +1,12 @@
 uspm: main.c parser.c iu.c parser.h
-	@gcc -lcjson -lcurl -o uspm main.c -lm
+	@mkdir -p "build"
+	@gcc -lcjson -lcurl -o build/uspm main.c -lm
 
 clean:
-	@rm uspm
+	@rm -rf "build"
 
 install:
-	@mv ./uspm /usr/local/bin/
+	@mv ./build/uspm /usr/local/bin/
 
 uninstall:
 	@rm /usr/local/bin/uspm

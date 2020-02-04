@@ -17,6 +17,7 @@ int main(int argc, char *argv[]) {
     }
 
     check_packages_file();
+    check_config_file();
 
     if (argc == 3) {
         if (strcmp(argv[1], "i") == 0) {

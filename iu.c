@@ -39,27 +39,35 @@ int download_package(char *mirror, char *package) {
 }
 
 int install_package_file(char *package) {
-    char *command = concat("tar -xf ", package);
-    command = concat(command, ".uspm");
+    char *filename = concat(package, ".uspm");
+    if (access(filename,F_OK) != -1) {
+        char *command = concat("tar -xf ", filename);
 
-    system(command);
+        system(command);
 
-    check_dependencies_and_install(package);
+        check_dependencies_and_install(package);
 
-    command = concat("sh ./", package);
-    command = concat(command, "/PACKAGECODE install");
+        command = concat("sh ./", package);
+        command = concat(command, "/PACKAGECODE install");
 
-    system(command);
+        system(command);
 
-    free(command);
+        free(command);
 
-    return 0;
+        remove(filename);
+
+        return 0;
+    } else {
+        printf("Failed to extract package file");
+        return 1;
+    }
 }
 
 int install_package(char *package) {
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) == -1) {
-        download_package("http://packages.afroraydude.com/", package);
+        cJSON *config = load_file("config.json");
+        download_package(cJSON_GetObjectItem(config, "mirror")->valuestring, package);
     }
 
     install_package_file(package);
