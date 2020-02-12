@@ -11,12 +11,21 @@ AUX_SOURCE_DIRECTORY(${CMAKE_CURRENT_SOURCE_DIR} source)
 find_library (
         CJSON_LIB
         NAMES cjson libcjson # what to look for
-        #HINTS "${CMAKE_SOURCE_DIR}/lib" # where to look
-        #NO_DEFAULT_PATH # do not search system default paths
 )
+
+#find_library (
+#        NCURSES_LIB
+#        NAMES ncurses libncurses # what to look for
+#)
+
+#find_package(Curses REQUIRED)
 
 # check if we found the library
 message(STATUS "CJSON: [${CJSON_LIB}]")
+#message(STATUS "NCURSES: [${NCURSES_LIB}]")
 
-add_executable(uspm main.c )
+add_executable(uspm ./main.c )
+
+
 target_link_libraries(uspm LINK_PUBLIC ${CJSON_LIB} curl)
+#target_link_libraries(uspm-ui LINK_PUBLIC ${NCURSES_LIB} ${CURSES_LIBRARIES})
