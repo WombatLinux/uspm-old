@@ -1,6 +1,6 @@
 project(uspm)
 
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.10)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include) # if you are building with custom includes
 include_directories(/usr/local/include) # if you are building with system includes
