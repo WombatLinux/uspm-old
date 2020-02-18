@@ -1,6 +1,13 @@
 before_install:
     - sudo apt-get update
-    - sudo apt-get -y install cmake cjson
+    - sudo apt-get -y install cmake
+    - git clone https://github.com/DaveGamble/cJSON.git
+    - cd cJSON
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
+    - make install
 
 compiler:
     - clang
