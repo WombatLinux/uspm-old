@@ -8,7 +8,7 @@ before_install:
     - cmake ..
     - make
     - sudo make install
-
+    - cd ../../
 compiler:
     - clang
     - gcc
