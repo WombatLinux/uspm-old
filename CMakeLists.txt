@@ -26,6 +26,10 @@ message(STATUS "CJSON: [${CJSON_LIB}]")
 
 add_executable(uspm ./main.c )
 
-
 target_link_libraries(uspm LINK_PUBLIC ${CJSON_LIB} curl)
+
+install (TARGETS uspm
+    RUNTIME DESTINATION /usr/local/bin)
+
+#install (FILES manpage DESTINATION /us)
 #target_link_libraries(uspm-ui LINK_PUBLIC ${NCURSES_LIB} ${CURSES_LIBRARIES})
