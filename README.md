@@ -1,6 +1,8 @@
 Ultra Simple Package Manager
 ============================
 
+Build Status: [![Build Status](https://travis-ci.com/afroraydude/uspm.svg)](https://travis-ci.com/afroraydude/uspm)
+
 A a simple package manager that allows the user to install and uninstall packages and their dependencies.
 
 ## How it works
@@ -36,6 +38,15 @@ make install
 
 ## How to create a package for USPM
 
+### The easy way
+1) Compile the package from source
+2) Place all compiled files in a folder
+3) Make a folder with the name of the package and place the previous folder in that
+4) Enter the directory
+5) Run `uspm-mkpkg` and follow instructions
+6) Exit the directory, you should now have a `.uspm` package file.
+
+### The hard way
 1) Compile the package from source
 2) Place all compiled files in a folder
 3) Make a folder with the name of the package and place the previous folder in that
