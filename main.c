@@ -19,19 +19,25 @@ int main(int argc, char *argv[]) {
     check_packages_file();
     check_config_file();
 
-    if (argc == 3) {
+    if (argc >= 3) {
         if (strcmp(argv[1], "i") == 0) {
             printf("install %s\n", argv[2]);
-            install_package(argv[2]);
+            for (int i = 2; i < argc; i++) {
+                install_package(argv[i]);
+            }
         }
 
         else if (strcmp(argv[1], "u") == 0) {
             printf("uninstall %s\n", argv[2]);
-            uninstall_package(argv[2]);
+            for (int i = 2; i < argc; i++) {
+                uninstall_package(argv[i]);
+            }
         }
 
         else if (strcmp(argv[1], "c") == 0) {
-            check_dependencies(argv[2]);
+            for (int i = 2; i < argc; i++) {
+                check_dependencies(argv[i]);
+            }
         }
 
         else {

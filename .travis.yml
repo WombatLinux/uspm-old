@@ -1,3 +1,5 @@
+language: c
+
 before_install:
     - sudo apt-get update
     - sudo apt-get -y install cmake
@@ -9,6 +11,7 @@ before_install:
     - make
     - sudo make install
     - cd ../../
+    -
 compiler:
     - clang
     - gcc

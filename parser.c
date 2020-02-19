@@ -65,7 +65,7 @@ void create_config_file() {
     root = cJSON_CreateObject();
 
     /* add data to uspm package */
-    cJSON_AddItemToObject(root, "mirror", cJSON_CreateString(("http://packages.afroraydude.com/")));
+    cJSON_AddItemToObject(root, "mirror", cJSON_CreateString(("http://packages.afroraydude.com/uspm/")));
 
     out = cJSON_Print(root);
 
