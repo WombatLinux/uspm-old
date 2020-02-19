@@ -9,11 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Travis CI build configuration
 - Manpage
 - Ability to install/uninstall/check more than one package
+- `uspm-mkpkg` tool that makes package creation easier
 
 ## Changed
 - Changed the default configuration's mirror site. 
+- Changed `CMakeLists.txt` file to include `uspm-mkpkg`
+- Changed location of `uspm` C source and header files
 
-## [1.0.1] - 2020-2-4
+## [1.0.1] - 2020-02-04
 ### Added
 - Option to use CMake instead of Makefile
 
@@ -24,6 +27,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Fixed
 - Fixed bug where if config file doesn't exist, it breaks.
 
-## [1.0.0] - 2020-2-3
+## [1.0.0] - 2020-02-03
 ### Added
 - Install, Uninstall, Check dependencies commands
