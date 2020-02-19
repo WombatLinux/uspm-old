@@ -29,5 +29,8 @@ target_link_libraries(uspm-mkpkg LINK_PUBLIC ${CJSON_LIB})
 install (TARGETS uspm
     RUNTIME DESTINATION /usr/local/bin)
 
+install (TARGETS uspm-mkpkg
+        RUNTIME DESTINATION /usr/local/bin)
+
 #install (FILES manpage DESTINATION /us)
 #target_link_libraries(uspm-ui LINK_PUBLIC ${NCURSES_LIB} ${CURSES_LIBRARIES})
