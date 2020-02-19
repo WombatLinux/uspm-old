@@ -10,7 +10,7 @@
 int createpkg();
 
 int main(int argc, char *argv[]) {
-    printf("Welcome to uspm-mkpkg. Please make sure this is running in the package's folder and the name of the folder is the same as the package's name\n\n");
+    printf("Welcome to uspm-mkpkg.\nPlease make sure that:\n\t- This is running in the package's folder, and\n\t- The name of the folder is the same as the package's name\n\n");
 
     createpkg();
 }
@@ -40,7 +40,7 @@ void write_file(char *filename, char *out) {
 int createpkg() {
     char name[64], version[64], setbool[64], depName[64], depVer[64];
     cJSON *root, *dependencies;
-    int *dependenciesDone = 1;
+    int dependenciesDone = 1;
 
     root = cJSON_CreateObject();
     dependencies = cJSON_CreateObject();
@@ -72,7 +72,7 @@ int createpkg() {
         }
     }
 
-    cJSON_AddStringToObject(root, "dependencies", dependencies);
+    cJSON_AddItemToObject(root, "dependencies", dependencies);
     cJSON_AddStringToObject(root, "version", version);
 
     char *out = cJSON_Print(root);
