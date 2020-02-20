@@ -4,7 +4,14 @@ Ultra Simple Package Manager
 ![Travis (.com)](https://img.shields.io/travis/com/afroraydude/uspm?logo=travis&style=flat-square)
 ![GitHub](https://img.shields.io/github/license/afroraydude/uspm?style=flat-square)
 
-A a simple package manager that allows the user to install and uninstall packages and their dependencies.
+Ultra Simple Package Manager (USPM) is a suite of executables that overall allow for the management of packages.
+
+Here is a list of the current tools:
+- uspm: The main application that allows for the installation and uninstallation of software packages and their 
+dependencies.
+- uspm-mkpkg: This optional application is useful for those who want to design USPM packages
+- uspm-extended: This optional application adds more commands. This was made because of the original developer's rule that uspm can only 
+have 3 commands: install, uninstall, and check dependencies.
 
 ## How it works
 
