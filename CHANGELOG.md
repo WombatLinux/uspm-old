@@ -5,18 +5,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.1.0] - 2020-02-20
 ## Added 
 - Travis CI build configuration
 - Manpage
 - Ability to install/uninstall/check more than one package
 - `uspm-mkpkg` tool that makes package creation easier
 - Build status to README
+- Dependency Handler
+- Extended commands
 
 ## Changed
 - Changed the default configuration's mirror site. 
 - Changed `CMakeLists.txt` file to include `uspm-mkpkg`
 - Changed location of `uspm` C source and header files
 - Changed package creation instructions within the README
+
+# Fixed
+- Fixed bug where default mirror links to a nonexistent server
 
 ## [1.0.1] - 2020-02-04
 ### Added
