@@ -11,12 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ability to install/uninstall/check more than one package
 - `uspm-mkpkg` tool that makes package creation easier
 - Build status to README
+- Added proper version checking for dependencies
 
 ## Changed
 - Changed the default configuration's mirror site. 
 - Changed `CMakeLists.txt` file to include `uspm-mkpkg`
 - Changed location of `uspm` C source and header files
 - Changed package creation instructions within the README
+- Dependency resolution now is seperate from normal install functions.
 
 ## [1.0.1] - 2020-02-04
 ### Added

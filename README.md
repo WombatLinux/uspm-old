@@ -1,7 +1,8 @@
 Ultra Simple Package Manager
 ============================
 
-Build Status: [![Build Status](https://travis-ci.com/afroraydude/uspm.svg)](https://travis-ci.com/afroraydude/uspm)
+![Travis (.com)](https://img.shields.io/travis/com/afroraydude/uspm?logo=travis&style=flat-square)
+![GitHub](https://img.shields.io/github/license/afroraydude/uspm?style=flat-square)
 
 A a simple package manager that allows the user to install and uninstall packages and their dependencies.
 
