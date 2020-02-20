@@ -25,7 +25,7 @@ add_executable(uspm-mkpkg uspm-mkpkg/main.c)
 add_executable(uspm-extended uspm-extended/main.c)
 
 target_link_libraries(uspm LINK_PUBLIC ${CJSON_LIB} curl)
-target_link_libraries(uspm-extended LINK_PUBLIC ${CJSON_LIB})
+target_link_libraries(uspm-extended LINK_PUBLIC ${CJSON_LIB} curl)
 target_link_libraries(uspm-mkpkg LINK_PUBLIC ${CJSON_LIB})
 
 install (TARGETS uspm
