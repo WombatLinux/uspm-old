@@ -2,6 +2,7 @@
 #include "parser.h"
 #include "parser.c"
 #include "iu.c"
+#include <string.h>
 
 int main(int argc, char *argv[]) {
     printf("Welcome to USPM\n");
@@ -21,20 +22,21 @@ int main(int argc, char *argv[]) {
 
     if (argc >= 3) {
         if (strcmp(argv[1], "i") == 0) {
-            printf("install %s\n", argv[2]);
+            printf("install packages\n");
             for (int i = 2; i < argc; i++) {
                 install_package(argv[i]);
             }
         }
 
         else if (strcmp(argv[1], "u") == 0) {
-            printf("uninstall %s\n", argv[2]);
+            printf("uninstall packages\n");
             for (int i = 2; i < argc; i++) {
                 uninstall_package(argv[i]);
             }
         }
 
         else if (strcmp(argv[1], "c") == 0) {
+            printf("check dependencies\n");
             for (int i = 2; i < argc; i++) {
                 check_dependencies(argv[i]);
             }
