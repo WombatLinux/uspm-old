@@ -1,43 +1,11 @@
 //
 // Created by afroraydude on 2/19/20.
 //
-#include <curl/curl.h>
 #include <string.h>
 #include <cjson/cJSON.h>
 #include "parser.h"
 
 int install_dependency(char *, char *minversion);
-
-size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
-    size_t written = fwrite(ptr, size, nmemb, stream);
-    return written;
-}
-
-int download_package(char *mirror, char *package) {
-    CURL *curl;
-    FILE *fp;
-    CURLcode res;
-    char *url = concat(mirror, package);
-    url = concat(url, ".uspm");
-    printf("%s\n", url);
-
-    char outfilename[FILENAME_MAX] = "";
-    strcpy(outfilename, concat(package, ".uspm"));
-    curl = curl_easy_init();
-    if (curl) {
-        fp = fopen(outfilename,"wb");
-        curl_easy_setopt(curl, CURLOPT_URL, url);
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
-        res = curl_easy_perform(curl);
-        /* always cleanup */
-        curl_easy_cleanup(curl);
-        fclose(fp);
-    }
-
-    free(url);
-    return 0;
-}
 
 int check_dependencies_and_install(char *package) {
     printf("Checking dependencies...\n");
@@ -56,31 +24,36 @@ int check_dependencies_and_install(char *package) {
     while (dependency) {
 
         cJSON *dependency_internal = cJSON_GetObjectItem(root, dependency->string);
+        char *minversion = dependency->valuestring;
 
         if (dependency_internal != NULL) {
 
             char *version = cJSON_GetObjectItem(dependency_internal, "version")->valuestring;
-            char *minversion = dependency->valuestring;
 
-            if (check_version(version, minversion) <= 0) {
+            if (check_version(version, minversion) < 0) {
                 printf("%s (missing)...installing first\n", dependency->string);
-                install_dependency(dependency->string, minversion);
+                if (install_dependency(dependency->string, minversion) != 0) {
+                    return 1;
+                }
             } else {
                 printf("%s\n", dependency->string);
             }
         } else {
             printf("Dependency not installed\n");
+            if (install_dependency(dependency->string, minversion) != 0) {
+                return 1;
+            }
         }
         // do what we need to do
         dependency = dependency->next;
     }
 
     printf("No more dependencies found\n");
-
     return 0;
 }
 
 int install_dep_file(char *package, char *minversion) {
+    printf("testidf\n");
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) != -1) {
         printf("File exists\n");
@@ -88,11 +61,19 @@ int install_dep_file(char *package, char *minversion) {
 
         system(command);
 
-        cJSON *root = load_file("PACKAGECODE");
+        filename = concat(package, "/PACKAGEDATA");
 
+        cJSON *root = load_file(filename);
+
+        char *test = cJSON_Print(root);
+
+        printf("%s\n", test);
+
+        printf("testidf2\n");
         char *version = cJSON_GetObjectItem(root, "version")->valuestring;
+        printf("testidf3\n");
 
-        if (check_version(version, minversion) <= 0) {
+        if (check_version(version, minversion) < 0) {
             printf("No good version of dependency found. Aborting.\n");
             return 1;
         }
@@ -123,6 +104,8 @@ int install_dependency(char *package, char *minversion) {
         download_package(cJSON_GetObjectItem(config, "mirror")->valuestring, package);
     }
 
+    printf("testid\n");
+
     if (install_dep_file(package, minversion) == 0) {
         char *file = concat("./", package);
         file = concat(file, "/PACKAGEDATA");
@@ -135,6 +118,7 @@ int install_dependency(char *package, char *minversion) {
 
         return 0;
     } else {
+        printf("testreturn1\n");
         return 1;
     }
 }

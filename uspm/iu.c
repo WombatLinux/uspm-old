@@ -14,7 +14,10 @@ int install_package_file(char *package) {
 
         system(command);
 
-        check_dependencies_and_install(package);
+        if (check_dependencies_and_install(package) != 0) {
+            printf("Installation failed\n");
+            return 1;
+        }
 
         command = concat("sh ./", package);
         command = concat(command, "/PACKAGECODE install");
