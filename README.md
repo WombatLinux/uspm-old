@@ -18,7 +18,7 @@ This package requires **at least** `cJSON` ([found here](https://github.com/Dave
 
 There are 2 ways to install:
 
-1) Through Make (this requires GCC)
+1) Through Make (this requires GCC) [***not recommended***]
 ```bash
 git clone https://github.com/afroraydude/uspm.git
 cd uspm
@@ -26,7 +26,7 @@ make uspm
 make install
 ```
 
-2) Through CMake
+2) Through CMake (clang or gcc)
 ```bash
 git clone https://github.com/afroraydude/uspm.git
 mkdir build
