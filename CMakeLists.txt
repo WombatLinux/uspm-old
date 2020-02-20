@@ -22,14 +22,19 @@ message(STATUS "CJSON: [${CJSON_LIB}]")
 
 add_executable(uspm uspm/main.c)
 add_executable(uspm-mkpkg uspm-mkpkg/main.c)
+add_executable(uspm-extended uspm-extended/main.c)
 
 target_link_libraries(uspm LINK_PUBLIC ${CJSON_LIB} curl)
+target_link_libraries(uspm LINK_PUBLIC ${CJSON_LIB})
 target_link_libraries(uspm-mkpkg LINK_PUBLIC ${CJSON_LIB})
 
 install (TARGETS uspm
     RUNTIME DESTINATION /usr/local/bin)
 
 install (TARGETS uspm-mkpkg
+        RUNTIME DESTINATION /usr/local/bin)
+
+install (TARGETS uspm-extended
         RUNTIME DESTINATION /usr/local/bin)
 
 #install (FILES manpage DESTINATION /us)

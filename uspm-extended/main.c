@@ -1,11 +1,12 @@
+//
+// Created by afroraydude on 2/20/20.
+//
 #include <stdio.h>
-#include "parser.h"
-#include "parser.c"
-#include "iu.c"
 #include <string.h>
+#include <zconf.h>
 
 int main(int argc, char *argv[]) {
-    printf("Welcome to USPM\n");
+    printf("Welcome to USPM Extended Suite\n");
     chdir("/var/uspm/storage");
 
     int result = access("/var/uspm/storage/", W_OK);
@@ -17,28 +18,24 @@ int main(int argc, char *argv[]) {
 
     }
 
-    check_packages_file();
-    check_config_file();
-
     if (argc >= 3) {
-        if (strcmp(argv[1], "i") == 0) {
-            printf("install packages\n");
+        if (strcmp(argv[1], "") == 0) {
+            printf("install %s\n", argv[2]);
             for (int i = 2; i < argc; i++) {
-                install_package(argv[i]);
+
             }
         }
 
         else if (strcmp(argv[1], "u") == 0) {
-            printf("uninstall packages\n");
+            printf("uninstall %s\n", argv[2]);
             for (int i = 2; i < argc; i++) {
-                uninstall_package(argv[i]);
+
             }
         }
 
         else if (strcmp(argv[1], "c") == 0) {
-            printf("check dependencies\n");
             for (int i = 2; i < argc; i++) {
-                check_dependencies(argv[i]);
+
             }
         }
 
@@ -50,3 +47,4 @@ int main(int argc, char *argv[]) {
     }
     return 0;
 }
+
