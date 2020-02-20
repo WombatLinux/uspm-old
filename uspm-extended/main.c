@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
                cJSON *package = root->child;
 
                while (package) {
-                   char *command = concat("uspm i ", package);
+                   char *command = concat("uspm i ", package->string);
 
                    system(command);
 
@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
                 cJSON *package = root->child;
 
                 while (package) {
-                    char *command = concat("uspm u ", package);
+                    char *command = concat("uspm u ", package->string);
 
                     system(command);
 
