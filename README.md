@@ -37,6 +37,7 @@ make install
 2) Through CMake (clang or gcc)
 ```bash
 git clone https://github.com/afroraydude/uspm.git
+cd uspm
 mkdir build
 cd build
 cmake ..
