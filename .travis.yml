@@ -1,0 +1,39 @@
+language: c
+
+before_install:
+    - sudo apt-get update
+    - sudo apt-get -y install cmake
+    - git clone https://github.com/DaveGamble/cJSON.git
+    - cd cJSON
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
+    - sudo make install
+    - cd ../../
+    
+compiler:
+    - clang
+    - gcc
+
+script:
+    - mkdir build 
+    - cd build 
+    - cmake .. 
+    - make
+
+before_deploy:
+    - mkdir export
+    - mv uspm* export/
+    - cd export
+    - tar cf uspm-linux.tar ./*
+    - mv uspm-linux.tar ../../
+    - cd ../../
+
+deploy:
+    provider: releases
+    api_key: $ghtoken
+    file: "uspm-linux.tar"
+    skip_cleanup: true
+    on:
+        tags: true

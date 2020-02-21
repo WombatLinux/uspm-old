@@ -4,39 +4,7 @@
 #include <curl/curl.h>
 #include <string.h>
 #include "parser.h"
-
-size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
-    size_t written = fwrite(ptr, size, nmemb, stream);
-    return written;
-}
-
-int check_dependencies_and_install(char *package);
-
-int download_package(char *mirror, char *package) {
-    CURL *curl;
-    FILE *fp;
-    CURLcode res;
-    char *url = concat(mirror, package);
-    url = concat(url, ".uspm");
-    printf("%s\n", url);
-
-    char outfilename[FILENAME_MAX] = "";
-    strcpy(outfilename, concat(package, ".uspm"));
-    curl = curl_easy_init();
-    if (curl) {
-        fp = fopen(outfilename,"wb");
-        curl_easy_setopt(curl, CURLOPT_URL, url);
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
-        res = curl_easy_perform(curl);
-        /* always cleanup */
-        curl_easy_cleanup(curl);
-        fclose(fp);
-    }
-
-    free(url);
-    return 0;
-}
+#include "dephandle.c"
 
 int install_package_file(char *package) {
     char *filename = concat(package, ".uspm");
@@ -46,7 +14,10 @@ int install_package_file(char *package) {
 
         system(command);
 
-        check_dependencies_and_install(package);
+        if (check_dependencies_and_install(package) != 0) {
+            printf("Installation failed\n");
+            return 1;
+        }
 
         command = concat("sh ./", package);
         command = concat(command, "/PACKAGECODE install");
@@ -125,48 +96,6 @@ int check_dependencies(char *package) {
 
             if (check_version(version, minversion) >= 0) {
                 printf("%s (missing)\n", dependency->string);
-            } else {
-                printf("%s\n", dependency->string);
-            }
-        } else {
-            printf("Dependency not installed\n");
-        }
-        // do what we need to do
-        dependency = dependency->next;
-    }
-
-    printf("No more dependencies found\n");
-
-    return 0;
-}
-
-
-int check_dependencies_and_install(char *package) {
-    printf("Checking dependencies...\n");
-
-    char *file = concat("./", package);
-    file = concat(file, "/PACKAGEDATA");
-
-    cJSON *packagedata = load_file(file);
-
-    cJSON *root = load_file("packages.json");
-
-    cJSON *dependencies = cJSON_GetObjectItem(packagedata, "dependencies");
-
-    cJSON *dependency = dependencies->child;
-
-    while (dependency) {
-
-        cJSON *dependency_internal = cJSON_GetObjectItem(root, dependency->string);
-
-        if (dependency_internal != NULL) {
-
-            char *version = cJSON_GetObjectItem(dependency_internal, "version")->valuestring;
-            char *minversion = dependency->valuestring;
-
-            if (check_version(version, minversion) <= 0) {
-                printf("%s (missing)...installing first\n", dependency->string);
-                install_package(dependency->string);
             } else {
                 printf("%s\n", dependency->string);
             }

@@ -1,7 +1,17 @@
 Ultra Simple Package Manager
 ============================
 
-A a simple package manager that allows the user to install and uninstall packages and their dependencies.
+![Travis (.com)](https://img.shields.io/travis/com/afroraydude/uspm?logo=travis&style=flat-square)
+![GitHub](https://img.shields.io/github/license/afroraydude/uspm?style=flat-square)
+
+Ultra Simple Package Manager (USPM) is a suite of executables that overall allow for the management of packages.
+
+Here is a list of the current tools:
+- uspm: The main application that allows for the installation and uninstallation of software packages and their 
+dependencies.
+- uspm-mkpkg: This optional application is useful for those who want to design USPM packages
+- uspm-extended: This optional application adds more commands. This was made because of the original developer's rule that uspm can only 
+have 3 commands: install, uninstall, and check dependencies.
 
 ## How it works
 
@@ -16,7 +26,7 @@ This package requires **at least** `cJSON` ([found here](https://github.com/Dave
 
 There are 2 ways to install:
 
-1) Through Make (this requires GCC)
+1) Through Make (this requires GCC) [***not recommended***]
 ```bash
 git clone https://github.com/afroraydude/uspm.git
 cd uspm
@@ -24,9 +34,10 @@ make uspm
 make install
 ```
 
-2) Through CMake
+2) Through CMake (clang or gcc)
 ```bash
 git clone https://github.com/afroraydude/uspm.git
+cd uspm
 mkdir build
 cd build
 cmake ..
@@ -36,6 +47,15 @@ make install
 
 ## How to create a package for USPM
 
+### The easy way
+1) Compile the package from source
+2) Place all compiled files in a folder
+3) Make a folder with the name of the package and place the previous folder in that
+4) Enter the directory
+5) Run `uspm-mkpkg` and follow instructions
+6) Exit the directory, you should now have a `.uspm` package file.
+
+### The hard way
 1) Compile the package from source
 2) Place all compiled files in a folder
 3) Make a folder with the name of the package and place the previous folder in that
