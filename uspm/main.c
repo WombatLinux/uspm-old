@@ -8,10 +8,9 @@ int main(int argc, char *argv[]) {
     printf("Welcome to USPM\n");
     chdir("/var/uspm/storage");
 
-    int result = access("/var/uspm/storage/", W_OK);
-    if (result != 0)
+    if (access("/var/uspm/storage/", W_OK) != 0 || access("/etc", W_OK) != 0 || access("/usr", W_OK) != 0) 
     {
-        printf("Cannot write to the storage directory, exiting.\n");
+        printf("Insufficient permissions for one of the required directories (/var /usr /etc). Are you running as root?\n");
         return 1;
     } else {
 
