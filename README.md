@@ -54,6 +54,20 @@ make install
 4) Enter the directory
 5) Run `uspm-mkpkg` and follow instructions
 6) Exit the directory, you should now have a `.uspm` package file.
+ex:
+```bash
+mkdir -p /tmp/package/files 
+
+mkdir build
+cd build
+
+../configure --prefix=/tmp/package/files/
+make 
+make install
+
+cd /tmp/package
+uspm-mkpkg
+```
 
 ### The hard way
 1) Compile the package from source
