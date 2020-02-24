@@ -8,7 +8,8 @@
 #include <cjson/cJSON.h>
 #include "../uspm/parser.h"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     printf("Welcome to USPM Extended Suite\n");
     chdir("/var/uspm/storage");
 
@@ -17,57 +18,74 @@ int main(int argc, char *argv[]) {
     {
         printf("Cannot write to the storage directory, exiting.\n");
         return 1;
-    } else {
-
     }
 
-    if (argc >= 3) {
-        if (strcmp(argv[1], "c") == 0) {
-            printf("clean %s\n", argv[2]);
-            for (int i = 2; i < argc; i++) {
+    if (argc == 2)
+    {
+        if (strcmp(argv[1], "c") == 0)
+        {
+            for (int i = 2; i < argc; i++)
+            {
                 system("rm *.uspm");
             }
         }
 
-        else if (strcmp(argv[1], "u") == 0) {
-            printf("upgrade %s\n", argv[2]);
-            for (int i = 2; i < argc; i++) {
-                cJSON *root = load_file("packages.json");
+        else if (strcmp(argv[1], "u") == 0)
+        {
+            cJSON *root = load_file("packages.json");
 
-               cJSON *package = root->child;
+            cJSON *package = root->child;
 
-               while (package) {
-                   char *command = concat("uspm i ", package->string);
+            while (package)
+            {
+                char *command = concat("uspm i ", package->string);
 
-                   system(command);
+                system(command);
 
-                   package = package->next;
-               }
+                package = package->next;
             }
         }
 
-        else if (strcmp(argv[1], "p") == 0) {
-            for (int i = 2; i < argc; i++) {
-                cJSON *root = load_file("packages.json");
+        else if (strcmp(argv[1], "p") == 0)
+        {
+            cJSON *root = load_file("packages.json");
 
-                cJSON *package = root->child;
+            cJSON *package = root->child;
 
-                while (package) {
-                    char *command = concat("uspm u ", package->string);
+            while (package)
+            {
+                char *command = concat("uspm u ", package->string);
 
-                    system(command);
+                system(command);
 
-                    package = package->next;
-                }
+                package = package->next;
             }
         }
 
-        else {
+        else if (strcmp(argv[1], "l") == 0)
+        {
+            printf("list packages\n");
+            cJSON *root = load_file("packages.json");
+
+            cJSON *package = root->child;
+
+            while (package)
+            {
+                printf(package->string);
+                printf("\n");
+
+                package = package->next;
+            }
+        }
+
+        else
+        {
             printf("command not found");
         }
-    } else {
+    }
+    else
+    {
         printf("No command found");
     }
     return 0;
 }
-
