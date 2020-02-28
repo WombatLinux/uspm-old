@@ -29,6 +29,7 @@ before_deploy:
     - cd export
     - tar cf uspm-linux.tar ./*
     - mv uspm-linux.tar ../../
+    - mv uspm-linux.tar uspm-linux-${CC}.tar
     - cd ../../
 
 deploy:
