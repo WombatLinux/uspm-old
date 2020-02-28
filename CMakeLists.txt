@@ -14,17 +14,23 @@ find_library (
         NAMES cjson libcjson # what to look for
 )
 
+find_library (
+        TAR_LIB
+        NAMES tar libtar # what to look for
+)
+
 #find_package(Curses REQUIRED)
 
 # check if we found the library
 message(STATUS "CJSON: [${CJSON_LIB}]")
+message(STATUS "LIBTAR: [${TAR_LIB}]")
 #message(STATUS "NCURSES: [${NCURSES_LIB}]")
 
 add_executable(uspm uspm/main.c)
 add_executable(uspm-mkpkg uspm-mkpkg/main.c)
 add_executable(uspm-extended uspm-extended/main.c)
 
-target_link_libraries(uspm LINK_PUBLIC ${CJSON_LIB} curl)
+target_link_libraries(uspm LINK_PUBLIC ${CJSON_LIB} curl ${TAR_LIB})
 target_link_libraries(uspm-extended LINK_PUBLIC ${CJSON_LIB} curl)
 target_link_libraries(uspm-mkpkg LINK_PUBLIC ${CJSON_LIB})
 

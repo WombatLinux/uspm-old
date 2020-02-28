@@ -3,23 +3,34 @@
  */
 #include <curl/curl.h>
 #include <string.h>
+#include <libtar.h>
+#include <fcntl.h>
 #include "parser.h"
 #include "dephandle.c"
 
 int install_package_file(char *package) {
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) != -1) {
+        TAR *tar;
         printf("File exists\n");
-        char *command = concat("tar -xf ", filename);
+        //char *command = concat("tar -xf ", filename);
 
-        system(command);
+        tar_open(&tar, filename, 0, O_RDONLY, 0, 0);
+
+        tar_extract_all(tar, rootdir);
+
+        if (access(concat(package, "/PACKAGEDATA"),F_OK) == -1) {
+            printf("FILE EXTRACT FAILED\n");
+            return 1;
+        }
+        //system(command);
 
         if (check_dependencies_and_install(package) != 0) {
             printf("Installation failed\n");
             return 1;
         }
 
-        command = concat("sh ./", package);
+        char *command = concat("sh ./", package);
         command = concat(command, "/PACKAGECODE install");
 
         system(command);
