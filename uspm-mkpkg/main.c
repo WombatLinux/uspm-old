@@ -94,12 +94,5 @@ int createpkg() {
     tar_append_eof(pTar);
     tar_close(pTar);
 
-    //char *command = concat("tar cf ", packageFile);
-    //command = concat(command, " ");
-
-    //command = concat(command, name);
-
-    //system(command);
-
     return 0;
 }

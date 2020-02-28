@@ -24,6 +24,9 @@ int install_package_file(char *package) {
             return 1;
         }
         //system(command);
+        free(tar);
+
+        remove(filename);
 
         if (check_dependencies_and_install(package) != 0) {
             printf("Installation failed\n");
@@ -36,10 +39,6 @@ int install_package_file(char *package) {
         system(command);
 
         free(command);
-
-        remove(filename);
-
-        free(tar);
 
         return 0;
     } else {

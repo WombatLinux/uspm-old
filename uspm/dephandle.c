@@ -66,6 +66,10 @@ int install_dep_file(char *package, char *minversion) {
 
         tar_extract_all(tar, rootdir);
         //system(command);
+        if (access(concat(package, "/PACKAGEDATA"),F_OK) == -1) {
+            printf("FILE EXTRACT FAILED\n");
+            return 1;
+        }
 
         filename = concat(package, "/PACKAGEDATA");
 
@@ -74,6 +78,10 @@ int install_dep_file(char *package, char *minversion) {
         char *test = cJSON_Print(root);
 
         printf("%s\n", test);
+
+        free(tar);
+
+        remove(filename);
 
         printf("testidf2\n");
         char *version = cJSON_GetObjectItem(root, "version")->valuestring;
@@ -93,10 +101,6 @@ int install_dep_file(char *package, char *minversion) {
         system(command);
 
         free(command);
-
-        remove(filename);
-
-        free(tar);
 
         return 0;
     } else {
