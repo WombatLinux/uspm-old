@@ -1,7 +1,7 @@
 language: c
 
 before_install:
-    - sudo -s
+    - sudo -i
     - apt-get update
     - apt-get -y install cmake
     - git clone https://github.com/DaveGamble/cJSON.git
