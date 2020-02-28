@@ -1,27 +1,26 @@
 language: c
 
 before_install:
-    - sudo -i
-    - apt-get update
-    - apt-get -y install cmake
+    - sudo apt-get update
+    - sudo apt-get -y install cmake
     - git clone https://github.com/DaveGamble/cJSON.git
     - cd cJSON
     - mkdir build
     - cd build
     - cmake ..
     - make
-    - make install
+    - sudo make install
     - cd ../../
     - git clone https://github.com/tklauser/libtar.git
     - cd libtar
     - autoreconf --force --install
     - ./configure
-    - make
-    - make install
+    - sudo make
+    - sudo make install
     - cd ..
     
 compiler:
-    - clang
+    # cannot use clang due to sudo and travis not including clang in sudo path
     - gcc
 
 script:
