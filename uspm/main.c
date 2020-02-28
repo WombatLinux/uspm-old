@@ -6,11 +6,11 @@
 
 int main(int argc, char *argv[]) {
     printf("Welcome to USPM\n");
-    chdir("/var/uspm/storage");
+    chdir(rootdir);
 
-    if (access("/var/uspm/storage/", W_OK) != 0 || access("/etc", W_OK) != 0 || access("/usr", W_OK) != 0) 
+    if (access(rootdir, W_OK) != 0) 
     {
-        printf("Insufficient permissions for one of the required directories (/var /usr /etc). Are you running as root?\n");
+        printf("Insufficient permissions for one of the required directories (/var). Are you running as root?\n");
         return 1;
     } else {
 

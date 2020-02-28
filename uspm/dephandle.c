@@ -3,6 +3,8 @@
 //
 #include <string.h>
 #include <cjson/cJSON.h>
+#include <libtar.h>
+#include <fcntl.h>
 #include "parser.h"
 
 int install_dependency(char *, char *minversion);
@@ -57,9 +59,13 @@ int install_dep_file(char *package, char *minversion) {
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) != -1) {
         printf("File exists\n");
-        char *command = concat("tar -xf ", filename);
+        TAR *tar;
+        //char *command = concat("tar -xf ", filename);
 
-        system(command);
+        tar_open(&tar, filename, 0, O_RDONLY, 0, 0);
+
+        tar_extract_all(tar, rootdir);
+        //system(command);
 
         filename = concat(package, "/PACKAGEDATA");
 
@@ -81,7 +87,7 @@ int install_dep_file(char *package, char *minversion) {
 
         check_dependencies_and_install(package);
 
-        command = concat("sh ./", package);
+        char *command = concat("sh ./", package);
         command = concat(command, "/PACKAGECODE install");
 
         system(command);
@@ -89,6 +95,8 @@ int install_dep_file(char *package, char *minversion) {
         free(command);
 
         remove(filename);
+
+        free(tar);
 
         return 0;
     } else {
