@@ -5,6 +5,8 @@
 #include <cjson/cJSON.h>
 #include <string.h>
 #include <stdlib.h>
+#include <libtar.h>
+#include <fcntl.h>
 #include <zconf.h>
 
 int createpkg();
@@ -85,12 +87,19 @@ int createpkg() {
     chdir("..");
 
     char *packageFile = concat(name, ".uspm");
-    char *command = concat("tar cf ", packageFile);
-    command = concat(command, " ");
+    TAR *pTar;
 
-    command = concat(command, name);
+    tar_open(&pTar, packageFile, NULL, O_WRONLY | O_CREAT, 0644, TAR_GNU);
+    tar_append_tree(pTar, "./", ".");
+    tar_append_eof(pTar);
+    tar_close(pTar);
 
-    system(command);
+    //char *command = concat("tar cf ", packageFile);
+    //command = concat(command, " ");
+
+    //command = concat(command, name);
+
+    //system(command);
 
     return 0;
 }

@@ -96,6 +96,8 @@ int install_dep_file(char *package, char *minversion) {
 
         remove(filename);
 
+        free(tar);
+
         return 0;
     } else {
         printf("Failed to extract package file");

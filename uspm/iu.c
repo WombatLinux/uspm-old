@@ -39,6 +39,8 @@ int install_package_file(char *package) {
 
         remove(filename);
 
+        free(tar);
+
         return 0;
     } else {
         printf("Failed to extract package file");
