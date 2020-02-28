@@ -11,6 +11,13 @@ before_install:
     - make
     - sudo make install
     - cd ../../
+    - git clone https://github.com/tklauser/libtar.git
+    - cd libtar
+    - autoreconf --force --install
+    - ./configure
+    - make
+    - make install
+    - cd ..
     
 compiler:
     - clang
