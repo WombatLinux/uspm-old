@@ -13,8 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Use internal untar instead of external commands.
-- `uspm-mkpkg` tool now uses libtar instead of commands.
+- Use libtar instead of external commands for extraction of tar files.
+- `uspm-mkpkg` tool now uses libtar instead of commands for creation of tar files.
 
 ### [1.1.1] - 2020-02-23
 
