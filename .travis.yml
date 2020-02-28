@@ -15,8 +15,8 @@ before_install:
     - cd libtar
     - autoreconf --force --install
     - ./configure
-    - make
-    - make install
+    - sudo make
+    - sudo make install
     - cd ..
     
 compiler:
