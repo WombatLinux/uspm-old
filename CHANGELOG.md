@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### [1.1.1] - 2020-02-23
+## [1.1.1] - 2020-02-23
 ### Fixed
 - Fixed uspm-extended where commands weren't doing what they were supposed to do
 
