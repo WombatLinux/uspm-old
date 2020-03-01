@@ -13,6 +13,8 @@
 #include <curl/curl.h>
 
 #define rootdir "/var/uspm/storage"
+#define false 1
+#define true 2
 
 
 char* concat(const char *s1, const char *s2)

@@ -55,7 +55,6 @@ int check_dependencies_and_install(char *package) {
 }
 
 int install_dep_file(char *package, char *minversion) {
-    printf("testidf\n");
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) != -1) {
         printf("File exists\n");
@@ -82,10 +81,7 @@ int install_dep_file(char *package, char *minversion) {
         free(tar);
 
         remove(filename);
-
-        printf("testidf2\n");
         char *version = cJSON_GetObjectItem(root, "version")->valuestring;
-        printf("testidf3\n");
 
         if (check_version(version, minversion) < 0) {
             printf("No good version of dependency found. Aborting.\n");
@@ -116,7 +112,6 @@ int install_dependency(char *package, char *minversion) {
         download_package(cJSON_GetObjectItem(config, "mirror")->valuestring, package);
     }
 
-    printf("testid\n");
 
     if (install_dep_file(package, minversion) == 0) {
         char *file = concat("./", package);
@@ -130,7 +125,6 @@ int install_dependency(char *package, char *minversion) {
 
         return 0;
     } else {
-        printf("testreturn1\n");
         return 1;
     }
 }
