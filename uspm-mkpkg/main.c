@@ -94,5 +94,5 @@ int createpkg() {
     tar_append_eof(pTar);
     tar_close(pTar);
 
-    return 0;
+    return true;
 }

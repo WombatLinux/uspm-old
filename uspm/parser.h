@@ -31,10 +31,10 @@ char* concat(const char *s1, const char *s2)
 
 int notZero(char *p) {
     while (*p != '\0') {
-        if (*p != '0' && *p != '.') return 1;
+        if (*p != '0' && *p != '.') return false;
         ++p;
     }
-    return 0;
+    return true;
 }
 
 // utility function to compare each substring of version1 and
@@ -45,7 +45,7 @@ int compareSubstr(char *substr_version1, char *substr_version2,
     // if length of substring of version 1 is greater then
     // it means value of substr of version1 is also greater
     if (len_substr_version1 > len_substr_version2)
-        return 1;
+        return false;
 
     else if (len_substr_version1 < len_substr_version2)
         return -1;
@@ -60,10 +60,10 @@ int compareSubstr(char *substr_version1, char *substr_version2,
         while (i < len_substr_version1)
         {
             if (substr_version1[i] < substr_version2[j]) return -1;
-            else if (substr_version1[i] > substr_version2[j]) return 1;
+            else if (substr_version1[i] > substr_version2[j]) return false;
             i++, j++;
         }
-        return 0;
+        return true;
     }
 }
 
@@ -113,7 +113,7 @@ int check_version(char* version1, char* version2)
 
     // here both versions are exhausted it implicitly
     // means that both strings are equal.
-    return 0;
+    return true;
 }
 
 cJSON *load_file(char *file) {
@@ -199,7 +199,7 @@ int add_to_packages(char *packagename, cJSON *packagedata) {
 
     free(out);
 
-    return 0;
+    return true;
 }
 
 int remove_from_packages(char *packagename) {
@@ -212,7 +212,7 @@ int remove_from_packages(char *packagename) {
 
     free(out);
 
-    return 0;
+    return true;
 }
 
 size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
@@ -243,7 +243,7 @@ int download_package(char *mirror, char *package) {
     }
 
     free(url);
-    return 0;
+    return true;
 }
 
 #endif //USPM_PARSER_H

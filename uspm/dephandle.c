@@ -35,7 +35,7 @@ int check_dependencies(char *package) {
             if (check_version(version, minversion) < 0) {
                 printf("%s (missing)...installing first\n", dependency->string);
                 if (install_dependency(dependency->string, minversion) != 0) {
-                    return 1;
+                    return false ;
                 }
             } else {
                 printf("%s\n", dependency->string);
@@ -43,7 +43,7 @@ int check_dependencies(char *package) {
         } else {
             printf("Dependency not installed\n");
             if (install_dependency(dependency->string, minversion) != 0) {
-                return 1;
+                return false;
             }
         }
         // do what we need to do
@@ -51,7 +51,7 @@ int check_dependencies(char *package) {
     }
 
     printf("No more dependencies found\n");
-    return 0;
+    return true;
 }
 
 int install_dep_file(char *package, char *minversion) {
@@ -67,7 +67,7 @@ int install_dep_file(char *package, char *minversion) {
         //system(command);
         if (access(concat(package, "/PACKAGEDATA"),F_OK) == -1) {
             printf("FILE EXTRACT FAILED\n");
-            return 1;
+            return false;
         }
 
         filename = concat(package, "/PACKAGEDATA");
@@ -85,9 +85,8 @@ int install_dep_file(char *package, char *minversion) {
 
         if (check_version(version, minversion) < 0) {
             printf("No good version of dependency found. Aborting.\n");
-            return 1;
+            return false;
         }
-
 
         check_dependencies(package);
 
@@ -98,10 +97,10 @@ int install_dep_file(char *package, char *minversion) {
 
         free(command);
 
-        return 0;
+        return true;
     } else {
         printf("Failed to extract package file");
-        return 1;
+        return false;
     }
 }
 
@@ -123,8 +122,8 @@ int install_dependency(char *package, char *minversion) {
 
         add_to_packages(package, packagedata);
 
-        return 0;
+        return true;
     } else {
-        return 1;
+        return false;
     }
 }

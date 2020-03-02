@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     if (result != 0)
     {
         printf("Cannot write to the storage directory, exiting.\n");
-        return 1;
+        return false;
     }
 
     if (argc == 2)
@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
             }
 
             free(url);
-            return 0;
+            return true;
         }
 
         else
@@ -138,5 +138,5 @@ int main(int argc, char *argv[])
     {
         printf("No command found");
     }
-    return 0;
+    return true;
 }

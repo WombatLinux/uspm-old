@@ -17,7 +17,7 @@ int check_packages_file() {
     } else {
         create_packages_file();
     }
-    return 0;
+    return true;
 }
 
 void create_packages_file() {
@@ -55,7 +55,7 @@ int check_config_file() {
     } else {
         create_config_file();
     }
-    return 0;
+    return true;
 }
 
 void create_config_file() {
