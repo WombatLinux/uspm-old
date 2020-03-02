@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
         else if (strcmp(argv[1], "c") == 0) {
             printf("check dependencies\n");
             for (int i = 2; i < argc; i++) {
-                check_dependencies(argv[i]);
+                get_dependencies(argv[i]);
             }
         }
 

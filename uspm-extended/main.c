@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 
         else if (strcmp(argv[1], "u") == 0)
         {
-            cJSON *root = load_file("packages.json");
+            cJSON *root = load_file(pkgfile);
 
             cJSON *package = root->child;
 
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 
         else if (strcmp(argv[1], "p") == 0)
         {
-            cJSON *root = load_file("packages.json");
+            cJSON *root = load_file(pkgfile);
 
             cJSON *package = root->child;
 
@@ -65,14 +65,13 @@ int main(int argc, char *argv[])
         else if (strcmp(argv[1], "l") == 0)
         {
             printf("list packages\n");
-            cJSON *root = load_file("packages.json");
+            cJSON *root = load_file(pkgfile);
 
             cJSON *package = root->child;
 
             while (package)
             {
-                printf(package->string);
-                printf("\n");
+                printf("%s\n", package->string);
 
                 package = package->next;
             }
@@ -84,7 +83,7 @@ int main(int argc, char *argv[])
 
             /* get internal data */
             cJSON *config = load_file("config.json");
-            cJSON *internal = load_file("packages.json");
+            cJSON *internal = load_file(pkgfile);
             char *mirror = cJSON_GetObjectItem(config, "mirror")->valuestring;
 
             /* download mirror */
@@ -123,7 +122,7 @@ int main(int argc, char *argv[])
                     if (check_version(package->valuestring, remotepackage->valuestring) < 0) updates++;
                 }
 
-                package->next;
+                package = package->next;
             }
 
             free(url);

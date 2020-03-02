@@ -28,7 +28,7 @@ int install_package_file(char *package) {
 
         remove(filename);
 
-        if (check_dependencies_and_install(package) != 0) {
+        if (check_dependencies(package) != 0) {
             printf("Installation failed\n");
             return 1;
         }
@@ -84,7 +84,7 @@ int uninstall_package(char *package) {
 }
 
 
-int check_dependencies(char *package) {
+int get_dependencies(char *package) {
     printf("Checking dependencies...\n");
 
     char *file = concat("./", package);
@@ -92,7 +92,7 @@ int check_dependencies(char *package) {
 
     cJSON *packagedata = load_file(file);
 
-    cJSON *root = load_file("packages.json");
+    cJSON *root = load_file(pkgfile);
 
     cJSON *dependencies = cJSON_GetObjectItem(packagedata, "dependencies");
 

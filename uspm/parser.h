@@ -14,7 +14,9 @@
 
 #define rootdir "/var/uspm/storage"
 #define false 1
-#define true 2
+#define true 0
+#define pkgfile "packages.json"
+
 
 
 char* concat(const char *s1, const char *s2)
@@ -66,6 +68,8 @@ int compareSubstr(char *substr_version1, char *substr_version2,
 }
 
 // function to compare two versions.
+// i found this throughout a few stackoverflow things
+// could have just used the method I did on uspm.py
 int check_version(char* version1, char* version2)
 {
     int len_version1 = strlen(version1);
@@ -163,7 +167,7 @@ void write_packages_file(char *out) {
 
     FILE *ptr;
 
-    ptr = fopen("packages.json","w");
+    ptr = fopen(pkgfile,"w");
 
     fprintf(ptr,"%s",outfile);
     fclose(ptr);
@@ -185,7 +189,7 @@ void write_config_file(char *out) {
 }
 
 int add_to_packages(char *packagename, cJSON *packagedata) {
-    cJSON *root = load_file("packages.json");
+    cJSON *root = load_file(pkgfile);
 
     cJSON_AddItemToObject(root, packagename, packagedata);
 
@@ -199,7 +203,7 @@ int add_to_packages(char *packagename, cJSON *packagedata) {
 }
 
 int remove_from_packages(char *packagename) {
-    cJSON *root = load_file("packages.json");
+    cJSON *root = load_file(pkgfile);
     cJSON_DeleteItemFromObject(root, packagename);
 
     char *out = cJSON_Print(root);

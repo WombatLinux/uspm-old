@@ -9,7 +9,7 @@
 
 int install_dependency(char *, char *minversion);
 
-int check_dependencies_and_install(char *package) {
+int check_dependencies(char *package) {
     printf("Checking dependencies...\n");
 
     char *file = concat("./", package);
@@ -17,7 +17,7 @@ int check_dependencies_and_install(char *package) {
 
     cJSON *packagedata = load_file(file);
 
-    cJSON *root = load_file("packages.json");
+    cJSON *root = load_file(pkgfile);
 
     cJSON *dependencies = cJSON_GetObjectItem(packagedata, "dependencies");
 
@@ -89,7 +89,7 @@ int install_dep_file(char *package, char *minversion) {
         }
 
 
-        check_dependencies_and_install(package);
+        check_dependencies(package);
 
         char *command = concat("sh ./", package);
         command = concat(command, "/PACKAGECODE install");
