@@ -9,7 +9,7 @@
 
 int install_dependency(char *, char *minversion);
 
-int check_dependencies_and_install(char *package) {
+int check_dependencies(char *package) {
     printf("Checking dependencies...\n");
 
     char *file = concat("./", package);
@@ -17,7 +17,7 @@ int check_dependencies_and_install(char *package) {
 
     cJSON *packagedata = load_file(file);
 
-    cJSON *root = load_file("packages.json");
+    cJSON *root = load_file(pkgfile);
 
     cJSON *dependencies = cJSON_GetObjectItem(packagedata, "dependencies");
 
@@ -35,7 +35,7 @@ int check_dependencies_and_install(char *package) {
             if (check_version(version, minversion) < 0) {
                 printf("%s (missing)...installing first\n", dependency->string);
                 if (install_dependency(dependency->string, minversion) != 0) {
-                    return 1;
+                    return false ;
                 }
             } else {
                 printf("%s\n", dependency->string);
@@ -43,7 +43,7 @@ int check_dependencies_and_install(char *package) {
         } else {
             printf("Dependency not installed\n");
             if (install_dependency(dependency->string, minversion) != 0) {
-                return 1;
+                return false;
             }
         }
         // do what we need to do
@@ -51,11 +51,10 @@ int check_dependencies_and_install(char *package) {
     }
 
     printf("No more dependencies found\n");
-    return 0;
+    return true;
 }
 
 int install_dep_file(char *package, char *minversion) {
-    printf("testidf\n");
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) != -1) {
         printf("File exists\n");
@@ -68,7 +67,7 @@ int install_dep_file(char *package, char *minversion) {
         //system(command);
         if (access(concat(package, "/PACKAGEDATA"),F_OK) == -1) {
             printf("FILE EXTRACT FAILED\n");
-            return 1;
+            return false;
         }
 
         filename = concat(package, "/PACKAGEDATA");
@@ -82,18 +81,14 @@ int install_dep_file(char *package, char *minversion) {
         free(tar);
 
         remove(filename);
-
-        printf("testidf2\n");
         char *version = cJSON_GetObjectItem(root, "version")->valuestring;
-        printf("testidf3\n");
 
         if (check_version(version, minversion) < 0) {
             printf("No good version of dependency found. Aborting.\n");
-            return 1;
+            return false;
         }
 
-
-        check_dependencies_and_install(package);
+        check_dependencies(package);
 
         char *command = concat("sh ./", package);
         command = concat(command, "/PACKAGECODE install");
@@ -102,10 +97,10 @@ int install_dep_file(char *package, char *minversion) {
 
         free(command);
 
-        return 0;
+        return true;
     } else {
         printf("Failed to extract package file");
-        return 1;
+        return false;
     }
 }
 
@@ -116,7 +111,6 @@ int install_dependency(char *package, char *minversion) {
         download_package(cJSON_GetObjectItem(config, "mirror")->valuestring, package);
     }
 
-    printf("testid\n");
 
     if (install_dep_file(package, minversion) == 0) {
         char *file = concat("./", package);
@@ -128,9 +122,8 @@ int install_dependency(char *package, char *minversion) {
 
         add_to_packages(package, packagedata);
 
-        return 0;
+        return true;
     } else {
-        printf("testreturn1\n");
-        return 1;
+        return false;
     }
 }

@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Use libtar instead of external commands for extraction of tar files.
 - `uspm-mkpkg` tool now uses libtar instead of commands for creation of tar files.
+- `uspm-extended` now includes an update checking system.
 
 ### [1.1.1] - 2020-02-23
 

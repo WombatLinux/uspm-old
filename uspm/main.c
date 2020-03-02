@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
     if (access(rootdir, W_OK) != 0) 
     {
         printf("Insufficient permissions for one of the required directories (/var). Are you running as root?\n");
-        return 1;
+        return false;
     } else {
 
     }
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
         else if (strcmp(argv[1], "c") == 0) {
             printf("check dependencies\n");
             for (int i = 2; i < argc; i++) {
-                check_dependencies(argv[i]);
+                get_dependencies(argv[i]);
             }
         }
 
@@ -47,5 +47,5 @@ int main(int argc, char *argv[]) {
     } else {
         printf("No command found");
     }
-    return 0;
+    return true;
 }
