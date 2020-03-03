@@ -8,6 +8,7 @@
 #include <libtar.h>
 #include <fcntl.h>
 #include <zconf.h>
+#include "../uspm/parser.h"
 
 int createpkg();
 

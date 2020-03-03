@@ -1,6 +1,6 @@
-//
-// Created by afroraydude on 2/19/20.
-//
+/*
+* dephandle.c - Dependency Handler
+*/
 #include <string.h>
 #include <cjson/cJSON.h>
 #include <libtar.h>
