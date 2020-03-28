@@ -5,7 +5,7 @@
 #include <cjson/cJSON.h>
 #include <libtar.h>
 #include <fcntl.h>
-#include "parser.h"
+#include "uspm.h"
 
 int install_dependency(char *, char *minversion);
 

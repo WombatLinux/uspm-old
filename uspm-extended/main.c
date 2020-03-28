@@ -6,7 +6,7 @@
 #include <string.h>
 #include <zconf.h>
 #include <cjson/cJSON.h>
-#include "../uspm/parser.h"
+#include "../uspm/uspm.h"
 
 int main(int argc, char *argv[])
 {

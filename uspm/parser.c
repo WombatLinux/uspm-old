@@ -3,7 +3,7 @@
  */
 #include <zconf.h>
 #include <stdlib.h>
-#include "parser.h"
+#include "uspm.h"
 
 void create_packages_file();
 void create_config_file();
