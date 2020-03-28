@@ -5,7 +5,7 @@
 #include <string.h>
 #include <libtar.h>
 #include <fcntl.h>
-#include "parser.h"
+#include "uspm.h"
 #include "dephandle.c"
 
 int install_package_file(char *package) {
