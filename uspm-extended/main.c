@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 
     if (argc == 2)
     {
-        if (strcmp(argv[1], "c") == 0)
+        if (strstr(argv[1], "c") != NULL)
         {
             for (int i = 2; i < argc; i++)
             {
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
             }
         }
 
-        else if (strcmp(argv[1], "u") == 0)
+        else if (strstr(argv[1], "u") != NULL)
         {
             cJSON *root = load_file(pkgfile);
 
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
             }
         }
 
-        else if (strcmp(argv[1], "p") == 0)
+        else if (strstr(argv[1], "p") != NULL)
         {
             cJSON *root = load_file(pkgfile);
 

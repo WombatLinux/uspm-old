@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use libtar instead of external commands for extraction of tar files.
 - `uspm-mkpkg` tool now uses libtar instead of commands for creation of tar files.
 - `uspm-extended` now includes an update checking system.
+- `parser.h` has been properly named to `uspm.h` to reflect its use as a header for core uspm fuctions
+- string comparing has been changed to substring comparison
 
 ### [1.1.1] - 2020-02-23
 
