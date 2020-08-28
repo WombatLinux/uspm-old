@@ -1,10 +1,12 @@
 Ultra Simple Package Manager
 ============================
 
-![Travis (.com)](https://img.shields.io/travis/com/afroraydude/uspm?logo=travis&style=flat-square)
-![GitHub](https://img.shields.io/github/license/afroraydude/uspm?style=flat-square)
+[![Travis (.com)](https://img.shields.io/travis/com/afroraydude/uspm?logo=travis&style=flat-square)](https://travis-ci.com/afroraydude/uspm)
+[![GitHub](https://img.shields.io/github/license/afroraydude/uspm?style=flat-square)](https://github.com/afroraydude/uspm/blob/master/LICENSE)
 
 Ultra Simple Package Manager (USPM) is a suite of executables that overall allow for the management of packages.
+
+***PLEASE NOTE***: Releases on this GitHub ***WILL NOT*** work on WombatOS, please use the provided uspm package for that specific operating system.
 
 Here is a list of the current tools:
 - uspm: The main application that allows for the installation and uninstallation of software packages and their 
@@ -51,21 +53,48 @@ make install
 
 ### The easy way
 1) Compile the package from source
+
 2) Place all compiled files in a folder
+
 3) Make a folder with the name of the package and place the previous folder in that
+
 4) Enter the directory with the package name
+
 5) Run `uspm-mkpkg` and follow instructions
+
 6) Exit the directory, you should now have a `.uspm` package file.
+ex:
+```bash
+mkdir -p /tmp/package/files 
+
+mkdir build
+cd build
+
+../configure --prefix=/tmp/package/files/
+make 
+make install
+
+cd /tmp/package
+uspm-mkpkg
+```
 
 ### The hard way
 1) Compile the package from source
+
 2) Place all compiled files in a folder
+
 3) Make a folder with the name of the package and place the previous folder in that
+
 4) Inside the package folder, create two files: `PACKAGECODE` and `PACAKGEDATA`
+
 5) In PACKAGECODE, include all the code necessary to migrate the compiled files into the system so that they are usable, put it in a function that can be called by `PACKAGECODE install` (**NOTE: This must be a shell script**)
+
 6) In PACKAGECODE, include all the code necessary to allow for an uninstallation of all files, in a function that can be called by `PACKAGECODE uninstall`
-7) In PACKAGEDATA, include the version and dependencies
+
+7) In PACKAGEDATA, include the version and dependencies (ex: `{"version":"1.0.0", "dependencies":{"test":"1.0.0","test2":"1.0.0"}}`)
+
 8) Archive the whole directory into a tarball and make sure the extension is `.uspm`
+
 9) Done!
 
 Example `PACKAGEDATA` file
