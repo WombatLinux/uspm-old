@@ -3,21 +3,23 @@
  */
 #include <zconf.h>
 #include <stdlib.h>
-#include "parser.h"
+
+#include "uspm.h"
 
 void create_packages_file();
+
 void create_config_file();
 
 int check_packages_file() {
-    if (access("packages.json",F_OK) != -1) {
-        cJSON *root = load_file("packages.json");
+    if (access(pkgfile, F_OK) != -1) {
+        cJSON *root = load_file(pkgfile);
 
         char *json = cJSON_Print(root);
         // printf("%s\n", json);
     } else {
         create_packages_file();
     }
-    return 0;
+    return true;
 }
 
 void create_packages_file() {
@@ -47,15 +49,15 @@ void create_packages_file() {
 }
 
 int check_config_file() {
-    if (access("config.json",F_OK) != -1) {
-        cJSON *root = load_file("packages.json");
+    if (access("config.json", F_OK) != -1) {
+        cJSON *root = load_file(pkgfile);
 
         char *json = cJSON_Print(root);
         // printf("%s\n", json);
     } else {
         create_config_file();
     }
-    return 0;
+    return true;
 }
 
 void create_config_file() {

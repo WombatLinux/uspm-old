@@ -11,9 +11,11 @@ uspm is a lightweight package manager for Unix and Unix-like systems.
 There are no options for uspm
 .SH COMMANDS
 i - Installs the package
+
 u - Uninstalls the package
+
 c - Checks dependencies of an already installed package.
 .SH BUGS
-No known bugs
+If you get a bug, its on the package creator, not me.
 .SH AUTHOOR
 Ray Thomas (afroraydude@protonmail.com)

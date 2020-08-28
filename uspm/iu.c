@@ -3,35 +3,47 @@
  */
 #include <curl/curl.h>
 #include <string.h>
-#include "parser.h"
+#include <libtar.h>
+#include <fcntl.h>
+#include "uspm.h"
 #include "dephandle.c"
 
 int install_package_file(char *package) {
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) != -1) {
+        TAR *tar;
         printf("File exists\n");
-        char *command = concat("tar -xf ", filename);
+        //char *command = concat("tar -xf ", filename);
 
-        system(command);
+        tar_open(&tar, filename, 0, O_RDONLY, 0, 0);
 
-        if (check_dependencies_and_install(package) != 0) {
+        tar_extract_all(tar, rootdir);
+
+        if (access(concat(package, "/PACKAGEDATA"),F_OK) == -1) {
+            printf("FILE EXTRACT FAILED\n");
+            return false;
+        }
+        //system(command);
+        free(tar);
+
+        remove(filename);
+
+        if (check_dependencies(package) != 0) {
             printf("Installation failed\n");
-            return 1;
+            return false;
         }
 
-        command = concat("sh ./", package);
+        char *command = concat("sh ./", package);
         command = concat(command, "/PACKAGECODE install");
 
         system(command);
 
         free(command);
 
-        remove(filename);
-
-        return 0;
+        return true;
     } else {
         printf("Failed to extract package file");
-        return 1;
+        return false;
     }
 }
 
@@ -52,9 +64,9 @@ int install_package(char *package) {
 
         add_to_packages(package, packagedata);
 
-        return 0;
+        return true;
     } else {
-        return 1;
+        return false;
     }
 }
 
@@ -68,11 +80,11 @@ int uninstall_package(char *package) {
 
     remove_from_packages(package);
 
-    return 0;
+    return true;
 }
 
 
-int check_dependencies(char *package) {
+int get_dependencies(char *package) {
     printf("Checking dependencies...\n");
 
     char *file = concat("./", package);
@@ -80,7 +92,7 @@ int check_dependencies(char *package) {
 
     cJSON *packagedata = load_file(file);
 
-    cJSON *root = load_file("packages.json");
+    cJSON *root = load_file(pkgfile);
 
     cJSON *dependencies = cJSON_GetObjectItem(packagedata, "dependencies");
 
@@ -108,5 +120,5 @@ int check_dependencies(char *package) {
 
     printf("No more dependencies found\n");
 
-    return 0;
+    return true;
 }

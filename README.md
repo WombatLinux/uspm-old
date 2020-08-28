@@ -24,19 +24,12 @@ All packages come in `.uspm` files, which are just tarballs. Within the tarball 
 `PACKAGEDATA` is the JSON data that will get added by the package manager to the master list.
 
 ## Building and Installing
-This package requires **at least** `cJSON` ([found here](https://github.com/DaveGamble/cJSON)) and libcurl
+This package requires **at least** `cJSON` ([found here](https://github.com/DaveGamble/cJSON)), along with libtar and libcurl
 
 There are 2 ways to install:
 
-1) Through Make (this requires GCC) [***not recommended***]
-```bash
-git clone https://github.com/afroraydude/uspm.git
-cd uspm
-make uspm
-make install
-```
+1) Through CMake (clang or gcc)
 
-2) Through CMake (clang or gcc)
 ```bash
 git clone https://github.com/afroraydude/uspm.git
 cd uspm
@@ -44,6 +37,15 @@ mkdir build
 cd build
 cmake ..
 make
+make install
+```
+
+1) Through Make (this requires GCC) [***not recommended***]
+
+```bash
+git clone https://github.com/afroraydude/uspm.git
+cd uspm
+make uspm
 make install
 ```
 
@@ -56,7 +58,7 @@ make install
 
 3) Make a folder with the name of the package and place the previous folder in that
 
-4) Enter the directory
+4) Enter the directory with the package name
 
 5) Run `uspm-mkpkg` and follow instructions
 
