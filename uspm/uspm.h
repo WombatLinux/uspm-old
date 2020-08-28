@@ -11,6 +11,9 @@
 #include <string.h>
 #include <stdio.h>
 #include <curl/curl.h>
+#include <libtar.h>
+#include <fcntl.h>
+#include <errno.h>
 
 #define rootdir "/var/uspm/storage"
 #define false 1
@@ -242,6 +245,41 @@ int download_package(char *mirror, char *package) {
 
     free(url);
     return true;
+}
+
+int create_tar_file(char *package, char *directory) {
+    TAR *pTar;
+
+    char *tarFilename = package;
+    char *srcDir = directory;
+
+    char *extractTo = ".";
+    tar_open(&pTar, tarFilename, NULL, O_WRONLY | O_CREAT, 0644, TAR_GNU);
+    tar_append_tree(pTar, srcDir, extractTo);
+    tar_append_eof(pTar);
+    tar_close(pTar);
+
+    return 0;
+}
+
+int extract_tar_file(char *filename, char *location) {
+    TAR *tar_file;
+    if (tar_open(&tar_file, filename, NULL, O_RDONLY, 0, TAR_GNU) == -1) {
+        fprintf(stderr, "tar_open(): %s\n", strerror(errno));
+        return -1;
+    }
+
+    if (tar_extract_all(tar_file, rootdir) != 0) {
+        fprintf(stderr, "tar_extract_all(): %s\n", strerror(errno));
+        return -1;
+    }
+
+    if (tar_close(tar_file) != 0) {
+        fprintf(stderr, "tar_close(): %s\n", strerror(errno));
+        return -1;
+    }
+
+    return 0;
 }
 
 #endif //USPM_PARSER_H
