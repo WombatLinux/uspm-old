@@ -1,17 +1,17 @@
 #include <stdio.h>
-#include "uspm.h"
+#include "parser.h"
 #include "parser.c"
 #include "iu.c"
 #include <string.h>
 
 int main(int argc, char *argv[]) {
     printf("Welcome to USPM\n");
-    chdir(rootdir);
+    chdir("/var/uspm/storage");
 
-    if (access(rootdir, W_OK) != 0) 
+    if (access("/var/uspm/storage/", W_OK) != 0 || access("/etc", W_OK) != 0 || access("/usr", W_OK) != 0) 
     {
-        printf("Insufficient permissions for one of the required directories (/var). Are you running as root?\n");
-        return false;
+        printf("Insufficient permissions for one of the required directories (/var /usr /etc). Are you running as root?\n");
+        return 1;
     } else {
 
     }
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
         else if (strcmp(argv[1], "c") == 0) {
             printf("check dependencies\n");
             for (int i = 2; i < argc; i++) {
-                get_dependencies(argv[i]);
+                check_dependencies(argv[i]);
             }
         }
 
@@ -47,5 +47,5 @@ int main(int argc, char *argv[]) {
     } else {
         printf("No command found");
     }
-    return true;
+    return 0;
 }

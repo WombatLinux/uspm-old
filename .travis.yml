@@ -2,7 +2,7 @@ language: c
 
 before_install:
     - sudo apt-get update
-    - sudo apt-get -y install cmake libtar libtar-dev
+    - sudo apt-get -y install cmake
     - git clone https://github.com/DaveGamble/cJSON.git
     - cd cJSON
     - mkdir build
@@ -13,9 +13,8 @@ before_install:
     - cd ../../
     
 compiler:
-    # cannot use clang due to sudo and travis not including clang in sudo path
-    - gcc
     - clang
+    - gcc
 
 script:
     - mkdir build 
@@ -30,12 +29,11 @@ before_deploy:
     - tar cf uspm-linux.tar ./*
     - mv uspm-linux.tar ../../
     - cd ../../
-    - mv uspm-linux.tar "uspm-linux-${CC}.tar"
 
 deploy:
     provider: releases
     api_key: $ghtoken
-    file: "uspm-linux-${CC}.tar"
+    file: "uspm-linux.tar"
     skip_cleanup: true
     on:
         tags: true

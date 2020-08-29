@@ -5,9 +5,15 @@
 #include <cjson/cJSON.h>
 #include <string.h>
 #include <stdlib.h>
-#include <libtar.h>
-#include <fcntl.h>
 #include <zconf.h>
+
+int createpkg();
+
+int main(int argc, char *argv[]) {
+    printf("Welcome to uspm-mkpkg.\nPlease make sure that:\n\t- This is running in the package's folder, and\n\t- The name of the folder is the same as the package's name\n\n");
+
+    createpkg();
+}
 
 char* concat(const char *s1, const char *s2)
 {
@@ -16,14 +22,6 @@ char* concat(const char *s1, const char *s2)
     strcpy(result, s1);
     strcat(result, s2);
     return result;
-}
-
-int createpkg();
-
-int main(int argc, char *argv[]) {
-    printf("Welcome to uspm-mkpkg.\nPlease make sure that:\n\t- This is running in the package's folder, and\n\t- The name of the folder is the same as the package's name\n\n");
-
-    createpkg();
 }
 
 void write_file(char *filename, char *out) {
@@ -87,12 +85,12 @@ int createpkg() {
     chdir("..");
 
     char *packageFile = concat(name, ".uspm");
-    TAR *pTar;
+    char *command = concat("tar cf ", packageFile);
+    command = concat(command, " ");
 
-    tar_open(&pTar, packageFile, NULL, O_WRONLY | O_CREAT, 0644, TAR_GNU);
-    tar_append_tree(pTar, "./", ".");
-    tar_append_eof(pTar);
-    tar_close(pTar);
+    command = concat(command, name);
+
+    system(command);
 
     return 0;
 }

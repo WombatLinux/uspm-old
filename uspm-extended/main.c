@@ -6,23 +6,23 @@
 #include <string.h>
 #include <zconf.h>
 #include <cjson/cJSON.h>
-#include "../uspm/uspm.h"
+#include "../uspm/parser.h"
 
 int main(int argc, char *argv[])
 {
     printf("Welcome to USPM Extended Suite\n");
-    chdir(rootdir);
+    chdir("/var/uspm/storage");
 
-    int result = access(rootdir, W_OK);
+    int result = access("/var/uspm/storage/", W_OK);
     if (result != 0)
     {
         printf("Cannot write to the storage directory, exiting.\n");
-        return false;
+        return 1;
     }
 
     if (argc == 2)
     {
-        if (strstr(argv[1], "c") != NULL)
+        if (strcmp(argv[1], "c") == 0)
         {
             for (int i = 2; i < argc; i++)
             {
@@ -30,9 +30,9 @@ int main(int argc, char *argv[])
             }
         }
 
-        else if (strstr(argv[1], "u") != NULL)
+        else if (strcmp(argv[1], "u") == 0)
         {
-            cJSON *root = load_file(pkgfile);
+            cJSON *root = load_file("packages.json");
 
             cJSON *package = root->child;
 
@@ -46,9 +46,9 @@ int main(int argc, char *argv[])
             }
         }
 
-        else if (strstr(argv[1], "p") != NULL)
+        else if (strcmp(argv[1], "p") == 0)
         {
-            cJSON *root = load_file(pkgfile);
+            cJSON *root = load_file("packages.json");
 
             cJSON *package = root->child;
 
@@ -65,68 +65,17 @@ int main(int argc, char *argv[])
         else if (strcmp(argv[1], "l") == 0)
         {
             printf("list packages\n");
-            cJSON *root = load_file(pkgfile);
+            cJSON *root = load_file("packages.json");
 
             cJSON *package = root->child;
 
             while (package)
             {
-                printf("%s\n", package->string);
+                printf(package->string);
+                printf("\n");
 
                 package = package->next;
             }
-        }
-
-        else if (strcmp(argv[1], "y") == 0)
-        {
-            int updates = 0;
-
-            /* get internal data */
-            cJSON *config = load_file("config.json");
-            cJSON *internal = load_file(pkgfile);
-            char *mirror = cJSON_GetObjectItem(config, "mirror")->valuestring;
-
-            /* download mirror */
-            CURL *curl;
-            FILE *fp;
-            CURLcode res;
-            char *url = concat(mirror, "mirrorpackages.json");
-            free(config);
-            url = concat(url, ".uspm");
-            printf("%s\n", url);
-            char outfilename[FILENAME_MAX] = "mirrorpackages.json";
-            curl = curl_easy_init();
-            if (curl)
-            {
-                fp = fopen(outfilename, "wb");
-                curl_easy_setopt(curl, CURLOPT_URL, url);
-                curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
-                curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
-                res = curl_easy_perform(curl);
-                /* always cleanup */
-                curl_easy_cleanup(curl);
-                fclose(fp);
-            }
-
-            /* load mirror packagelist */
-            cJSON *remote = load_file("mirrorpackages.json");
-
-            /* compare */
-            cJSON *package = internal->child;
-
-            if (package != NULL) {
-                cJSON *remotepackage = cJSON_GetObjectItem(remote, package->string);
-
-                if (remotepackage != NULL) {
-                    /* if installed version < remote version, update */
-                    if (check_version(package->valuestring, remotepackage->valuestring) < 0) updates++;
-                }
-
-                package = package->next;
-            }
-
-            free(url);
-            return true;
         }
 
         else
@@ -138,5 +87,5 @@ int main(int argc, char *argv[])
     {
         printf("No command found");
     }
-    return true;
+    return 0;
 }
