@@ -6,7 +6,7 @@
 
 #ifndef USPM_FM_H
 #define USPM_FM_H
-
+#include "fm.c"
 char* concat(const char *s1, const char *s2);
 
 int compareSubstr(char *substr_version1, char *substr_version2,
