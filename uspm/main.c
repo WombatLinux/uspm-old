@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include "parser.h"
-#include "parser.c"
+#include "fm.c"
 #include "iu.c"
 #include <string.h>
 

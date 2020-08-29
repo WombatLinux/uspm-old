@@ -2,9 +2,8 @@
  * iu - Installer/Uninstaller
  */
 #include <curl/curl.h>
-#include <string.h>
-#include "parser.h"
 #include "dephandle.c"
+#include "fm.c"
 
 int install_package_file(char *package) {
     char *filename = concat(package, ".uspm");

@@ -1,4 +1,4 @@
-uspm: uspm/main.c uspm/parser.c uspm/iu.c uspm/parser.h
+uspm: uspm/main.c uspm/fm.c uspm/iu.c uspm/dephandle.c
 	@mkdir -p "build"
 	@gcc -lcjson -lcurl -o build/uspm main.c -lm
 
