@@ -3,7 +3,7 @@
  */
 #include <curl/curl.h>
 #include "fm.h"
-#include "dephandle.c"
+#include "dephandle.h"
 
 int install_package_file(char *package) {
     char *filename = concat(package, ".uspm");

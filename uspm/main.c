@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "fm.h"
-#include "iu.c"
+#include "iu.h"
 #include <string.h>
 
 int main(int argc, char *argv[]) {
