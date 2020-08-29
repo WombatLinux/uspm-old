@@ -1,18 +1,16 @@
 #include <stdio.h>
-#include "fm.c"
+#include "fm.h"
 #include "iu.c"
 #include <string.h>
 
 int main(int argc, char *argv[]) {
-    printf("Welcome to USPM\n");
+    printf("Welcome to USPM\nuspm [command] [package]\n\nCommands\n\ti - install package\n\tu - uninstall packag\n\n");
     chdir("/var/uspm/storage");
 
     if (access("/var/uspm/storage/", W_OK) != 0 || access("/etc", W_OK) != 0 || access("/usr", W_OK) != 0) 
     {
-        printf("Insufficient permissions for one of the required directories (/var /usr /etc). Are you running as root?\n");
+        printf("Insufficient permissions for one of the required directories (/var/uspm/storage /usr or /etc). \nAre you running as root?\n");
         return 1;
-    } else {
-
     }
 
     check_packages_file();
