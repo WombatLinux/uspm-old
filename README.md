@@ -6,7 +6,7 @@ Ultra Simple Package Manager
 
 Ultra Simple Package Manager (USPM) is a suite of executables that overall allow for the management of packages.
 
-***PLEASE NOTE***: Releases on this GitHub ***WILL NOT*** work on WombatOS, please use the provided uspm package for that specific operating system.
+***PLEASE NOTE***: Releases on this GitHub ***WILL NOT*** work on Wombat Linux or other Musl-based systems, please use the provided uspm package for that specific operating system.
 
 Here is a list of the current tools:
 - uspm: The main application that allows for the installation and uninstallation of software packages and their 
