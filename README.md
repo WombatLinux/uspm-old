@@ -12,8 +12,7 @@ Here is a list of the current tools:
 - uspm: The main application that allows for the installation and uninstallation of software packages and their 
 dependencies.
 - uspm-mkpkg: This optional application is useful for those who want to design USPM packages
-- uspm-extended: This optional application adds more commands. This was made because of the original developer's rule that uspm can only 
-have 3 commands: install, uninstall, and check dependencies.
+- uspm-extended: This optional application adds more commands and functions to `uspm` and is only there for those who want it.
 
 ## How it works
 
@@ -22,6 +21,8 @@ All packages come in `.uspm` files, which are just tarballs. Within the tarball 
 `PACKAGECODE` is the install/uninstall script, it contains all the code necessary to install that package
 
 `PACKAGEDATA` is the JSON data that will get added by the package manager to the master list.
+
+The tarballs usually will contain the files necessary to install already compiled code.
 
 ## Building and Installing
 This package requires **at least** `cJSON` ([found here](https://github.com/DaveGamble/cJSON)) and libcurl
