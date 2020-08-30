@@ -3,6 +3,7 @@
 //
 #include <string.h>
 #include <cjson/cJSON.h>
+#include <unistd.h>
 #include "fm.h"
 
 int install_dependency(char *, char *minversion);
