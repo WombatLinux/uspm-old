@@ -2,6 +2,7 @@
  * iu - Installer/Uninstaller
  */
 #include <curl/curl.h>
+#include <unistd.h>
 #include "fm.h"
 #include "dephandle.c"
 
