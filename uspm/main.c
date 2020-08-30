@@ -1,8 +1,9 @@
 #include <stdio.h>
-#include <unistd.h>
-#include <string.h>
 #include "fm.h"
 #include "iu.c"
+#include <unistd.h>
+#include <string.h>
+
 
 int main(int argc, char *argv[]) {
     printf("Welcome to USPM\nuspm [command] [package]\n\nCommands\n\ti - install package\n\tu - uninstall packag\n\n");
