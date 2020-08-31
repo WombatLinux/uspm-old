@@ -6,9 +6,9 @@
 #include <unistd.h>
 #include "fm.h"
 #include "dephandle.h"
-#include "inunin.h"
+#include "uspm.h"
 
-#include "inunin.h"
+#include "uspm.h"
 int install_package_file(char *package) {
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) != -1) {

@@ -3,6 +3,7 @@ project(uspm)
 cmake_minimum_required(VERSION 3.10)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include) # if you are building with custom includes
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libuspp) # if you are building with custom includes
 include_directories(/usr/local/include) # if you are building with system includes
 include_directories(/usr/include) # if you are building with system includes
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
@@ -16,24 +17,40 @@ endforeach()
 
 AUX_SOURCE_DIRECTORY(${CMAKE_CURRENT_SOURCE_DIR} source)
 
-# find library
 find_library (
         CJSON_LIB
-        NAMES cjson libcjson # what to look for
+        NAMES cjson libcjson
 )
 
-#find_package(Curses REQUIRED)
+find_library(
+        USPPLIB
+        NAMES uspp libuspp
+)
 
 # check if we found the library
 message(STATUS "CJSON: [${CJSON_LIB}]")
-#message(STATUS "NCURSES: [${NCURSES_LIB}]")
+message(STATUS "LIBUSPP: [${USPPLIB}]")
 
-add_executable(uspm uspm/main.c ${CMAKE_CURRENT_SOURCE_DIR}/uspm/fm.h ${CMAKE_CURRENT_SOURCE_DIR}/uspm/inunin.h)
+# LIBUSPM
+add_library(uspp libuspp/dephandle.c libuspp/dephandle.h libuspp/fm.c libuspp/fm.h libuspp/uspm.c libuspp/uspm.h)
+#add_library(uspm uspm.c uspm.h)
+
+target_link_libraries(uspp LINK_PUBLIC ${CJSON_LIB} curl)
+
+install(TARGETS uspp LIBRARY DESTINATION /usr/local/lib)
+install(FILES libuspp/uspm.h DESTINATION /usr/local/include/uspm)
+install(FILES libuspp/dephandle.h DESTINATION /usr/local/include/uspm)
+install(FILES libuspp/fm.h DESTINATION /usr/local/include/uspm)
+
+
+# USPM
+add_executable(uspm uspm/main.c)
 add_executable(uspm-mkpkg uspm-mkpkg/main.c)
 add_executable(uspm-extended uspm-extended/main.c)
 
-target_link_libraries(uspm LINK_PUBLIC ${CJSON_LIB} curl)
-target_link_libraries(uspm-extended LINK_PUBLIC ${CJSON_LIB} curl)
+target_link_libraries(uspm LINK_PUBLIC ${USPPLIB} ${CJSON_LIB} curl)
+#target_link_libraries(uspm ${CMAKE_CURRENT_SOURCE_DIR}/../libs/MacOS/libfreetype.a)
+target_link_libraries(uspm-extended LINK_PUBLIC ${USPPLIB} ${CJSON_LIB} curl)
 target_link_libraries(uspm-mkpkg LINK_PUBLIC ${CJSON_LIB})
 
 install (TARGETS uspm
