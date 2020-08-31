@@ -8,9 +8,6 @@
 #define USPM_FM_H
 
 #include <cjson/cJSON.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 
 char* concat(const char *s1, const char *s2);
 

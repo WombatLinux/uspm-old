@@ -6,7 +6,7 @@
 #include <string.h>
 #include <zconf.h>
 #include <cjson/cJSON.h>
-#include "../uspm/fm.c"
+#include "uspm/fm.c"
 
 int main(int argc, char *argv[])
 {

@@ -5,8 +5,7 @@
 #include <cjson/cJSON.h>
 #include <unistd.h>
 #include "fm.h"
-
-int install_dependency(char *, char *minversion);
+#include "dephandle.h"
 
 // function to compare two versions.
 int check_version(char* version1, char* version2)

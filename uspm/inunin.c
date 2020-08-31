@@ -1,11 +1,14 @@
-/*
- * iu - Installer/Uninstaller
- */
+//
+// Created by afroraydude on 8/31/20.
+//
+
 #include <curl/curl.h>
 #include <unistd.h>
 #include "fm.h"
-#include "dephandle.c"
+#include "dephandle.h"
+#include "inunin.h"
 
+#include "inunin.h"
 int install_package_file(char *package) {
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) != -1) {

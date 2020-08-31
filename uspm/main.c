@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "fm.h"
-#include "iu.c"
 #include <unistd.h>
 #include <string.h>
+#include "fm.h"
+#include "inunin.h"
 
 
 int main(int argc, char *argv[]) {
@@ -30,13 +30,6 @@ int main(int argc, char *argv[]) {
             printf("uninstall packages\n");
             for (int i = 2; i < argc; i++) {
                 uninstall_package(argv[i]);
-            }
-        }
-
-        else if (strcmp(argv[1], "c") == 0) {
-            printf("check dependencies\n");
-            for (int i = 2; i < argc; i++) {
-                check_dependencies(argv[i]);
             }
         }
 

@@ -1,0 +1,9 @@
+/Users/afroraydude/projects/uspm/cmake-build-debug/CMakeFiles/install/local.dir
+/Users/afroraydude/projects/uspm/cmake-build-debug/CMakeFiles/install/strip.dir
+/Users/afroraydude/projects/uspm/cmake-build-debug/CMakeFiles/install.dir
+/Users/afroraydude/projects/uspm/cmake-build-debug/CMakeFiles/list_install_components.dir
+/Users/afroraydude/projects/uspm/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/afroraydude/projects/uspm/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/afroraydude/projects/uspm/cmake-build-debug/CMakeFiles/uspm-extended.dir
+/Users/afroraydude/projects/uspm/cmake-build-debug/CMakeFiles/uspm-mkpkg.dir
+/Users/afroraydude/projects/uspm/cmake-build-debug/CMakeFiles/uspm.dir

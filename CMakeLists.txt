@@ -6,6 +6,13 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include) # if you are buildin
 include_directories(/usr/local/include) # if you are building with system includes
 include_directories(/usr/include) # if you are building with system includes
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/uspm)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/uspm/include)
+
+get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
+foreach(dir ${dirs})
+    message(STATUS "dir='${dir}'")
+endforeach()
 
 AUX_SOURCE_DIRECTORY(${CMAKE_CURRENT_SOURCE_DIR} source)
 
@@ -21,7 +28,7 @@ find_library (
 message(STATUS "CJSON: [${CJSON_LIB}]")
 #message(STATUS "NCURSES: [${NCURSES_LIB}]")
 
-add_executable(uspm uspm/main.c)
+add_executable(uspm uspm/main.c ${CMAKE_CURRENT_SOURCE_DIR}/uspm/fm.h ${CMAKE_CURRENT_SOURCE_DIR}/uspm/inunin.h)
 add_executable(uspm-mkpkg uspm-mkpkg/main.c)
 add_executable(uspm-extended uspm-extended/main.c)
 
