@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
-#include <uspm/uspm.h>
-#include <uspm/fm.h>
+#include "libuspp/uspm.h"
+#include "libuspp/fm.h"
 
 
 int main(int argc, char *argv[]) {
