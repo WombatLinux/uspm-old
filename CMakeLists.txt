@@ -10,6 +10,8 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/uspm)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/uspm/include)
 
+add_subdirectory(libuspp)
+
 get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
 foreach(dir ${dirs})
     message(STATUS "dir='${dir}'")
@@ -22,25 +24,8 @@ find_library (
         NAMES cjson libcjson
 )
 
-find_library(
-        USPPLIB
-        NAMES uspp libuspp
-)
-
 # check if we found the library
 message(STATUS "CJSON: [${CJSON_LIB}]")
-message(STATUS "LIBUSPP: [${USPPLIB}]")
-
-# LIBUSPM
-add_library(uspp libuspp/dephandle.c libuspp/dephandle.h libuspp/fm.c libuspp/fm.h libuspp/uspm.c libuspp/uspm.h)
-#add_library(uspm uspm.c uspm.h)
-
-target_link_libraries(uspp LINK_PUBLIC ${CJSON_LIB} curl)
-
-install(TARGETS uspp LIBRARY DESTINATION /usr/local/lib)
-install(FILES libuspp/uspm.h DESTINATION /usr/local/include/uspm)
-install(FILES libuspp/dephandle.h DESTINATION /usr/local/include/uspm)
-install(FILES libuspp/fm.h DESTINATION /usr/local/include/uspm)
 
 
 # USPM
@@ -48,9 +33,9 @@ add_executable(uspm uspm/main.c)
 add_executable(uspm-mkpkg uspm-mkpkg/main.c)
 add_executable(uspm-extended uspm-extended/main.c)
 
-target_link_libraries(uspm LINK_PUBLIC ${USPPLIB} ${CJSON_LIB} curl)
+target_link_libraries(uspm LINK_PUBLIC uspp ${CJSON_LIB} curl)
 #target_link_libraries(uspm ${CMAKE_CURRENT_SOURCE_DIR}/../libs/MacOS/libfreetype.a)
-target_link_libraries(uspm-extended LINK_PUBLIC ${USPPLIB} ${CJSON_LIB} curl)
+target_link_libraries(uspm-extended LINK_PUBLIC uspp ${CJSON_LIB} curl)
 target_link_libraries(uspm-mkpkg LINK_PUBLIC ${CJSON_LIB})
 
 install (TARGETS uspm
