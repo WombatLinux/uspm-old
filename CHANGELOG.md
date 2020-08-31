@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2020-08-31
+## Added
+- The USPP library 
+    - a library that is used for USPM and USPM-extended to work
+    - replaces the source and header files that were a part of USPM
+
+## Changed
+- Moved all the excess source and header files to the new USPP library
+
+## Removed
+- The "check dependencies" function because its very useless
+
 ## [1.1.1] - 2020-02-23
 ### Fixed
 - Fixed uspm-extended where commands weren't doing what they were supposed to do
