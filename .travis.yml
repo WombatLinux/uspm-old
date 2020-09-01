@@ -29,11 +29,12 @@ before_deploy:
     - tar cf uspm-linux.tar ./*
     - mv uspm-linux.tar ../../
     - cd ../../
+    - mv uspm-linux.tar "uspm-linux-${CC}.tar"
 
 deploy:
     provider: releases
     api_key: $ghtoken
-    file: "uspm-linux.tar"
+    file: "uspm-linux-${CC}.tar"
     skip_cleanup: true
     on:
         tags: true

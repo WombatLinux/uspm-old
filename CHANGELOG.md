@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2020-08-3q
+## Changed
+- Made it so both the clang and the GCC version are given.
+
 ## [1.2.0] - 2020-08-31
 ## Added
 - The USPP library 
