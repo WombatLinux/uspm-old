@@ -30,8 +30,8 @@ message(STATUS "CJSON: [${CJSON_LIB}]")
 
 # USPM
 add_executable(uspm uspm/main.c)
-add_executable(uspm-mkpkg uspm-mkpkg/main.c)
-add_executable(uspm-extended uspm-extended/main.c)
+add_executable(uspm-mkpkg EXCLUDE_FROM_ALL uspm-mkpkg/main.c)
+add_executable(uspm-extended EXCLUDE_FROM_ALL uspm-extended/main.c)
 
 target_link_libraries(uspm LINK_PUBLIC uspp ${CJSON_LIB} curl)
 #target_link_libraries(uspm ${CMAKE_CURRENT_SOURCE_DIR}/../libs/MacOS/libfreetype.a)

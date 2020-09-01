@@ -14,6 +14,9 @@ dependencies.
 - uspm-mkpkg: This optional application is useful for those who want to design USPM packages
 - uspm-extended: This optional application adds more commands and functions to `uspm` and is only there for those who want it.
 
+The project also contains `libuspp`, or Ultra Simple Package Processor, which contains the functions necessary to enable 
+all the functionality of `uspm`
+
 ## How it works
 
 All packages come in `.uspm` files, which are just tarballs. Within the tarball there must be two included files. 

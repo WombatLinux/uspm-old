@@ -7,13 +7,15 @@
 
 int main(int argc, char *argv[]) {
     printf("Welcome to USPM\nuspm [command] [package]\n\nCommands\n\ti - install package\n\tu - uninstall packag\n\n");
-    chdir("/var/uspm/storage");
 
+    /* check for access to typical file locations */
     if (access("/var/uspm/storage/", W_OK) != 0 || access("/etc", W_OK) != 0 || access("/usr", W_OK) != 0) 
     {
         printf("Insufficient permissions for one of the required directories (/var/uspm/storage /usr or /etc). \nAre you running as root?\n");
         return 1;
     }
+
+    chdir("/var/uspm/storage");
 
     check_packages_file();
     check_config_file();
