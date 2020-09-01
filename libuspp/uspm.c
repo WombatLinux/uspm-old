@@ -12,7 +12,6 @@
 int install_package_file(char *package) {
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) != -1) {
-        printf("File exists\n");
         char *command = concat("tar -xf ", filename);
 
         system(command);
