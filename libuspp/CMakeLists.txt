@@ -15,7 +15,7 @@ message(STATUS "CJSON: [${CJSON_LIB}]")
 
 set(CMAKE_C_STANDARD 99)
 
-add_library(uspp dephandle.c dephandle.h fm.c fm.h uspm.c uspm.h)
+add_library(uspp SHARED dephandle.c dephandle.h fm.c fm.h uspm.c uspm.h)
 #add_library(uspm uspm.c uspm.h)
 
 target_link_libraries(uspp LINK_PUBLIC ${CJSON_LIB} curl)
