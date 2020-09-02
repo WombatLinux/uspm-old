@@ -251,72 +251,6 @@ int check_config_file() {
     return 0;
 }
 
-unsigned char *get_checksum(char *filename) {
-    unsigned char result[2*MD5_DIGEST_LENGTH];
-    unsigned char hash[MD5_DIGEST_LENGTH];
-    int i;
-    FILE *f = fopen(filename,"rb");
-    MD5_CTX mdContent;
-    int bytes;
-    unsigned char data[1024];
-
-    if(f == NULL){
-        printf("%s couldn't open file\n",filename);
-        exit(1);
-    }
-
-    MD5_Init(&mdContent);
-    while((bytes = fread(data, 1, 1024, f)) != 0){
-
-        MD5_Update(&mdContent, data, bytes);
-    }
-
-    MD5_Final(hash,&mdContent);
-#ifdef DEBUG
-    for(i=0;i<MD5_DIGEST_LENGTH;i++){
-        printf("%02x",hash[i]);
-    }
-    printf("\n");
-#endif
-/** if you want to see the plain text of the hash */
-    for(i=0; i < MD5_DIGEST_LENGTH;i++){
-        sprintf((char *)&(result[i*2]), "%02x",hash[i]);
-    }
-
-    unsigned char *out = result;
-#ifdef DEBUG
-    printf("%s\n", result);
-    printf("%s\n", output);
-#endif
-    fclose(f);
-
-    return out;
-}
-
-int compare_checksum(unsigned char *a, unsigned char *b, int size) {
-    int i;
-
-    unsigned char *x = (unsigned char *)"disajfisajdjfsij";
-
-    unsigned char t1 = a;
-    unsigned char t2 = b;
-
-    printf((const char *) t1);
-    printf((const char *) t2);
-    printf("x %s\n", x);
-
-    for(i=0;i<size;i++) {
-        printf("a %u\n", a[i]);
-        printf("b %u\n", b[i]);
-        printf("x %u\n", x[i]);
-
-        if(a[i]!=b[i])
-            return 1;
-    }
-
-    return 0;
-}
-
 cJSON *load_json(char *json) {
     cJSON *out = cJSON_Parse(json);
 
@@ -355,4 +289,27 @@ cJSON *get_repo_json(char* url) {
 
     }
     return data.data;
+}
+
+unsigned char *checksum(char *filename, char *o[16]) {
+    unsigned char c[MD5_DIGEST_LENGTH];
+    int i;
+    FILE *inFile = fopen (filename, "rb");
+    MD5_CTX mdContext;
+    int bytes;
+    unsigned char data[1024];
+
+    if (inFile == NULL) {
+        printf ("%s can't be opened.\n", filename);
+        return 0;
+    }
+
+    MD5_Init (&mdContext);
+    while ((bytes = fread (data, 1, 1024, inFile)) != 0)
+        MD5_Update (&mdContext, data, bytes);
+    MD5_Final (c,&mdContext);
+    for(i = 0; i < MD5_DIGEST_LENGTH; i++) printf("%02x", c[i]);
+    printf (" %s\n", filename);
+    fclose (inFile);
+    return 0;
 }
