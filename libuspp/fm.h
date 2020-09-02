@@ -35,8 +35,10 @@ int check_config_file();
 
 int check_packages_file();
 
-unsigned char *get_checksum(char *filename);
+unsigned char *get_checksum(char *filename, unsigned char *output);
 
 int compare_checksum(unsigned char *a, unsigned char *b);
+
+cJSON *load_json(char *json);
 
 #endif //USPM_FM_H

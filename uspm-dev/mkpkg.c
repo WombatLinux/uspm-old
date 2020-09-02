@@ -1,6 +1,4 @@
-//
-// Created by afroraydude on 2/19/20.
-//
+
 #include <stdio.h>
 #include <cjson/cJSON.h>
 #include <string.h>
@@ -11,7 +9,7 @@
 int createpkg();
 
 int main(int argc, char *argv[]) {
-    printf("Welcome to uspm-mkpkg.\nPlease make sure that:\n\t- This is running in the parent directory of the package's folder, and\n\t- The name of the folder is the same as the package's name\n\n");
+    printf("Welcome to uspm-dev.\nPlease make sure that:\n\t- This is running in the parent directory of the package's folder, and\n\t- The name of the folder is the same as the package's name\n\n");
     char cwd[1024];
     getcwd(cwd, sizeof(cwd));
     printf("Current working dir: %s\n", cwd);

@@ -10,6 +10,12 @@
 #include <curl/curl.h>
 #include <openssl/md5.h>
 #include <string.h>
+#include "fm.h"
+
+struct url_data {
+    size_t size;
+    char* data;
+};
 
 char *concat(const char *s1, const char *s2) {
     char *result = malloc(strlen(s1) + strlen(s2) + 1); // +1 for the null-terminator
@@ -80,7 +86,7 @@ cJSON *load_file(char *file) {
         outputing it to the console */
         //printf("The file contains this text\n\n%s", buffer);
 
-        cJSON *root = cJSON_Parse(buffer);
+        cJSON *root = load_json(buffer);
 
         /* free the memory we used for the buffer */
         free(buffer);
@@ -245,32 +251,46 @@ int check_config_file() {
     return 0;
 }
 
-unsigned char *get_checksum(char *filename) {
-    unsigned char c[MD5_DIGEST_LENGTH];
+unsigned char *get_checksum(char *filename, unsigned char *output) {
+    unsigned char result[2*MD5_DIGEST_LENGTH];
+    unsigned char hash[MD5_DIGEST_LENGTH];
     int i;
-    FILE *inFile = fopen(filename, "rb");
-    MD5_CTX mdContext;
+    FILE *f = fopen(filename,"rb");
+    MD5_CTX mdContent;
     int bytes;
-    long byteSize;
     unsigned char data[1024];
 
-    if (inFile == NULL) {
-        printf("%s can't be opened.\n", filename);
-        return 0;
+    if(f == NULL){
+        printf("%s couldn't open file\n",filename);
+        exit(1);
     }
 
-    byteSize = ftell(inFile);
+    MD5_Init(&mdContent);
+    while((bytes = fread(data, 1, 1024, f)) != 0){
 
-    unsigned char *result = (unsigned char *)"hash:";
+        MD5_Update(&mdContent, data, bytes);
+    }
 
-    MD5_Init(&mdContext);
-    while ((bytes = fread(data, 1, byteSize, inFile)) != 0)
-        MD5_Update(&mdContext, data, bytes);
-    MD5_Final(c, &mdContext);
-    for (i = 0; i < MD5_DIGEST_LENGTH; i++) result += c[i];
-    printf(" %s\n", filename);
-    fclose(inFile);
-    return result;
+    MD5_Final(hash,&mdContent);
+#ifdef DEBUG
+    for(i=0;i<MD5_DIGEST_LENGTH;i++){
+        printf("%02x",hash[i]);
+    }
+    printf("\n");
+#endif
+/** if you want to see the plain text of the hash */
+    for(i=0; i < MD5_DIGEST_LENGTH;i++){
+        sprintf((char *)&(result[i*2]), "%02x",hash[i]);
+    }
+
+    output = result;
+
+    printf("%s\n", result);
+    printf("%s\n", output);
+
+    fclose(f);
+
+    return output;
 }
 
 int compare_checksum(unsigned char *a, unsigned char *b) {
@@ -279,4 +299,44 @@ int compare_checksum(unsigned char *a, unsigned char *b) {
     }
 
     return 0;
+}
+
+cJSON *load_json(char *json) {
+    cJSON *out = cJSON_Parse(json);
+
+    return out;
+}
+
+cJSON *get_repo_json(char* url) {
+    CURL *curl;
+
+    struct url_data data;
+    data.size = 0;
+    data.data = malloc(4096); /* reasonable size initial buffer */
+    if(NULL == data.data) {
+        fprintf(stderr, "Failed to allocate memory.\n");
+        return NULL;
+    }
+
+    data.data[0] = '\0';
+
+    CURLcode res;
+
+    curl = curl_easy_init();
+    if (curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, url);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &data);
+        res = curl_easy_perform(curl);
+        if(res != CURLE_OK) {
+            fprintf(stderr, "curl_easy_perform() failed: %s\n",
+                    curl_easy_strerror(res));
+        }
+
+
+
+        curl_easy_cleanup(curl);
+
+    }
+    return data.data;
 }
