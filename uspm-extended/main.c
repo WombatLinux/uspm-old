@@ -6,7 +6,8 @@
 #include <string.h>
 #include <zconf.h>
 #include <cjson/cJSON.h>
-#include "libuspp/fm.h"
+#include <uspm/uspm.h>
+#include <uspm/fm.h>
 
 int main(int argc, char *argv[])
 {
@@ -22,7 +23,7 @@ int main(int argc, char *argv[])
 
     if (argc == 2)
     {
-        if (strcmp(argv[1], "c") == 0)
+        if (strcmp(argv[1], "clean") == 0)
         {
             for (int i = 2; i < argc; i++)
             {
@@ -30,7 +31,7 @@ int main(int argc, char *argv[])
             }
         }
 
-        else if (strcmp(argv[1], "u") == 0)
+        else if (strcmp(argv[1], "upgrade") == 0)
         {
             cJSON *root = load_file("packages.json");
 
@@ -38,15 +39,19 @@ int main(int argc, char *argv[])
 
             while (package)
             {
+                /*
                 char *command = concat("uspm i ", package->string);
 
                 system(command);
+                */
+
+                install_package(package->string);
 
                 package = package->next;
             }
         }
 
-        else if (strcmp(argv[1], "p") == 0)
+        else if (strcmp(argv[1], "purge") == 0)
         {
             cJSON *root = load_file("packages.json");
 
@@ -54,9 +59,13 @@ int main(int argc, char *argv[])
 
             while (package)
             {
+                /*
                 char *command = concat("uspm u ", package->string);
 
                 system(command);
+                */
+
+                uninstall_package(package->string);
 
                 package = package->next;
             }

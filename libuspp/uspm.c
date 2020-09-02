@@ -4,11 +4,11 @@
 
 #include <curl/curl.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include "fm.h"
 #include "dephandle.h"
 #include "uspm.h"
 
-#include "uspm.h"
 int install_package_file(char *package) {
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) != -1) {
@@ -110,5 +110,11 @@ int check_dependencies(char *package) {
 
     printf("No more dependencies found\n");
 
+    return 0;
+}
+
+int check_if_first_run() {
+    check_config_file();
+    check_packages_file();
     return 0;
 }

@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Added
 - Documentation
+- `check_if_first_run()` checks if the current run is the first one by checking for
+the main files.
 
 ## Changed
 - Made uspp a shared library instead of static
@@ -15,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Removed
 - Unnecessary print statements
 
-## [1.2.1] - 2020-08-3q
+## [1.2.1] - 2020-08-3
 ## Changed
 - Made it so both the clang and the GCC version are given.
 

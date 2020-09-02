@@ -14,4 +14,6 @@ int uninstall_package(char *package);
 
 int check_dependencies(char *package);
 
+int check_if_first_run();
+
 #endif //USPM_INUNIN_H
