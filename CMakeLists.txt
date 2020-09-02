@@ -40,6 +40,7 @@ endif()
 add_executable(uspm uspm/main.c)
 add_executable(uspm-mkpkg EXCLUDE_FROM_ALL uspm-mkpkg/main.c)
 add_executable(uspm-extended EXCLUDE_FROM_ALL uspm-extended/main.c)
+add_executable(uspm-test EXCLUDE_FROM_ALL libuspptest/main.c)
 
 add_custom_target(uspm-all)
 add_custom_command(TARGET uspm-all COMMAND make COMMAND make uspm-extended COMMAND make uspm-mkpkg)
@@ -47,6 +48,7 @@ add_custom_command(TARGET uspm-all COMMAND make COMMAND make uspm-extended COMMA
 target_link_libraries(uspm LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
 #target_link_libraries(uspm ${CMAKE_CURRENT_SOURCE_DIR}/../libs/MacOS/libfreetype.a)
 target_link_libraries(uspm-extended LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
+target_link_libraries(uspm-test LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
 target_link_libraries(uspm-mkpkg LINK_PUBLIC ${CJSON_LIB})
 
 install (TARGETS uspm

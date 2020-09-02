@@ -8,9 +8,10 @@
 #include <string.h>
 #include <stdio.h>
 #include <curl/curl.h>
+#include <openssl/md5.h>
+#include <string.h>
 
-char* concat(const char *s1, const char *s2)
-{
+char *concat(const char *s1, const char *s2) {
     char *result = malloc(strlen(s1) + strlen(s2) + 1); // +1 for the null-terminator
 
     strcpy(result, s1);
@@ -21,8 +22,7 @@ char* concat(const char *s1, const char *s2)
 // utility function to compare each substring of version1 and
 // version2
 int compareSubstr(char *substr_version1, char *substr_version2,
-                  int len_substr_version1, int len_substr_version2)
-{
+                  int len_substr_version1, int len_substr_version2) {
     // if length of substring of version 1 is greater then
     // it means value of substr of version1 is also greater
     if (len_substr_version1 > len_substr_version2)
@@ -32,14 +32,12 @@ int compareSubstr(char *substr_version1, char *substr_version2,
         return -1;
 
         // when length of the substrings of both versions is same.
-    else
-    {
+    else {
         int i = 0, j = 0;
 
         // compare each character of both substrings and return
         // accordingly.
-        while (i < len_substr_version1)
-        {
+        while (i < len_substr_version1) {
             if (substr_version1[i] < substr_version2[j]) return -1;
             else if (substr_version1[i] > substr_version2[j]) return 1;
             i++, j++;
@@ -49,11 +47,11 @@ int compareSubstr(char *substr_version1, char *substr_version2,
 }
 
 cJSON *load_file(char *file) {
-    if (access(file,F_OK) != -1) {
+    if (access(file, F_OK) != -1) {
         /* declare a file pointer */
-        FILE    *infile;
-        char    *buffer;
-        long    numbytes;
+        FILE *infile;
+        char *buffer;
+        long numbytes;
 
         /* open an existing file for reading */
         infile = fopen(file, "r");
@@ -68,10 +66,10 @@ cJSON *load_file(char *file) {
 
         /* grab sufficient memory for the
         buffer to hold the text */
-        buffer = (char*)calloc(numbytes, sizeof(char));
+        buffer = (char *) calloc(numbytes, sizeof(char));
 
         /* memory error */
-        if(buffer == NULL)
+        if (buffer == NULL)
             return NULL;
 
         /* copy all the text into the buffer */
@@ -99,9 +97,9 @@ void write_packages_file(char *out) {
 
     FILE *ptr;
 
-    ptr = fopen("packages.json","w");
+    ptr = fopen("packages.json", "w");
 
-    fprintf(ptr,"%s",outfile);
+    fprintf(ptr, "%s", outfile);
     fclose(ptr);
 
     free(outfile);
@@ -112,9 +110,9 @@ void write_config_file(char *out) {
 
     FILE *ptr;
 
-    ptr = fopen("config.json","w");
+    ptr = fopen("config.json", "w");
 
-    fprintf(ptr,"%s",outfile);
+    fprintf(ptr, "%s", outfile);
     fclose(ptr);
 
     free(outfile);
@@ -164,7 +162,7 @@ int download_package(char *mirror, char *package) {
     strcpy(outfilename, concat(package, ".uspm"));
     curl = curl_easy_init();
     if (curl) {
-        fp = fopen(outfilename,"wb");
+        fp = fopen(outfilename, "wb");
         curl_easy_setopt(curl, CURLOPT_URL, url);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
@@ -224,7 +222,7 @@ void create_config_file() {
 }
 
 int check_packages_file() {
-    if (access("packages.json",F_OK) != -1) {
+    if (access("packages.json", F_OK) != -1) {
         cJSON *root = load_file("packages.json");
 
         char *json = cJSON_Print(root);
@@ -236,7 +234,7 @@ int check_packages_file() {
 }
 
 int check_config_file() {
-    if (access("config.json",F_OK) != -1) {
+    if (access("config.json", F_OK) != -1) {
         cJSON *root = load_file("packages.json");
 
         char *json = cJSON_Print(root);
@@ -244,5 +242,41 @@ int check_config_file() {
     } else {
         create_config_file();
     }
+    return 0;
+}
+
+unsigned char *get_checksum(char *filename) {
+    unsigned char c[MD5_DIGEST_LENGTH];
+    int i;
+    FILE *inFile = fopen(filename, "rb");
+    MD5_CTX mdContext;
+    int bytes;
+    long byteSize;
+    unsigned char data[1024];
+
+    if (inFile == NULL) {
+        printf("%s can't be opened.\n", filename);
+        return 0;
+    }
+
+    byteSize = ftell(inFile);
+
+    unsigned char *result = (unsigned char *)"hash:";
+
+    MD5_Init(&mdContext);
+    while ((bytes = fread(data, 1, byteSize, inFile)) != 0)
+        MD5_Update(&mdContext, data, bytes);
+    MD5_Final(c, &mdContext);
+    for (i = 0; i < MD5_DIGEST_LENGTH; i++) result += c[i];
+    printf(" %s\n", filename);
+    fclose(inFile);
+    return result;
+}
+
+int compare_checksum(unsigned char *a, unsigned char *b) {
+    if (memcmp(a, b, 16) != 0) {
+        return 1;
+    }
+
     return 0;
 }
