@@ -291,7 +291,7 @@ cJSON *get_repo_json(char* url) {
     return data.data;
 }
 
-unsigned char *checksum(char *filename, char *o[16]) {
+char *checksum(char *filename, char *o[16]) {
     unsigned char c[MD5_DIGEST_LENGTH];
     int i;
     FILE *inFile = fopen (filename, "rb");
@@ -314,15 +314,27 @@ unsigned char *checksum(char *filename, char *o[16]) {
         sprintf(part, "%02x", c[i]);
         //sprintf(o, "%02x", c[i]);
         sprintf(o, "%s%s", o, part);
+#ifdef DEBUG
         printf("part %s\n",  part);
-
+#endif
         //printf("%02x", c[i]);
     }
+#ifdef DEBUG
     printf("o %s\n", o);
     for(i = 0; i < MD5_DIGEST_LENGTH; i++) {
         printf("%02x", c[i]);
     }
     printf (" %s\n", filename);
+#endif
     fclose (inFile);
+    return o;
+}
+
+int *checksum_compare(char *a, char *b) {
+    int test = strcmp(a, b);
+
+    if (test != 0) {
+        return 1;
+    }
     return 0;
 }
