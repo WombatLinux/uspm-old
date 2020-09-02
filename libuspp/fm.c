@@ -304,11 +304,24 @@ unsigned char *checksum(char *filename, char *o[16]) {
         return 0;
     }
 
+
     MD5_Init (&mdContext);
     while ((bytes = fread (data, 1, 1024, inFile)) != 0)
         MD5_Update (&mdContext, data, bytes);
     MD5_Final (c,&mdContext);
-    for(i = 0; i < MD5_DIGEST_LENGTH; i++) printf("%02x", c[i]);
+    for(i = 0; i < MD5_DIGEST_LENGTH; i++) {
+        char *part[2];
+        sprintf(part, "%02x", c[i]);
+        //sprintf(o, "%02x", c[i]);
+        sprintf(o, "%s%s", o, part);
+        printf("part %s\n",  part);
+
+        //printf("%02x", c[i]);
+    }
+    printf("o %s\n", o);
+    for(i = 0; i < MD5_DIGEST_LENGTH; i++) {
+        printf("%02x", c[i]);
+    }
     printf (" %s\n", filename);
     fclose (inFile);
     return 0;
