@@ -23,7 +23,7 @@ script:
     - cd build
     - cmake ..
     - make
-    - make install
+    - sudo make install
     - cd ../..
     - mkdir build 
     - cd build 
