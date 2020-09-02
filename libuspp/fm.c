@@ -251,7 +251,7 @@ int check_config_file() {
     return 0;
 }
 
-unsigned char *get_checksum(char *filename, unsigned char *output) {
+unsigned char *get_checksum(char *filename) {
     unsigned char result[2*MD5_DIGEST_LENGTH];
     unsigned char hash[MD5_DIGEST_LENGTH];
     int i;
@@ -283,19 +283,35 @@ unsigned char *get_checksum(char *filename, unsigned char *output) {
         sprintf((char *)&(result[i*2]), "%02x",hash[i]);
     }
 
-    output = result;
-
+    unsigned char *out = result;
+#ifdef DEBUG
     printf("%s\n", result);
     printf("%s\n", output);
-
+#endif
     fclose(f);
 
-    return output;
+    return out;
 }
 
-int compare_checksum(unsigned char *a, unsigned char *b) {
-    if (memcmp(a, b, 16) != 0) {
-        return 1;
+int compare_checksum(unsigned char *a, unsigned char *b, int size) {
+    int i;
+
+    unsigned char *x = (unsigned char *)"disajfisajdjfsij";
+
+    unsigned char t1 = a;
+    unsigned char t2 = b;
+
+    printf((const char *) t1);
+    printf((const char *) t2);
+    printf("x %s\n", x);
+
+    for(i=0;i<size;i++) {
+        printf("a %u\n", a[i]);
+        printf("b %u\n", b[i]);
+        printf("x %u\n", x[i]);
+
+        if(a[i]!=b[i])
+            return 1;
     }
 
     return 0;
