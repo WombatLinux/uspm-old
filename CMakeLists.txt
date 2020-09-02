@@ -2,10 +2,10 @@ project(uspm)
 
 cmake_minimum_required(VERSION 3.10)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include) # if you are building with custom includes
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libuspp) # if you are building with custom includes
-include_directories(/usr/local/include) # if you are building with system includes
-include_directories(/usr/include) # if you are building with system includes
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libuspp)
+include_directories(/usr/local/include)
+include_directories(/usr/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/uspm)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/uspm/include)
@@ -27,10 +27,13 @@ find_library (
         NAMES uspp libuspp
 )
 
-# check if we found the library
 message(STATUS "CJSON: [${CJSON_LIB}]")
 
 message(STATUS "USPP: [${USPP_LIB}]")
+
+if(NOT CJSON_LIB)
+    message(FATAL_ERROR "CJSON not found, please install from cJSON repo.")
+endif()
 
 if(NOT USPP_LIB)
     message(FATAL_ERROR "uspp not found, please build and install from the libuspp directory")

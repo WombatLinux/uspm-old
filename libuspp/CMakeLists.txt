@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 project(libuspp C)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include) # if you are building with custom includes
-include_directories(/usr/local/include) # if you are building with system includes
-include_directories(/usr/include) # if you are building with system includes
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
+include_directories(/usr/local/include)
+include_directories(/usr/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 find_library (
