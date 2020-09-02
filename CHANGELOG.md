@@ -13,6 +13,7 @@ the main files.
 
 ## Changed
 - Made uspp a shared library instead of static
+- `uspm-mkpkg` is now ran outside of the package directory
 
 ## Removed
 - Unnecessary print statements

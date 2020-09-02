@@ -6,12 +6,15 @@
 #include <string.h>
 #include <stdlib.h>
 #include <zconf.h>
+#include <uspm/fm.h>
 
 int createpkg();
 
 int main(int argc, char *argv[]) {
-    printf("Welcome to uspm-mkpkg.\nPlease make sure that:\n\t- This is running in the package's folder, and\n\t- The name of the folder is the same as the package's name\n\n");
-
+    printf("Welcome to uspm-mkpkg.\nPlease make sure that:\n\t- This is running in the parent directory of the package's folder, and\n\t- The name of the folder is the same as the package's name\n\n");
+    char cwd[1024];
+    getcwd(cwd, sizeof(cwd));
+    printf("Current working dir: %s\n", cwd);
     createpkg();
 }
 
@@ -72,6 +75,8 @@ int createpkg() {
         }
     }
 
+    chdir(name);
+
     cJSON_AddItemToObject(root, "dependencies", dependencies);
     cJSON_AddStringToObject(root, "version", version);
 
@@ -91,6 +96,10 @@ int createpkg() {
     command = concat(command, name);
 
     system(command);
+
+    unsigned char *checksum = get_checksum(packageFile);
+
+    printf("USPM Checksum (using MD5): %u\n", checksum);
 
     return 0;
 }

@@ -52,7 +52,7 @@ target_link_libraries(uspm LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
 #target_link_libraries(uspm ${CMAKE_CURRENT_SOURCE_DIR}/../libs/MacOS/libfreetype.a)
 target_link_libraries(uspm-extended LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
 target_link_libraries(uspm-test LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
-target_link_libraries(uspm-mkpkg LINK_PUBLIC ${CJSON_LIB})
+target_link_libraries(uspm-mkpkg LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB})
 
 install (TARGETS uspm
     RUNTIME DESTINATION /usr/local/bin)
