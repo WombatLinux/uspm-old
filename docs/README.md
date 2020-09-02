@@ -1,6 +1,3 @@
-Ultra Simple Package Manager
-============================
-
 [![Travis (.com)](https://img.shields.io/travis/com/afroraydude/uspm?logo=travis&style=flat-square)](https://travis-ci.com/afroraydude/uspm)
 [![GitHub](https://img.shields.io/github/license/afroraydude/uspm?style=flat-square)](https://github.com/afroraydude/uspm/blob/master/LICENSE)
 
