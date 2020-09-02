@@ -17,6 +17,14 @@ compiler:
     - gcc
 
 script:
+    - echo "installing libuspp"
+    - cd libuspp
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
+    - make install
+    - cd ../..
     - mkdir build 
     - cd build 
     - cmake .. 
