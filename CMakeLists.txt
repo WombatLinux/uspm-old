@@ -45,7 +45,7 @@ endif()
 
 # USPM
 add_executable(uspm uspm/main.c)
-add_executable(uspm-test libuspptest/main.c)
+add_executable(uspm-test EXCLUDE_FROM_ALL libuspptest/main.c)
 
 add_custom_target(uspm-all)
 add_custom_command(TARGET uspm-all COMMAND make COMMAND make uspm-extended COMMAND make uspm-mkpkg)
@@ -53,7 +53,7 @@ add_custom_command(TARGET uspm-all COMMAND make COMMAND make uspm-extended COMMA
 #  add_dependencies(uspm uspp-install) doesnt work
 
 target_link_libraries(uspm LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
-target_link_libraries(uspm-test LINK_PUBLIC ${USPP_LIB})
+target_link_libraries(uspm-test LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB})
 
 install (TARGETS uspm
     RUNTIME DESTINATION /usr/local/bin)

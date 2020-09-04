@@ -41,7 +41,7 @@ int install_package(char *package) {
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) == -1) {
         cJSON *config = load_file("config.json");
-        download_package(cJSON_GetObjectItem(config, "mirror")->valuestring, package);
+        if (download_package(cJSON_GetObjectItem(config, "mirror")->valuestring, package) != 0) return 1;
     }
 
     if (install_package_file(package) == 0) {

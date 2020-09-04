@@ -19,7 +19,6 @@
 #include <sys/stat.h>
 #include <libuspp/uspm.h>
 
-
 int main(int argc, char *argv[]) {
     printf("Welcome to USPM\nuspm command package [packages...]\n\nCommands\n\ti - install package\n\tu - uninstall packag\n\n");
 
@@ -89,3 +88,4 @@ int main(int argc, char *argv[]) {
     }
     return 0;
 }
+

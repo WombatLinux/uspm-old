@@ -9,12 +9,11 @@
 #include <stdio.h>
 #include <curl/curl.h>
 #include <openssl/md5.h>
-#include <string.h>
 #include "fm.h"
 
-struct url_data {
+struct MemoryStruct {
+    char *memory;
     size_t size;
-    char* data;
 };
 
 char *concat(const char *s1, const char *s2) {
@@ -179,6 +178,9 @@ int download_package(char *mirror, char *package) {
     }
 
     free(url);
+
+    if (verify_checksum(mirror,package) != 0) return 1;
+
     return 0;
 }
 
@@ -257,40 +259,6 @@ cJSON *load_json(char *json) {
     return out;
 }
 
-cJSON *get_repo_json(char* url) {
-    CURL *curl;
-
-    struct url_data data;
-    data.size = 0;
-    data.data = malloc(4096); /* reasonable size initial buffer */
-    if(NULL == data.data) {
-        fprintf(stderr, "Failed to allocate memory.\n");
-        return NULL;
-    }
-
-    data.data[0] = '\0';
-
-    CURLcode res;
-
-    curl = curl_easy_init();
-    if (curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, url);
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &data);
-        res = curl_easy_perform(curl);
-        if(res != CURLE_OK) {
-            fprintf(stderr, "curl_easy_perform() failed: %s\n",
-                    curl_easy_strerror(res));
-        }
-
-
-
-        curl_easy_cleanup(curl);
-
-    }
-    return data.data;
-}
-
 char *checksum(char *filename, char *o[16]) {
     unsigned char c[MD5_DIGEST_LENGTH];
     int i;
@@ -337,4 +305,98 @@ int *checksum_compare(char *a, char *b) {
         return 1;
     }
     return 0;
+}
+
+static size_t
+WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
+{
+    size_t realsize = size * nmemb;
+    struct MemoryStruct *mem = (struct MemoryStruct *)userp;
+
+    char *ptr = realloc(mem->memory, mem->size + realsize + 1);
+    if(ptr == NULL) {
+        /* out of memory! */
+        printf("not enough memory (realloc returned NULL)\n");
+        return 0;
+    }
+
+    mem->memory = ptr;
+    memcpy(&(mem->memory[mem->size]), contents, realsize);
+    mem->size += realsize;
+    mem->memory[mem->size] = 0;
+
+    return realsize;
+}
+
+cJSON *get_repo_json(char* url) {
+    CURL *curl_handle;
+    CURLcode res;
+
+    struct MemoryStruct chunk;
+
+    chunk.memory = malloc(1);  /* will be grown as needed by the realloc above */
+    chunk.size = 0;    /* no data at this point */
+
+    curl_global_init(CURL_GLOBAL_ALL);
+
+    /* init the curl session */
+    curl_handle = curl_easy_init();
+
+    /* specify URL to get */
+    curl_easy_setopt(curl_handle, CURLOPT_URL, url);
+
+    /* send all data to this function  */
+    curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
+
+    /* we pass our 'chunk' struct to the callback function */
+    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&chunk);
+
+    /* some servers don't like requests that are made without a user-agent
+       field, so we provide one */
+    curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
+
+    /* get it! */
+    res = curl_easy_perform(curl_handle);
+
+    /* check for errors */
+    if(res != CURLE_OK) {
+        fprintf(stderr, "curl_easy_perform() failed: %s\n",
+                curl_easy_strerror(res));
+    }
+    else {
+        /*
+         * Now, our chunk.memory points to a memory block that is chunk.size
+         * bytes big and contains the remote file.
+         *
+         * Do something nice with it!
+         */
+
+        printf("%lu bytes retrieved\n", (unsigned long)chunk.size);
+    }
+
+    /* cleanup curl stuff */
+    curl_easy_cleanup(curl_handle);
+
+    cJSON *data = cJSON_Parse(chunk.memory);
+
+    free(chunk.memory);
+
+    /* we're done with libcurl, so clean it up */
+    curl_global_cleanup();
+
+    return data;
+}
+
+int verify_checksum(char *mirror, char *package) {
+    cJSON *repoJSON =  get_repo_json(*mirror);
+    char *packageChecksum = cJSON_GetObjectItem(repoJSON, package)->valuestring;
+
+    char *filename = concat(package,".uspm");
+    char *fileChecksum;
+    checksum(*filename, *fileChecksum);
+    if(checksum_compare(fileChecksum, packageChecksum) != 0) {
+        return 1;
+    } else {
+        return 0;
+    }
 }

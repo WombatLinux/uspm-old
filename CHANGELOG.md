@@ -10,10 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation
 - `check_if_first_run()` checks if the current run is the first one by checking for
 the main files.
+- Checksums
+- `uspm-chksum` can get the checksum of a file and also compare 2 files by checksum
 
 ## Changed
 - Made uspp a shared library instead of static
 - `uspm-mkpkg` is now ran outside of the package directory
+- Split up the different software into their own folders to meet with uspm packaging plans
 
 ## Removed
 - Unnecessary print statements
