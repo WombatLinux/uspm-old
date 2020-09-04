@@ -259,7 +259,7 @@ cJSON *load_json(char *json) {
     return out;
 }
 
-char *checksum(char *filename, char *o[16]) {
+void checksum(char *filename, char *o[16]) {
     unsigned char c[MD5_DIGEST_LENGTH];
     int i;
     FILE *inFile = fopen (filename, "rb");
@@ -269,7 +269,6 @@ char *checksum(char *filename, char *o[16]) {
 
     if (inFile == NULL) {
         printf ("%s can't be opened.\n", filename);
-        return 0;
     }
 
 
@@ -295,10 +294,9 @@ char *checksum(char *filename, char *o[16]) {
     printf (" %s\n", filename);
 #endif
     fclose (inFile);
-    return o;
 }
 
-int *checksum_compare(char *a, char *b) {
+int checksum_compare(char *a, char *b) {
     int test = strcmp(a, b);
 
     if (test != 0) {
@@ -388,13 +386,13 @@ cJSON *get_repo_json(char* url) {
 }
 
 int verify_checksum(char *mirror, char *package) {
-    cJSON *repoJSON =  get_repo_json(*mirror);
+    cJSON *repoJSON =  get_repo_json(mirror);
     char *packageChecksum = cJSON_GetObjectItem(repoJSON, package)->valuestring;
 
     char *filename = concat(package,".uspm");
-    char *fileChecksum;
-    checksum(*filename, *fileChecksum);
-    if(checksum_compare(fileChecksum, packageChecksum) != 0) {
+    char *fileChecksum[16];
+    checksum(filename, fileChecksum);
+    if(checksum_compare((char *) fileChecksum, packageChecksum) != 0) {
         return 1;
     } else {
         return 0;
