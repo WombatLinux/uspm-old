@@ -27,10 +27,6 @@ find_library (
         NAMES uspp libuspp
 )
 
-add_subdirectory(libuspp)
-add_subdirectory(uspm-extra)
-add_subdirectory(uspm-dev)
-
 message(STATUS "CJSON: [${CJSON_LIB}]")
 
 message(STATUS "USPP: [${USPP_LIB}]")
@@ -43,24 +39,11 @@ if(NOT USPP_LIB)
     message(FATAL_ERROR "uspp not found, please build and install from the libuspp directory")
 endif()
 
-# USPM
-add_executable(uspm uspm/main.c)
-add_executable(uspm-test EXCLUDE_FROM_ALL libuspptest/main.c)
 
-add_custom_target(uspm-all)
-add_custom_command(TARGET uspm-all COMMAND make COMMAND make uspm-extended COMMAND make uspm-mkpkg)
+add_executable(uspm-extended EXCLUDE_FROM_ALL extended.c)
 
-#  add_dependencies(uspm uspp-install) doesnt work
+target_link_libraries(uspm-extended LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
 
-target_link_libraries(uspm LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
-target_link_libraries(uspm-test LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB})
-
-install (TARGETS uspm
-    RUNTIME DESTINATION /usr/local/bin)
-
-if (${APPLE})
-    install (FILES uspm/uspm.1 DESTINATION /usr/local/share/man/man1)
-else()
-    install (FILES uspm/uspm.1 DESTINATION /usr/share/man/man1)
-endif()
+install (TARGETS uspm-extended OPTIONAL
+        RUNTIME DESTINATION /usr/local/bin)
 #target_link_libraries(uspm-ui LINK_PUBLIC ${NCURSES_LIB} ${CURSES_LIBRARIES})

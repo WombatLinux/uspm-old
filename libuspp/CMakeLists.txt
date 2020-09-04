@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 project(libuspp C)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include) # if you are building with custom includes
-include_directories(/usr/local/include) # if you are building with system includes
-include_directories(/usr/include) # if you are building with system includes
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
+include_directories(/usr/local/include)
+include_directories(/usr/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 find_library (
@@ -11,14 +11,23 @@ find_library (
         NAMES cjson libcjson # what to look for
 )
 
-message(STATUS "CJSON: [${CJSON_LIB}]")
+find_library(CURL_LIB curl)
+
+find_library(OPENSSL ssl)
+
+find_package(OpenSSL REQUIRED)
+
+message(STATUS "[${CJSON_LIB}] [${CURL_LIB}] [${OPENSSL}]")
 
 set(CMAKE_C_STANDARD 99)
 
 add_library(uspp SHARED dephandle.c dephandle.h fm.c fm.h uspm.c uspm.h)
 #add_library(uspm uspm.c uspm.h)
 
-target_link_libraries(uspp LINK_PUBLIC ${CJSON_LIB} curl)
+target_link_libraries(uspp LINK_PUBLIC ${CJSON_LIB} curl OpenSSL::SSL)
+
+add_custom_target(uspp-install)
+add_custom_command(TARGET uspp-install COMMAND cmake --install .)
 
 install(TARGETS uspp ARCHIVE DESTINATION /usr/local/lib LIBRARY DESTINATION /usr/local/lib)
 install(FILES uspm.h DESTINATION /usr/local/include/uspm)

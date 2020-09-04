@@ -1,27 +1,43 @@
+/*
+ *   ___  ___  ________  ________  _____ ______
+ *  |\  \|\  \|\   ____\|\   __  \|\   _ \  _   \
+ *  \ \  \\\  \ \  \___|\ \  \|\  \ \  \\\__\ \  \
+ *   \ \  \\\  \ \_____  \ \   ____\ \  \\|__| \  \
+ *    \ \  \\\  \|____|\  \ \  \___|\ \  \    \ \  \
+ *     \ \_______\____\_\  \ \__\    \ \__\    \ \__\
+ *      \|_______|\_________\|__|     \|__|     \|__|
+ *                \|_________|
+ *
+ *                   (c) 2020 afroraydude
+ *
+ *
+ */
+
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <libuspp/uspm.h>
 
-
 int main(int argc, char *argv[]) {
-    printf("Welcome to USPM\nuspm [command] [package]\n\nCommands\n\ti - install package\n\tu - uninstall packag\n\n");
+    printf("Welcome to USPM\nuspm command package [packages...]\n\nCommands\n\ti - install package\n\tu - uninstall packag\n\n");
 
     int result;
 
     result = access("/var/uspm", F_OK);
 
     if (result != 0) {
+        printf("Main USPM directory noneexistant...");
         mkdir("/var/uspm", 0744);
-        printf("Main USPM directory noneexistant");
+        printf("created\n");
     }
 
     result = access("/var/uspm/storage", F_OK);
 
     if (result != 0) {
+        printf("USPM storage directory noneexistant...");
         mkdir("/var/uspm/storage", 0744);
-        printf("USPM storage directory noneexistant");
+        printf("created\n");
     }
 
     chdir("/var/uspm/storage");
@@ -72,3 +88,4 @@ int main(int argc, char *argv[]) {
     }
     return 0;
 }
+

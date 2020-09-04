@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include "fm.h"
 #include "dephandle.h"
+#include <stdlib.h>
 
 // function to compare two versions.
 int check_version(char* version1, char* version2)
@@ -112,6 +113,10 @@ int install_dep_file(char *package, char *minversion) {
         cJSON *root = load_file(filename);
 
         char *test = cJSON_Print(root);
+
+#ifdef DEBUG
+        printf("%s\n", test);
+#endif
         char *version = cJSON_GetObjectItem(root, "version")->valuestring;
 
         if (check_version(version, minversion) < 0) {
@@ -142,7 +147,7 @@ int install_dependency(char *package, char *minversion) {
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) == -1) {
         cJSON *config = load_file("config.json");
-        download_package(cJSON_GetObjectItem(config, "mirror")->valuestring, package);
+        if (download_package(cJSON_GetObjectItem(config, "mirror")->valuestring, package) != 0) return 1;
     }
 
     if (install_dep_file(package, minversion) == 0) {

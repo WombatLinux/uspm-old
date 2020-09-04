@@ -1,28 +1,11 @@
-//
-// Created by afroraydude on 2/19/20.
-//
+
 #include <stdio.h>
 #include <cjson/cJSON.h>
 #include <string.h>
 #include <stdlib.h>
 #include <zconf.h>
+#include <uspm/fm.h>
 
-int createpkg();
-
-int main(int argc, char *argv[]) {
-    printf("Welcome to uspm-mkpkg.\nPlease make sure that:\n\t- This is running in the package's folder, and\n\t- The name of the folder is the same as the package's name\n\n");
-
-    createpkg();
-}
-
-char* concat(const char *s1, const char *s2)
-{
-    char *result = malloc(strlen(s1) + strlen(s2) + 1); // +1 for the null-terminator
-
-    strcpy(result, s1);
-    strcat(result, s2);
-    return result;
-}
 
 void write_file(char *filename, char *out) {
     char *outfile = concat(out, "\n");
@@ -72,6 +55,8 @@ int createpkg() {
         }
     }
 
+    chdir(name);
+
     cJSON_AddItemToObject(root, "dependencies", dependencies);
     cJSON_AddStringToObject(root, "version", version);
 
@@ -92,5 +77,18 @@ int createpkg() {
 
     system(command);
 
+    char *chksum;
+    checksum(packageFile, chksum);
+
+    printf("USPM Checksum (using MD5): %u\n", chksum);
+
     return 0;
+}
+
+int main(int argc, char *argv[]) {
+    printf("Welcome to uspm-mkpkg.\nPlease make sure that:\n\t- This is running in the parent directory of the package's folder, and\n\t- The name of the folder is the same as the package's name\n\n");
+    char cwd[1024];
+    getcwd(cwd, sizeof(cwd));
+    printf("Current working dir: %s\n", cwd);
+    createpkg();
 }
