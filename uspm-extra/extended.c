@@ -18,7 +18,7 @@
 #include <string.h>
 #include <zconf.h>
 #include <cjson/cJSON.h>
-#include <uspm/uspm.h>
+#include <uspm/uspp.h>
 #include <uspm/fm.h>
 
 int main(int argc, char *argv[])

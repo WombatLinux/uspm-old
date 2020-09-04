@@ -40,13 +40,15 @@ if(NOT USPP_LIB)
 endif()
 
 
-add_executable(uspm-mkpkg EXCLUDE_FROM_ALL mkpkg.c)
-add_executable(uspm-chksum EXCLUDE_FROM_ALL chksum.c)
+add_executable(uspm uspm.c)
 
-target_link_libraries(uspm-mkpkg LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB})
-target_link_libraries(uspm-chksum LINK_PUBLIC ${USPP_LIB})
+target_link_libraries(uspm LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB})
 
-install (TARGETS uspm-mkpkg OPTIONAL
+install (TARGETS uspm
         RUNTIME DESTINATION /usr/local/bin)
-install (TARGETS uspm-chksum OPTIONAL
-        RUNTIME DESTINATION /usr/local/bin)
+
+if (${APPLE})
+    install (FILES uspm.1 DESTINATION /usr/local/share/man/man1)
+else()
+    install (FILES uspm.1 DESTINATION /usr/share/man/man1)
+endif()

@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include "fm.h"
 #include "dephandle.h"
-#include "uspm.h"
+#include "uspp.h"
 
 int install_package_file(char *package) {
     char *filename = concat(package, ".uspm");

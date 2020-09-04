@@ -46,4 +46,3 @@ target_link_libraries(uspm-extended LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
 
 install (TARGETS uspm-extended OPTIONAL
         RUNTIME DESTINATION /usr/local/bin)
-#target_link_libraries(uspm-ui LINK_PUBLIC ${NCURSES_LIB} ${CURSES_LIBRARIES})
