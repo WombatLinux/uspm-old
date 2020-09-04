@@ -7,7 +7,7 @@
 #include "fm.h"
 #include "dephandle.h"
 #include <stdlib.h>
-#include "uspm.h"
+#include "uspp.h"
 
 // function to compare two versions.
 int check_version(char *version1, char *version2) {

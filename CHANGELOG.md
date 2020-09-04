@@ -18,6 +18,7 @@ the main files.
 - `uspm-mkpkg` is now ran outside of the package directory
 - Split up the different software into their own folders to meet with uspm packaging plans
 - `check_dependencies_and_install()` is now `check_for_dependencies()`
+- Moved `uspm` -> `uspm-main` and `libuspp/uspm.{c,h}` -> `libuspp/uspp.{c,h}`
 
 ## Removed
 - Unnecessary print statements
