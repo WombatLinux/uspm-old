@@ -54,7 +54,7 @@ int check_version(char *version1, char *version2) {
     return 0;
 }
 
-int check_dependencies_and_install(char *package) {
+int check_for_dependencies(char *package) {
     printf("Checking dependencies...\n");
 
     char *file = concat("./", package);

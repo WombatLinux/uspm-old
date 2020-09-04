@@ -9,6 +9,6 @@ int install_dependency(char *, char *minversion);
 
 int check_version(char* version1, char* version2);
 
-int check_dependencies_and_install(char *package);
+int check_for_dependencies(char *package);
 
 #endif //USPM_DEPHANDLE_H

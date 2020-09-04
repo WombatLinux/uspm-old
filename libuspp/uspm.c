@@ -17,7 +17,7 @@ int install_package_file(char *package) {
             system(command);
         }
 
-        if (check_dependencies_and_install(package) != 0) {
+        if (check_for_dependencies(package) != 0) {
             printf("Installation failed\n");
             return 1;
         }
