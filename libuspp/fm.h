@@ -35,9 +35,9 @@ int check_config_file();
 
 int check_packages_file();
 
-char *checksum(char *filename, char *o[16]);
+void checksum(char *filename, char *o[16]);
 
-int *checksum_compare(char *a, char *b);
+int checksum_compare(char *a, char *b);
 
 cJSON *load_json(char *json);
 

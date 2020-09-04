@@ -7,10 +7,10 @@
 #include "fm.h"
 #include "dephandle.h"
 #include <stdlib.h>
+#include "uspm.h"
 
 // function to compare two versions.
-int check_version(char* version1, char* version2)
-{
+int check_version(char *version1, char *version2) {
     int len_version1 = strlen(version1);
     int len_version2 = strlen(version2);
 
@@ -20,16 +20,15 @@ int check_version(char* version1, char* version2)
     // loop until both strings are exhausted.
     // and extract the substrings from version1 and version2
     int i = 0, j = 0;
-    while (i < len_version1 || j < len_version2)
-    {
+    while (i < len_version1 || j < len_version2) {
         int p = 0, q = 0;
 
         // skip the leading zeros in version1 string.
-        while (version1[i] == '0' )
+        while (version1[i] == '0')
             i++;
 
         // skip the leading zeros in version2 string.
-        while (version2[j] == '0' )
+        while (version2[j] == '0')
             j++;
 
         // extract the substring from version1.
@@ -55,7 +54,7 @@ int check_version(char* version1, char* version2)
     return 0;
 }
 
-int check_dependencies_and_install(char *package) {
+int check_for_dependencies(char *package) {
     printf("Checking dependencies...\n");
 
     char *file = concat("./", package);
@@ -79,7 +78,7 @@ int check_dependencies_and_install(char *package) {
             char *version = cJSON_GetObjectItem(dependency_internal, "version")->valuestring;
 
             if (check_version(version, minversion) < 0) {
-                printf("%s (missing)...installing first\n", dependency->string);
+                printf("%s (outdated)...installing first\n", dependency->string);
                 if (install_dependency(dependency->string, minversion) != 0) {
                     return 1;
                 }
@@ -100,68 +99,28 @@ int check_dependencies_and_install(char *package) {
     return 0;
 }
 
-int install_dep_file(char *package, char *minversion) {
-    char *filename = concat(package, ".uspm");
-    if (access(filename,F_OK) != -1) {
-        printf("File exists\n");
-        char *command = concat("tar -xf ", filename);
-
-        system(command);
-
-        filename = concat(package, "/PACKAGEDATA");
-
-        cJSON *root = load_file(filename);
-
-        char *test = cJSON_Print(root);
-
-#ifdef DEBUG
-        printf("%s\n", test);
-#endif
-        char *version = cJSON_GetObjectItem(root, "version")->valuestring;
-
-        if (check_version(version, minversion) < 0) {
-            printf("No good version of dependency found. Aborting.\n");
-            return 1;
-        }
-
-
-        check_dependencies_and_install(package);
-
-        command = concat("sh ./", package);
-        command = concat(command, "/PACKAGECODE install");
-
-        system(command);
-
-        free(command);
-
-        remove(filename);
-
-        return 0;
-    } else {
-        printf("Failed to extract package file");
-        return 1;
-    }
-}
-
 int install_dependency(char *package, char *minversion) {
     char *filename = concat(package, ".uspm");
-    if (access(filename,F_OK) == -1) {
+
+    if (access(filename, F_OK) == -1) {
         cJSON *config = load_file("config.json");
         if (download_package(cJSON_GetObjectItem(config, "mirror")->valuestring, package) != 0) return 1;
     }
 
-    if (install_dep_file(package, minversion) == 0) {
-        char *file = concat("./", package);
-        file = concat(file, "/PACKAGEDATA");
+    char *command = concat("tar -xf ", filename);
+    system(command);
 
-        cJSON *packagedata = load_file(file);
-
-        free(file);
-
-        add_to_packages(package, packagedata);
-
-        return 0;
-    } else {
+    filename = concat(package, "/PACKAGEDATA");
+    cJSON *root = load_file(filename);
+    char *version = cJSON_GetObjectItem(root, "version")->valuestring;
+    if (check_version(version, minversion) < 0) {
+        printf("No good version of dependency found. Aborting.\n");
         return 1;
     }
+
+    if (install_package(package) != 0) {
+        return 1;
+    }
+
+    return 0;
 }

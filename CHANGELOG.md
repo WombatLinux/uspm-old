@@ -17,9 +17,11 @@ the main files.
 - Made uspp a shared library instead of static
 - `uspm-mkpkg` is now ran outside of the package directory
 - Split up the different software into their own folders to meet with uspm packaging plans
+- `check_dependencies_and_install()` is now `check_for_dependencies()`
 
 ## Removed
 - Unnecessary print statements
+- `install_dep_file()`
 
 ## [1.2.1] - 2020-08-3
 ## Changed
