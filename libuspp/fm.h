@@ -43,6 +43,6 @@ cJSON *load_json(char *json);
 
 cJSON *get_repo_json(char* url);
 
-int verify_checksum(char *mirror, char *package)
+int verify_checksum(char *mirror, char *package);
 
 #endif //USPM_FM_H
