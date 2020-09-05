@@ -5,7 +5,7 @@ Ultra Simple Package Manager
 [![Travis (.com)](https://img.shields.io/travis/com/afroraydude/uspm?logo=travis&style=flat-square)](https://travis-ci.com/afroraydude/uspm)
 [![GitHub](https://img.shields.io/github/license/afroraydude/uspm?style=flat-square)](https://github.com/afroraydude/uspm/blob/master/LICENSE)
 ![GitHub repo size](https://img.shields.io/github/repo-size/afroraydude/uspm?style=flat-square)
-[![Package Site](https://img.shields.io/website?down_color=red&down_message=offline&label=package%20site&style=flat-square&up_color=green&up_message=online&url=http%3A%2F%2Fpackages.afroraydude.com%2Fwombatlinux%2Fuspm%2Fpackages.json)](https://packages.afroraydude.com/wombatlinux/uspm/packages.json)
+![Website](https://img.shields.io/website?url=http%3A%2F%2Fuspm.wombatlinux.org)
 
 Ultra Simple Package Manager (USPM) is a suite of executables that overall allow for the management of packages.
 
