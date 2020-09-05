@@ -117,4 +117,5 @@ then
 elif [ $1 == 'uninstall' ]
 then
   rm /usr/local/bin/example
-fi```
+fi
+```
