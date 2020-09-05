@@ -7,7 +7,7 @@
 #include "fm.h"
 #include "dephandle.h"
 #include <stdlib.h>
-#include "uspp.c"
+#include "uspp.h"
 
 // utility function to compare each substring of version1 and
 // version2
