@@ -7,9 +7,36 @@
 #include "fm.h"
 #include "dephandle.h"
 #include <stdlib.h>
-#include "uspp.h"
+#include "uspp.c"
 
-// function to compare two versions.
+// utility function to compare each substring of version1 and
+// version2
+int compareSubstr(char *substr_version1, char *substr_version2,
+                  int len_substr_version1, int len_substr_version2) {
+    // if length of substring of version 1 is greater then
+    // it means value of substr of version1 is also greater
+    if (len_substr_version1 > len_substr_version2)
+        return 1;
+
+    else if (len_substr_version1 < len_substr_version2)
+        return -1;
+
+        // when length of the substrings of both versions is same.
+    else {
+        int i = 0, j = 0;
+
+        // compare each character of both substrings and return
+        // accordingly.
+        while (i < len_substr_version1) {
+            if (substr_version1[i] < substr_version2[j]) return -1;
+            else if (substr_version1[i] > substr_version2[j]) return 1;
+            i++, j++;
+        }
+        return 0;
+    }
+}
+
+/** checks the difference between 2 versions */
 int check_version(char *version1, char *version2) {
     int len_version1 = strlen(version1);
     int len_version2 = strlen(version2);
@@ -54,6 +81,7 @@ int check_version(char *version1, char *version2) {
     return 0;
 }
 
+/* given a package, it looks through and installs necessary dependencies */
 int check_for_dependencies(char *package) {
     printf("Checking dependencies...\n");
 
@@ -99,6 +127,7 @@ int check_for_dependencies(char *package) {
     return 0;
 }
 
+/* installs package dependencies */
 int install_dependency(char *package, char *minversion) {
     char *filename = concat(package, ".uspm");
 

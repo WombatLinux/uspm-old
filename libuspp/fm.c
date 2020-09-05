@@ -24,33 +24,6 @@ char *concat(const char *s1, const char *s2) {
     return result;
 }
 
-// utility function to compare each substring of version1 and
-// version2
-int compareSubstr(char *substr_version1, char *substr_version2,
-                  int len_substr_version1, int len_substr_version2) {
-    // if length of substring of version 1 is greater then
-    // it means value of substr of version1 is also greater
-    if (len_substr_version1 > len_substr_version2)
-        return 1;
-
-    else if (len_substr_version1 < len_substr_version2)
-        return -1;
-
-        // when length of the substrings of both versions is same.
-    else {
-        int i = 0, j = 0;
-
-        // compare each character of both substrings and return
-        // accordingly.
-        while (i < len_substr_version1) {
-            if (substr_version1[i] < substr_version2[j]) return -1;
-            else if (substr_version1[i] > substr_version2[j]) return 1;
-            i++, j++;
-        }
-        return 0;
-    }
-}
-
 cJSON *load_file(char *file) {
     if (access(file, F_OK) != -1) {
         /* declare a file pointer */
@@ -233,24 +206,24 @@ int check_packages_file() {
     if (access("packages.json", F_OK) != -1) {
         cJSON *root = load_file("packages.json");
 
-        char *json = cJSON_Print(root);
+        return 0;
         // printf("%s\n", json);
     } else {
         create_packages_file();
+        return 1;
     }
-    return 0;
 }
 
 int check_config_file() {
     if (access("config.json", F_OK) != -1) {
         cJSON *root = load_file("packages.json");
 
-        char *json = cJSON_Print(root);
+        return 0;
         // printf("%s\n", json);
     } else {
         create_config_file();
+        return 1;
     }
-    return 0;
 }
 
 cJSON *load_json(char *json) {

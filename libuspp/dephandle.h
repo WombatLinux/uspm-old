@@ -5,10 +5,29 @@
 #ifndef USPM_DEPHANDLE_H
 #define USPM_DEPHANDLE_H
 
-int install_dependency(char *, char *minversion);
+/*
+ * given a (dependency) package name [package], it downloads and checks the version, and
+ * then compares it with the given minimum version [minversion]
+ *
+ * returns 0 for success and 1 for failure
+ */
+int install_dependency(char *package, char *minversion);
 
+/*
+ * given versions [version1] and [version2] it compares the two versions
+ *
+ * returns > 0 if [version1] is newer
+ * returns < 0 if [version2] is newer
+ * returns 0 if the versions are the same
+ *
+ * uses semantic versioning, may work for non-semantic versioning.
+ */
 int check_version(char* version1, char* version2);
 
+/*
+ * Given [package] looks in the PACKAGEDATA and looks for any dependencies
+ * required for installation or runtime.
+ */
 int check_for_dependencies(char *package);
 
 #endif //USPM_DEPHANDLE_H

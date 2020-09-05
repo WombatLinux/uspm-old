@@ -77,7 +77,7 @@ int uninstall_package(char *package) {
 }
 
 int check_if_first_run() {
-    check_config_file();
-    check_packages_file();
+    if (check_config_file() == 1 ||
+            check_packages_file() == 1) return 1;
     return 0;
 }
