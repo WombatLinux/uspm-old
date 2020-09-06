@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="md_docs_02-_typical__u_s_p_m__file" kind="page">
+    <compoundname>md_docs_02-Typical_USPM_File</compoundname>
+    <title>The typical USPM File</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><programlisting><codeline><highlight class="normal">.</highlight></codeline>
+<codeline><highlight class="normal">+--<sp/>PACKAGECODE</highlight></codeline>
+<codeline><highlight class="normal">+--<sp/>PACKAGEDATA</highlight></codeline>
+<codeline><highlight class="normal">+--<sp/>files</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/>+--<sp/>usr</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/><sp/><sp/><sp/><sp/>+--<sp/>bin</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/>+--<sp/>etc</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/><sp/><sp/><sp/><sp/>+--<sp/>program_custom_config_file</highlight></codeline>
+</programlisting> </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="md__c_h_a_n_g_e_l_o_g" kind="page">
+    <compoundname>md_CHANGELOG</compoundname>
+    <title>Changelog</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>All notable changes to this project will be documented in this file.</para>
+<para>The format is based on <ulink url="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</ulink>, and this project adheres to <ulink url="https://semver.org/spec/v2.0.0.html">Semantic Versioning</ulink>.</para>
+<sect1 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md1">
+<title>[Unreleased]</title>
+</sect1>
+<sect1 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md2">
+<title>Added</title>
+<para><itemizedlist>
+<listitem><para>Documentation</para>
+</listitem><listitem><para><computeroutput>check_if_first_run()</computeroutput> checks if the current run is the first one by checking for the main files.</para>
+</listitem><listitem><para>Checksums</para>
+</listitem><listitem><para><computeroutput>uspm-chksum</computeroutput> can get the checksum of a file and also compare 2 files by checksum</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md3">
+<title>Changed</title>
+<para><itemizedlist>
+<listitem><para>Made uspp a shared library instead of static</para>
+</listitem><listitem><para><computeroutput>uspm-mkpkg</computeroutput> is now ran outside of the package directory</para>
+</listitem><listitem><para>Split up the different software into their own folders to meet with uspm packaging plans</para>
+</listitem><listitem><para><computeroutput>check_dependencies_and_install()</computeroutput> is now <computeroutput>check_for_dependencies()</computeroutput></para>
+</listitem><listitem><para>Moved <computeroutput>uspm</computeroutput> -&gt; <computeroutput>uspm-main</computeroutput> and <computeroutput>libuspp/uspm.{c,h}</computeroutput> -&gt; <computeroutput>libuspp/uspp.{c,h}</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md4">
+<title>Removed</title>
+<para><itemizedlist>
+<listitem><para>Unnecessary print statements</para>
+</listitem><listitem><para><computeroutput>install_dep_file()</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md5">
+<title>[1.2.1] - 2020-08-3</title>
+</sect1>
+<sect1 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md6">
+<title>Changed</title>
+<para><itemizedlist>
+<listitem><para>Made it so both the clang and the GCC version are given.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md7">
+<title>[1.2.0] - 2020-08-31</title>
+</sect1>
+<sect1 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md8">
+<title>Added</title>
+<para><itemizedlist>
+<listitem><para>The USPP library<itemizedlist>
+<listitem><para>a library that is used for USPM and USPM-extended to work</para>
+</listitem><listitem><para>replaces the source and header files that were a part of USPM</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md9">
+<title>Changed</title>
+<para><itemizedlist>
+<listitem><para>Moved all the excess source and header files to the new USPP library</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md10">
+<title>Removed</title>
+<para><itemizedlist>
+<listitem><para>The &quot;check dependencies&quot; function because its very useless</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md11">
+<title>[1.1.1] - 2020-02-23</title>
+<sect2 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md12">
+<title>Fixed</title>
+<para><itemizedlist>
+<listitem><para>Fixed uspm-extended where commands weren&apos;t doing what they were supposed to do</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md13">
+<title>[1.1.0] - 2020-02-20</title>
+<sect2 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md14">
+<title>Added</title>
+<para><itemizedlist>
+<listitem><para>Travis CI build configuration</para>
+</listitem><listitem><para>Manpage</para>
+</listitem><listitem><para>Ability to install/uninstall/check more than one package</para>
+</listitem><listitem><para><computeroutput>uspm-mkpkg</computeroutput> tool that makes package creation easier</para>
+</listitem><listitem><para>Build status to README</para>
+</listitem><listitem><para>Extended commands</para>
+</listitem><listitem><para>Added proper version checking for dependencies</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md15">
+<title>Changed</title>
+<para><itemizedlist>
+<listitem><para>Changed the default configuration&apos;s mirror site.</para>
+</listitem><listitem><para>Changed <computeroutput>CMakeLists.txt</computeroutput> file to include <computeroutput>uspm-mkpkg</computeroutput></para>
+</listitem><listitem><para>Changed location of <computeroutput>uspm</computeroutput> C source and header files</para>
+</listitem><listitem><para>Changed package creation instructions within the README</para>
+</listitem><listitem><para>Dependency resolution now is seperate from normal install functions.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md16">
+<title>Fixed</title>
+<para><itemizedlist>
+<listitem><para>Fixed bug where default mirror links to a nonexistent server</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md17">
+<title>[1.0.1] - 2020-02-04</title>
+<sect2 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md18">
+<title>Added</title>
+<para><itemizedlist>
+<listitem><para>Option to use CMake instead of Makefile</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md19">
+<title>Changed</title>
+<para><itemizedlist>
+<listitem><para>Removed &quot;C Edition&quot; from README</para>
+</listitem><listitem><para>Added install instructions for CMake</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md20">
+<title>Fixed</title>
+<para><itemizedlist>
+<listitem><para>Fixed bug where if config file doesn&apos;t exist, it breaks.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md21">
+<title>[1.0.0] - 2020-02-03</title>
+<sect2 id="md__c_h_a_n_g_e_l_o_g_1autotoc_md22">
+<title>Added</title>
+<para><itemizedlist>
+<listitem><para>Install, Uninstall, Check dependencies commands </para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

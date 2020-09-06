@@ -1,6 +1,6 @@
-//
-// Created by afroraydude on 8/31/20.
-//
+/*The main package handling file.
+ *
+ */
 
 #include <unistd.h>
 #include <stdlib.h>
@@ -8,6 +8,12 @@
 #include "dephandle.h"
 #include "uspp.h"
 
+/*
+ * Given a package name [package], installs the package file (and, if necessary,
+ * downloads) located in /var/uspm/storage
+ *
+ * @param package the package
+ */
 int install_package_file(char *package) {
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) != -1) {
@@ -40,6 +46,12 @@ int install_package_file(char *package) {
     }
 }
 
+/*
+ * Given a package name [package], installs the package file (and, if necessary,
+ * downloads) located in /var/uspm/storage
+ *
+ * @param package the package
+ */
 int install_package(char *package) {
     char *filename = concat(package, ".uspm");
     if (access(filename,F_OK) == -1) {
@@ -63,6 +75,11 @@ int install_package(char *package) {
     }
 }
 
+/*
+ * Given a package name [package], uninstalled the package
+ *
+ * @param package the package
+ */
 int uninstall_package(char *package) {
     char *command = concat("sh ./", package);
     command = concat(command, "/PACKAGECODE uninstall");

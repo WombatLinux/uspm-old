@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="_c_make_lists_8txt" kind="file" language="C++">
+    <compoundname>CMakeLists.txt</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_c_make_lists_8txt_1a2f10d75c8fdc77607788f0bdeb2500df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>project</definition>
+        <argsstring>(uspm) cmake_minimum_required(VERSION 3.10) include_directories($</argsstring>
+        <name>project</name>
+        <param>
+          <type>uspm</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="CMakeLists.txt" line="1" column="1" bodyfile="CMakeLists.txt" bodystart="1" bodyend="5"/>
+      </memberdef>
+      <memberdef kind="function" id="_c_make_lists_8txt_1aed49f6d547242d89c4cb29a5ff3d01ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>include</type>
+        <definition>include include_directories</definition>
+        <argsstring>(/usr/local/include) include_directories(/usr/include) include_directories($</argsstring>
+        <name>include_directories</name>
+        <param>
+          <type>/usr/local/</type>
+          <declname>include</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="CMakeLists.txt" line="6" column="1" bodyfile="CMakeLists.txt" bodystart="6" bodyend="8"/>
+      </memberdef>
+      <memberdef kind="function" id="_c_make_lists_8txt_1a39a64b928168922e0b71a315d45ac6ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>include_directories</definition>
+        <argsstring>(${CMAKE_CURRENT_SOURCE_DIR}/uspm) include_directories($</argsstring>
+        <name>include_directories</name>
+        <param>
+          <declname>${CMAKE_CURRENT_SOURCE_DIR}/</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="CMakeLists.txt" line="9" column="1" bodyfile="CMakeLists.txt" bodystart="9" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="_c_make_lists_8txt_1acc448913766cba5e0969b29e1630a601" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uspm include</type>
+        <definition>uspm include get_property</definition>
+        <argsstring>(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES) foreach(dir $</argsstring>
+        <name>get_property</name>
+        <param>
+          <type>dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY</type>
+          <declname>INCLUDE_DIRECTORIES</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="CMakeLists.txt" line="12" column="1" bodyfile="CMakeLists.txt" bodystart="12" bodyend="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">project(uspm)</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">cmake_minimum_required(VERSION<sp/>3.10)</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">include_directories(/usr/local/include)</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">include_directories(/usr/include)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">include_directories(${CMAKE_CURRENT_SOURCE_DIR})</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">include_directories(${CMAKE_CURRENT_SOURCE_DIR}/uspm)</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">include_directories(${CMAKE_CURRENT_SOURCE_DIR}/uspm/include)</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">get_property(dirs<sp/>DIRECTORY<sp/>${CMAKE_CURRENT_SOURCE_DIR}<sp/>PROPERTY<sp/>INCLUDE_DIRECTORIES)</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keywordflow">foreach</highlight><highlight class="normal">(dir<sp/>${dirs})</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>message(STATUS<sp/></highlight><highlight class="stringliteral">&quot;dir=&apos;${dir}&apos;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">endforeach()</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">AUX_SOURCE_DIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}<sp/>source)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">find_library<sp/>(</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CJSON_LIB</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NAMES<sp/>cjson<sp/>libcjson</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">find_library<sp/>(</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>USPP_LIB</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NAMES<sp/>uspp<sp/>libuspp</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">add_subdirectory(libuspp)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">add_subdirectory(uspm-extra)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">add_subdirectory(uspm-dev)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">add_subdirectory(uspm-main)</highlight></codeline>
+    </programlisting>
+    <location file="CMakeLists.txt"/>
+  </compounddef>
+</doxygen>

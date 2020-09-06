@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="md__t_o_d_o" kind="page">
+    <compoundname>md_TODO</compoundname>
+    <title>TODO</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="md__t_o_d_o_1autotoc_md45">
+<title>Version 1.2</title>
+<para>1) Curses application</para>
+</sect1>
+<sect1 id="md__t_o_d_o_1autotoc_md46">
+<title>Next version</title>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_66f9565f203981ddb68065565e9834df" kind="dir">
+    <compoundname>uspm-dev</compoundname>
+    <innerfile refid="chksum_8c">chksum.c</innerfile>
+    <innerfile refid="mkpkg_8c">mkpkg.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="uspm-dev/"/>
+  </compounddef>
+</doxygen>

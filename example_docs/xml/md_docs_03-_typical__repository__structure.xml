@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="md_docs_03-_typical__repository__structure" kind="page">
+    <compoundname>md_docs_03-Typical_Repository_Structure</compoundname>
+    <title>Typical Repository Structure</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><emphasis><bold>REQUIRED:</bold></emphasis> <computeroutput>packages.json</computeroutput> - houses package names and their checksums</para>
+<para>package.json <programlisting filename=".json"><codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;uspm&quot;:&quot;9c19a317129b8c42ff9358f809beef01&quot;,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;cjson&quot;:&quot;97771ff98b30d382bc1917a8089d2e11&quot;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>The rest are basically just .uspm packages that you&apos;d want on the server. <programlisting><codeline><highlight class="normal">.</highlight></codeline>
+<codeline><highlight class="normal">+--<sp/>cjson.uspm</highlight></codeline>
+<codeline><highlight class="normal">+--<sp/>libcurl.uspm</highlight></codeline>
+<codeline><highlight class="normal">+--<sp/>openssl.uspm</highlight></codeline>
+<codeline><highlight class="normal">+--<sp/>packages.json</highlight></codeline>
+<codeline><highlight class="normal">+--<sp/>tar-tbc.uspm</highlight></codeline>
+<codeline><highlight class="normal">+--<sp/>uspm.uspm</highlight></codeline>
+<codeline><highlight class="normal">+--<sp/>uspp-src.uspm</highlight></codeline>
+</programlisting></para>
+<para>If you&apos;d like you can keep archived versions of packages in the <computeroutput>archive</computeroutput> folder. However, the USPM standard does not require that such a folder exist. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="libuspp_2_c_make_lists_8txt" kind="file" language="C++">
+    <compoundname>CMakeLists.txt</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="libuspp_2_c_make_lists_8txt_1a196371f58aa87d9124e5c281f8085582" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>cmake_minimum_required</definition>
+        <argsstring>(VERSION 3.10) project(libuspp C) include_directories($</argsstring>
+        <name>cmake_minimum_required</name>
+        <param>
+          <type>VERSION 3.</type>
+          <declname>10</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libuspp/CMakeLists.txt" line="1" column="1" bodyfile="libuspp/CMakeLists.txt" bodystart="1" bodyend="4"/>
+      </memberdef>
+      <memberdef kind="function" id="libuspp_2_c_make_lists_8txt_1aed49f6d547242d89c4cb29a5ff3d01ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>include</type>
+        <definition>include include_directories</definition>
+        <argsstring>(/usr/local/include) include_directories(/usr/include) include_directories($</argsstring>
+        <name>include_directories</name>
+        <param>
+          <type>/usr/local/</type>
+          <declname>include</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libuspp/CMakeLists.txt" line="5" column="1" bodyfile="libuspp/CMakeLists.txt" bodystart="5" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="libuspp_2_c_make_lists_8txt_1ad5c66651c781001342e27d69db2319ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>find_library</definition>
+        <argsstring>(CJSON_LIB NAMES cjson libcjson # what to look for) find_library(CURL_LIB curl) find_library(OPENSSL ssl) find_package(OpenSSL REQUIRED) message(STATUS &quot;[$</argsstring>
+        <name>find_library</name>
+        <param>
+          <type>CJSON_LIB NAMES cjson libcjson # what to look</type>
+          <declname>for</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libuspp/CMakeLists.txt" line="9" column="1" bodyfile="libuspp/CMakeLists.txt" bodystart="9" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="libuspp_2_c_make_lists_8txt_1ad4d7c116839307430612aa5e4cfd10b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>set</definition>
+        <argsstring>(CMAKE_C_STANDARD 99) add_library(uspp SHARED dephandle.c dephandle.h fm.c fm.h uspp.c uspp.h) target_link_libraries(uspp LINK_PUBLIC $</argsstring>
+        <name>set</name>
+        <param>
+          <type>CMAKE_C_STANDARD</type>
+          <declname>99</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libuspp/CMakeLists.txt" line="22" column="1" bodyfile="libuspp/CMakeLists.txt" bodystart="22" bodyend="27"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">cmake_minimum_required(VERSION<sp/>3.10)</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">project(libuspp<sp/>C)</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">include_directories(/usr/local/include)</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">include_directories(/usr/include)</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">include_directories(${CMAKE_CURRENT_SOURCE_DIR})</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">find_library<sp/>(</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CJSON_LIB</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NAMES<sp/>cjson<sp/>libcjson<sp/>#<sp/>what<sp/>to<sp/>look<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">find_library(CURL_LIB<sp/>curl)</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">find_library(OPENSSL<sp/>ssl)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">find_package(OpenSSL<sp/>REQUIRED)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">message(STATUS<sp/></highlight><highlight class="stringliteral">&quot;[${CJSON_LIB}]<sp/>[${CURL_LIB}]<sp/>[${OPENSSL}]&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">set(CMAKE_C_STANDARD<sp/>99)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">add_library(uspp<sp/>SHARED<sp/>dephandle.c<sp/>dephandle.h<sp/>fm.c<sp/>fm.h<sp/>uspp.c<sp/>uspp.h)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#add_library(uspm<sp/>uspm.c<sp/>uspm.h)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">target_link_libraries(uspp<sp/>LINK_PUBLIC<sp/>${CJSON_LIB}<sp/>curl<sp/>OpenSSL::SSL)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">add_custom_target(uspp-install)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">add_custom_command(TARGET<sp/>uspp-install<sp/>COMMAND<sp/>cmake<sp/>--install<sp/>.)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">install(TARGETS<sp/>uspp<sp/>ARCHIVE<sp/>DESTINATION<sp/>/usr/local/lib<sp/>LIBRARY<sp/>DESTINATION<sp/>/usr/local/lib)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">install(FILES<sp/>uspp.h<sp/>DESTINATION<sp/>/usr/local/include/uspm)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">install(FILES<sp/>dephandle.h<sp/>DESTINATION<sp/>/usr/local/include/uspm)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">install(FILES<sp/>fm.h<sp/>DESTINATION<sp/>/usr/local/include/uspm)</highlight></codeline>
+    </programlisting>
+    <location file="libuspp/CMakeLists.txt"/>
+  </compounddef>
+</doxygen>

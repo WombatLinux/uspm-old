@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.20" xml:lang="en-US">
+  <compound refid="struct_memory_struct" kind="struct"><name>MemoryStruct</name>
+    <member refid="struct_memory_struct_1a2bd6d68918bc5a61a6c59af45597b073" kind="variable"><name>memory</name></member>
+    <member refid="struct_memory_struct_1a854352f53b148adc24983a58a1866d66" kind="variable"><name>size</name></member>
+  </compound>
+  <compound refid="_c_h_a_n_g_e_l_o_g_8md" kind="file"><name>CHANGELOG.md</name>
+  </compound>
+  <compound refid="_c_make_lists_8txt" kind="file"><name>CMakeLists.txt</name>
+    <member refid="_c_make_lists_8txt_1a2f10d75c8fdc77607788f0bdeb2500df" kind="function"><name>project</name></member>
+    <member refid="_c_make_lists_8txt_1aed49f6d547242d89c4cb29a5ff3d01ee" kind="function"><name>include_directories</name></member>
+    <member refid="_c_make_lists_8txt_1a39a64b928168922e0b71a315d45ac6ea" kind="function"><name>include_directories</name></member>
+    <member refid="_c_make_lists_8txt_1acc448913766cba5e0969b29e1630a601" kind="function"><name>get_property</name></member>
+  </compound>
+  <compound refid="libuspp_2_c_make_lists_8txt" kind="file"><name>CMakeLists.txt</name>
+    <member refid="libuspp_2_c_make_lists_8txt_1a196371f58aa87d9124e5c281f8085582" kind="function"><name>cmake_minimum_required</name></member>
+    <member refid="libuspp_2_c_make_lists_8txt_1aed49f6d547242d89c4cb29a5ff3d01ee" kind="function"><name>include_directories</name></member>
+    <member refid="libuspp_2_c_make_lists_8txt_1ad5c66651c781001342e27d69db2319ae" kind="function"><name>find_library</name></member>
+    <member refid="libuspp_2_c_make_lists_8txt_1ad4d7c116839307430612aa5e4cfd10b7" kind="function"><name>set</name></member>
+  </compound>
+  <compound refid="uspm-dev_2_c_make_lists_8txt" kind="file"><name>CMakeLists.txt</name>
+    <member refid="uspm-dev_2_c_make_lists_8txt_1a2f10d75c8fdc77607788f0bdeb2500df" kind="function"><name>project</name></member>
+    <member refid="uspm-dev_2_c_make_lists_8txt_1a5e90ffcea3d9c0511521ae99fed63c3f" kind="function"><name>include_directories</name></member>
+    <member refid="uspm-dev_2_c_make_lists_8txt_1acc448913766cba5e0969b29e1630a601" kind="function"><name>get_property</name></member>
+    <member refid="uspm-dev_2_c_make_lists_8txt_1a664bb3e20bd1245f41689cf1a3b46659" kind="function"><name>message</name></member>
+    <member refid="uspm-dev_2_c_make_lists_8txt_1ad0c733185b3eacc316e5b888d390467a" kind="function"><name>message</name></member>
+    <member refid="uspm-dev_2_c_make_lists_8txt_1a849bf8609930b06f2ec916f4112618dd" kind="function"><name>endif</name></member>
+  </compound>
+  <compound refid="uspm-extra_2_c_make_lists_8txt" kind="file"><name>CMakeLists.txt</name>
+    <member refid="uspm-extra_2_c_make_lists_8txt_1a2f10d75c8fdc77607788f0bdeb2500df" kind="function"><name>project</name></member>
+    <member refid="uspm-extra_2_c_make_lists_8txt_1a5e90ffcea3d9c0511521ae99fed63c3f" kind="function"><name>include_directories</name></member>
+    <member refid="uspm-extra_2_c_make_lists_8txt_1acc448913766cba5e0969b29e1630a601" kind="function"><name>get_property</name></member>
+    <member refid="uspm-extra_2_c_make_lists_8txt_1a664bb3e20bd1245f41689cf1a3b46659" kind="function"><name>message</name></member>
+    <member refid="uspm-extra_2_c_make_lists_8txt_1ad0c733185b3eacc316e5b888d390467a" kind="function"><name>message</name></member>
+    <member refid="uspm-extra_2_c_make_lists_8txt_1a70ecf1c5c3583d139b09643887a0da15" kind="function"><name>endif</name></member>
+  </compound>
+  <compound refid="uspm-main_2_c_make_lists_8txt" kind="file"><name>CMakeLists.txt</name>
+    <member refid="uspm-main_2_c_make_lists_8txt_1a2f10d75c8fdc77607788f0bdeb2500df" kind="function"><name>project</name></member>
+    <member refid="uspm-main_2_c_make_lists_8txt_1a5e90ffcea3d9c0511521ae99fed63c3f" kind="function"><name>include_directories</name></member>
+    <member refid="uspm-main_2_c_make_lists_8txt_1acc448913766cba5e0969b29e1630a601" kind="function"><name>get_property</name></member>
+    <member refid="uspm-main_2_c_make_lists_8txt_1a664bb3e20bd1245f41689cf1a3b46659" kind="function"><name>message</name></member>
+    <member refid="uspm-main_2_c_make_lists_8txt_1ad0c733185b3eacc316e5b888d390467a" kind="function"><name>message</name></member>
+    <member refid="uspm-main_2_c_make_lists_8txt_1a70ecf1c5c3583d139b09643887a0da15" kind="function"><name>endif</name></member>
+  </compound>
+  <compound refid="_c_o_d_e___o_f___c_o_n_d_u_c_t_8md" kind="file"><name>CODE_OF_CONDUCT.md</name>
+  </compound>
+  <compound refid="01-_types__of___u_s_p_m___packages_8md" kind="file"><name>01-Types_of_USPM_Packages.md</name>
+  </compound>
+  <compound refid="02-_typical___u_s_p_m___file_8md" kind="file"><name>02-Typical_USPM_File.md</name>
+  </compound>
+  <compound refid="03-_typical___repository___structure_8md" kind="file"><name>03-Typical_Repository_Structure.md</name>
+  </compound>
+  <compound refid="docs_2_r_e_a_d_m_e_8md" kind="file"><name>README.md</name>
+  </compound>
+  <compound refid="libuspp_2_r_e_a_d_m_e_8md" kind="file"><name>README.md</name>
+  </compound>
+  <compound refid="_r_e_a_d_m_e_8md" kind="file"><name>README.md</name>
+  </compound>
+  <compound refid="dephandle_8c" kind="file"><name>dephandle.c</name>
+    <member refid="dephandle_8c_1afd7f013867b0617724fc385f19216c49" kind="function"><name>compareSubstr</name></member>
+    <member refid="dephandle_8c_1a0c89b0d2cafd017132ca1f78b5f3dbcf" kind="function"><name>check_version</name></member>
+    <member refid="dephandle_8c_1a1088e7ecc62e6b37d797cb1db30eb9fe" kind="function"><name>check_for_dependencies</name></member>
+    <member refid="dephandle_8c_1a20d78e110dcbe9b0bdecb157330b6f47" kind="function"><name>install_dependency</name></member>
+  </compound>
+  <compound refid="dephandle_8h" kind="file"><name>dephandle.h</name>
+    <member refid="dephandle_8h_1a20d78e110dcbe9b0bdecb157330b6f47" kind="function"><name>install_dependency</name></member>
+    <member refid="dephandle_8h_1a0c89b0d2cafd017132ca1f78b5f3dbcf" kind="function"><name>check_version</name></member>
+    <member refid="dephandle_8h_1a1088e7ecc62e6b37d797cb1db30eb9fe" kind="function"><name>check_for_dependencies</name></member>
+  </compound>
+  <compound refid="fm_8c" kind="file"><name>fm.c</name>
+    <member refid="fm_8c_1acc1807ff5cfc5a22eba094a13ed6089e" kind="function"><name>concat</name></member>
+    <member refid="fm_8c_1a8bbf188e7f9b958c60bae4fa90e7a7a0" kind="function"><name>load_file</name></member>
+    <member refid="fm_8c_1a22714317312fc8dd7c8b217d95d88496" kind="function"><name>write_packages_file</name></member>
+    <member refid="fm_8c_1a249a01a6d85edcab879d461343eb96f4" kind="function"><name>write_config_file</name></member>
+    <member refid="fm_8c_1a7b014497909245fbf4c38ed04f5adf69" kind="function"><name>add_to_packages</name></member>
+    <member refid="fm_8c_1a8d729b5955c5e71ab4c7840d15179f28" kind="function"><name>remove_from_packages</name></member>
+    <member refid="fm_8c_1ad1350bfb19cbb07bfbe5268767c67f9f" kind="function"><name>write_data</name></member>
+    <member refid="fm_8c_1a5f28768fed6362b697c3085da0247cb6" kind="function"><name>download_package</name></member>
+    <member refid="fm_8c_1a547a7b0f47623e96a0ff1f4bd4a9d41b" kind="function"><name>create_packages_file</name></member>
+    <member refid="fm_8c_1a0c13052d180f2fc0749b449eb65f9f50" kind="function"><name>create_config_file</name></member>
+    <member refid="fm_8c_1aa368ce20f83da213e1f825de543f227b" kind="function"><name>check_packages_file</name></member>
+    <member refid="fm_8c_1a57a5b30b3888005bdcdd4b6473bfa0a2" kind="function"><name>check_config_file</name></member>
+    <member refid="fm_8c_1a1e1ff4c1b529c24a83742a442e6c88a7" kind="function"><name>load_json</name></member>
+    <member refid="fm_8c_1adec83c4da647c09ec3707770a9392d20" kind="function"><name>checksum</name></member>
+    <member refid="fm_8c_1a9e85c7b50a15d3f0721ec186a8c13aef" kind="function"><name>checksum_compare</name></member>
+    <member refid="fm_8c_1a4ddd5eda46f8b61317f95145c87e653d" kind="function"><name>WriteMemoryCallback</name></member>
+    <member refid="fm_8c_1af49fb8df9e45c03946c049bc5f5630b5" kind="function"><name>get_repo_json</name></member>
+    <member refid="fm_8c_1aa1f91ef2471970e7ff71ecc580bae89f" kind="function"><name>verify_checksum</name></member>
+  </compound>
+  <compound refid="fm_8h" kind="file"><name>fm.h</name>
+    <member refid="fm_8h_1acc1807ff5cfc5a22eba094a13ed6089e" kind="function"><name>concat</name></member>
+    <member refid="fm_8h_1a8bbf188e7f9b958c60bae4fa90e7a7a0" kind="function"><name>load_file</name></member>
+    <member refid="fm_8h_1a22714317312fc8dd7c8b217d95d88496" kind="function"><name>write_packages_file</name></member>
+    <member refid="fm_8h_1a249a01a6d85edcab879d461343eb96f4" kind="function"><name>write_config_file</name></member>
+    <member refid="fm_8h_1a7b014497909245fbf4c38ed04f5adf69" kind="function"><name>add_to_packages</name></member>
+    <member refid="fm_8h_1a8d729b5955c5e71ab4c7840d15179f28" kind="function"><name>remove_from_packages</name></member>
+    <member refid="fm_8h_1a5f28768fed6362b697c3085da0247cb6" kind="function"><name>download_package</name></member>
+    <member refid="fm_8h_1a57a5b30b3888005bdcdd4b6473bfa0a2" kind="function"><name>check_config_file</name></member>
+    <member refid="fm_8h_1aa368ce20f83da213e1f825de543f227b" kind="function"><name>check_packages_file</name></member>
+    <member refid="fm_8h_1adec83c4da647c09ec3707770a9392d20" kind="function"><name>checksum</name></member>
+    <member refid="fm_8h_1a9e85c7b50a15d3f0721ec186a8c13aef" kind="function"><name>checksum_compare</name></member>
+    <member refid="fm_8h_1a1e1ff4c1b529c24a83742a442e6c88a7" kind="function"><name>load_json</name></member>
+    <member refid="fm_8h_1af49fb8df9e45c03946c049bc5f5630b5" kind="function"><name>get_repo_json</name></member>
+    <member refid="fm_8h_1aa1f91ef2471970e7ff71ecc580bae89f" kind="function"><name>verify_checksum</name></member>
+  </compound>
+  <compound refid="uspp_8c" kind="file"><name>uspp.c</name>
+    <member refid="uspp_8c_1a033f52e9680c1bb13d1a81fc64ca9480" kind="function"><name>install_package_file</name></member>
+    <member refid="uspp_8c_1abfcbd4877faac5f4fc9a47b021819879" kind="function"><name>install_package</name></member>
+    <member refid="uspp_8c_1ac0b7d45df9a95faceb2585cd07421bd3" kind="function"><name>uninstall_package</name></member>
+    <member refid="uspp_8c_1a68f93434a3ffb53b20bb1d7ab2458a37" kind="function"><name>check_if_first_run</name></member>
+  </compound>
+  <compound refid="uspp_8h" kind="file"><name>uspp.h</name>
+    <member refid="uspp_8h_1abfcbd4877faac5f4fc9a47b021819879" kind="function"><name>install_package</name></member>
+    <member refid="uspp_8h_1ac0b7d45df9a95faceb2585cd07421bd3" kind="function"><name>uninstall_package</name></member>
+    <member refid="uspp_8h_1a68f93434a3ffb53b20bb1d7ab2458a37" kind="function"><name>check_if_first_run</name></member>
+  </compound>
+  <compound refid="main_8c" kind="file"><name>main.c</name>
+    <member refid="main_8c_1ae66f6b31b5ad750f1fe042a706a4e3d4" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="_t_o_d_o_8md" kind="file"><name>TODO.md</name>
+  </compound>
+  <compound refid="chksum_8c" kind="file"><name>chksum.c</name>
+    <member refid="chksum_8c_1a0ddf1224851353fc92bfbff6f499fa97" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="mkpkg_8c" kind="file"><name>mkpkg.c</name>
+    <member refid="mkpkg_8c_1a1966b8d02740ec341e4e7a28d81f9d00" kind="function"><name>write_file</name></member>
+    <member refid="mkpkg_8c_1af7af23f23b116afa4a20e66ba174307e" kind="function"><name>createpkg</name></member>
+    <member refid="mkpkg_8c_1a0ddf1224851353fc92bfbff6f499fa97" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="extended_8c" kind="file"><name>extended.c</name>
+    <member refid="extended_8c_1a0ddf1224851353fc92bfbff6f499fa97" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="uspm_8c" kind="file"><name>uspm.c</name>
+    <member refid="uspm_8c_1a0ddf1224851353fc92bfbff6f499fa97" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="md__c_h_a_n_g_e_l_o_g" kind="page"><name>md_CHANGELOG</name>
+  </compound>
+  <compound refid="md__c_o_d_e__o_f__c_o_n_d_u_c_t" kind="page"><name>md_CODE_OF_CONDUCT</name>
+  </compound>
+  <compound refid="md_docs_01-_types_of__u_s_p_m__packages" kind="page"><name>md_docs_01-Types_of_USPM_Packages</name>
+  </compound>
+  <compound refid="md_docs_02-_typical__u_s_p_m__file" kind="page"><name>md_docs_02-Typical_USPM_File</name>
+  </compound>
+  <compound refid="md_docs_03-_typical__repository__structure" kind="page"><name>md_docs_03-Typical_Repository_Structure</name>
+  </compound>
+  <compound refid="md_docs__r_e_a_d_m_e" kind="page"><name>md_docs_README</name>
+  </compound>
+  <compound refid="md_libuspp__r_e_a_d_m_e" kind="page"><name>md_libuspp_README</name>
+  </compound>
+  <compound refid="md__r_e_a_d_m_e" kind="page"><name>md_README</name>
+  </compound>
+  <compound refid="md__t_o_d_o" kind="page"><name>md_TODO</name>
+  </compound>
+  <compound refid="dir_49e56c817e5e54854c35e136979f97ca" kind="dir"><name>docs</name>
+  </compound>
+  <compound refid="dir_0805e6c805bd855635c036b79a90d941" kind="dir"><name>libuspp</name>
+  </compound>
+  <compound refid="dir_24c61742e84eba33e14b8052a2d3a0d3" kind="dir"><name>libuspptest</name>
+  </compound>
+  <compound refid="dir_66f9565f203981ddb68065565e9834df" kind="dir"><name>uspm-dev</name>
+  </compound>
+  <compound refid="dir_f86be99106b9c9022acf883775262f74" kind="dir"><name>uspm-extra</name>
+  </compound>
+  <compound refid="dir_9cdcf30897d3df80edbbd90af671bee6" kind="dir"><name>uspm-main</name>
+  </compound>
+</doxygenindex>

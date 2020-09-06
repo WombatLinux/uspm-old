@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="uspm-extra_2_c_make_lists_8txt" kind="file" language="C++">
+    <compoundname>CMakeLists.txt</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="uspm-extra_2_c_make_lists_8txt_1a2f10d75c8fdc77607788f0bdeb2500df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>project</definition>
+        <argsstring>(uspm) cmake_minimum_required(VERSION 3.10) include_directories($</argsstring>
+        <name>project</name>
+        <param>
+          <type>uspm</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="uspm-extra/CMakeLists.txt" line="1" column="1" bodyfile="uspm-extra/CMakeLists.txt" bodystart="1" bodyend="5"/>
+      </memberdef>
+      <memberdef kind="function" id="uspm-extra_2_c_make_lists_8txt_1a5e90ffcea3d9c0511521ae99fed63c3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>include</type>
+        <definition>include include_directories</definition>
+        <argsstring>(${CMAKE_CURRENT_SOURCE_DIR}/libuspp) include_directories(/usr/local/include) include_directories(/usr/include) include_directories($</argsstring>
+        <name>include_directories</name>
+        <param>
+          <declname>${CMAKE_CURRENT_SOURCE_DIR}/</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="uspm-extra/CMakeLists.txt" line="6" column="1" bodyfile="uspm-extra/CMakeLists.txt" bodystart="6" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="function" id="uspm-extra_2_c_make_lists_8txt_1acc448913766cba5e0969b29e1630a601" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uspm include</type>
+        <definition>uspm include get_property</definition>
+        <argsstring>(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES) foreach(dir $</argsstring>
+        <name>get_property</name>
+        <param>
+          <type>dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY</type>
+          <declname>INCLUDE_DIRECTORIES</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="uspm-extra/CMakeLists.txt" line="13" column="1" bodyfile="uspm-extra/CMakeLists.txt" bodystart="13" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="uspm-extra_2_c_make_lists_8txt_1a664bb3e20bd1245f41689cf1a3b46659" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>message</definition>
+        <argsstring>(STATUS &quot;dir=&apos;${dir}&apos;&quot;) endforeach() find_library(CJSON_LIB NAMES cjson libcjson) find_library(USPP_LIB NAMES uspp libuspp) message(STATUS &quot;CJSON</argsstring>
+        <name>message</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="uspm-extra/CMakeLists.txt" line="15" column="5" bodyfile="uspm-extra/CMakeLists.txt" bodystart="15" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="uspm-extra_2_c_make_lists_8txt_1ad0c733185b3eacc316e5b888d390467a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>message</definition>
+        <argsstring>(STATUS &quot;USPP: [${USPP_LIB}]&quot;) if(NOT CJSON_LIB) message(FATAL_ERROR &quot;CJSON not found</argsstring>
+        <name>message</name>
+        <param>
+          <type>STATUS &quot;USPP: &quot;</type>
+          <array>[${USPP_LIB}]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="uspm-extra/CMakeLists.txt" line="32" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="uspm-extra_2_c_make_lists_8txt_1a70ecf1c5c3583d139b09643887a0da15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>please install from cJSON repo</type>
+        <definition>please install from cJSON repo endif</definition>
+        <argsstring>() if(NOT USPP_LIB) message(FATAL_ERROR &quot;uspp not found</argsstring>
+        <name>endif</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="uspm-extra/CMakeLists.txt" line="36" column="1" bodyfile="uspm-extra/CMakeLists.txt" bodystart="40" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">project(uspm)</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">cmake_minimum_required(VERSION<sp/>3.10)</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libuspp)</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">include_directories(/usr/local/include)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">include_directories(/usr/include)</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">include_directories(${CMAKE_CURRENT_SOURCE_DIR})</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">include_directories(${CMAKE_CURRENT_SOURCE_DIR}/uspm)</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">include_directories(${CMAKE_CURRENT_SOURCE_DIR}/uspm/include)</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">get_property(dirs<sp/>DIRECTORY<sp/>${CMAKE_CURRENT_SOURCE_DIR}<sp/>PROPERTY<sp/>INCLUDE_DIRECTORIES)</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keywordflow">foreach</highlight><highlight class="normal">(dir<sp/>${dirs})</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>message(STATUS<sp/></highlight><highlight class="stringliteral">&quot;dir=&apos;${dir}&apos;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">endforeach()</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">AUX_SOURCE_DIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}<sp/>source)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">find_library<sp/>(</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CJSON_LIB</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NAMES<sp/>cjson<sp/>libcjson</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">find_library<sp/>(</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>USPP_LIB</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NAMES<sp/>uspp<sp/>libuspp</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">message(STATUS<sp/></highlight><highlight class="stringliteral">&quot;CJSON:<sp/>[${CJSON_LIB}]&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">message(STATUS<sp/></highlight><highlight class="stringliteral">&quot;USPP:<sp/>[${USPP_LIB}]&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(NOT<sp/>CJSON_LIB)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>message(FATAL_ERROR<sp/></highlight><highlight class="stringliteral">&quot;CJSON<sp/>not<sp/>found,<sp/>please<sp/>install<sp/>from<sp/>cJSON<sp/>repo.&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">endif()</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">if(NOT<sp/>USPP_LIB)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>message(FATAL_ERROR<sp/>&quot;uspp<sp/>not<sp/>found,<sp/>please<sp/>build<sp/>and<sp/>install<sp/>from<sp/>the<sp/>libuspp<sp/>directory&quot;)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">endif()</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">add_executable(uspm-extended<sp/>EXCLUDE_FROM_ALL<sp/>extended.c)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">target_link_libraries(uspm-extended<sp/>LINK_PUBLIC<sp/>${USPP_LIB}<sp/>${CJSON_LIB}<sp/>curl)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">install<sp/>(TARGETS<sp/>uspm-extended<sp/>OPTIONAL</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RUNTIME<sp/>DESTINATION<sp/>/usr/local/bin)</highlight></codeline>
+    </programlisting>
+    <location file="uspm-extra/CMakeLists.txt"/>
+  </compounddef>
+</doxygen>

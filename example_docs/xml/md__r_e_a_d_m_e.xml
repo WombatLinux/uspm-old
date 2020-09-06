@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="md__r_e_a_d_m_e" kind="page">
+    <compoundname>md_README</compoundname>
+    <title>Ultra Simple Package Manager</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><ulink url="https://github.com/afroraydude/uspm/releases/latest"><image type="html" name="https://img.shields.io/github/v/release/afroraydude/uspm?style=flat-square" inline="yes"></image>
+</ulink> <ulink url="https://travis-ci.com/afroraydude/uspm"><image type="html" name="https://img.shields.io/travis/com/afroraydude/uspm?logo=travis&amp;style=flat-square" inline="yes"></image>
+</ulink> <ulink url="https://github.com/afroraydude/uspm/blob/master/LICENSE"><image type="html" name="https://img.shields.io/github/license/afroraydude/uspm?style=flat-square" inline="yes"></image>
+</ulink> <image type="html" name="https://img.shields.io/github/repo-size/afroraydude/uspm?style=flat-square" inline="yes"></image>
+ [<image type="html" name="https://img.shields.io/website?down_color=red&amp;down_message=offline&amp;label=package%20site&amp;style=flat-square&amp;up_color=green&amp;up_message=online&amp;url=https%3A%2F%2Fpackages.afroraydude.com%2Fwombatlinux%2Fpackages.json" inline="yes"></image>
+]</para>
+<para>Ultra Simple Package Manager (USPM) is a suite of executables that overall allow for the management of packages.</para>
+<para><emphasis><bold>PLEASE NOTE</bold></emphasis>: Releases on this GitHub <emphasis><bold>WILL NOT</bold></emphasis> work on Wombat Linux or other Musl-based systems, please use the provided uspm package for that specific operating system.</para>
+<para>Here is a list of the current tools:<itemizedlist>
+<listitem><para>uspm: The main application that allows for the installation and uninstallation of software packages and their dependencies.</para>
+</listitem><listitem><para>uspm-mkpkg: This optional application is useful for those who want to design USPM packages</para>
+</listitem><listitem><para>uspm-extended: This optional application adds more commands and functions to <computeroutput>uspm</computeroutput> and is only there for those who want it.</para>
+</listitem></itemizedlist>
+</para>
+<para>The project also contains <computeroutput>libuspp</computeroutput>, or Ultra Simple Package Processor, which contains the functions necessary to enable all the functionality of <computeroutput>uspm</computeroutput></para>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md39">
+<title>How it works</title>
+<para>All packages come in <computeroutput>.uspm</computeroutput> files, which are just tarballs. Within the tarball there must be two included files.</para>
+<para><computeroutput>PACKAGECODE</computeroutput> is the install/uninstall script, it contains all the code necessary to install that package</para>
+<para><computeroutput>PACKAGEDATA</computeroutput> is the JSON data that will get added by the package manager to the master list.</para>
+<para>The tarballs usually will contain the files necessary to install already compiled code.</para>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md40">
+<title>Building and Installing</title>
+<para>This package requires <bold>at least</bold> <computeroutput>cJSON</computeroutput> (<ulink url="https://github.com/DaveGamble/cJSON">found here</ulink>) and libcurl</para>
+<para>There are 2 ways to install:</para>
+<para>1) Through Make (this requires GCC) [<emphasis><bold>not recommended</bold></emphasis>] <programlisting filename=".bash"><codeline><highlight class="normal">git<sp/>clone<sp/>https://github.com/afroraydude/uspm.git</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>uspm</highlight></codeline>
+<codeline><highlight class="normal">make<sp/>uspm</highlight></codeline>
+<codeline><highlight class="normal">make<sp/>install</highlight></codeline>
+</programlisting></para>
+<para>2) Through CMake (clang or gcc) <programlisting filename=".bash"><codeline><highlight class="normal">git<sp/>clone<sp/>https://github.com/afroraydude/uspm.git</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>uspm</highlight></codeline>
+<codeline><highlight class="normal">mkdir<sp/>build</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>build</highlight></codeline>
+<codeline><highlight class="normal">cmake<sp/>..</highlight></codeline>
+<codeline><highlight class="normal">make</highlight></codeline>
+<codeline><highlight class="normal">make<sp/>install</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md41">
+<title>How to create a package for USPM</title>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md42">
+<title>The easy way</title>
+<para>1) Compile the package from source</para>
+<para>2) Place all compiled files in a folder</para>
+<para>3) Make a folder with the name of the package and place the previous folder in that</para>
+<para>4) Enter the directory</para>
+<para>5) Run <computeroutput>uspm-mkpkg</computeroutput> and follow instructions</para>
+<para>6) Exit the directory, you should now have a <computeroutput>.uspm</computeroutput> package file. ex: <programlisting filename=".bash"><codeline><highlight class="normal">mkdir<sp/>-p<sp/>/tmp/package/files<sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">mkdir<sp/>build</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>build</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">../configure<sp/>--prefix=/tmp/package/files/</highlight></codeline>
+<codeline><highlight class="normal">make<sp/></highlight></codeline>
+<codeline><highlight class="normal">make<sp/>install</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">cd<sp/>/tmp/package</highlight></codeline>
+<codeline><highlight class="normal">uspm-mkpkg</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md43">
+<title>The hard way</title>
+<para>1) Compile the package from source</para>
+<para>2) Place all compiled files in a folder</para>
+<para>3) Make a folder with the name of the package and place the previous folder in that</para>
+<para>4) Inside the package folder, create two files: <computeroutput>PACKAGECODE</computeroutput> and <computeroutput>PACAKGEDATA</computeroutput></para>
+<para>5) In PACKAGECODE, include all the code necessary to migrate the compiled files into the system so that they are usable, put it in a function that can be called by <computeroutput>PACKAGECODE install</computeroutput> (<bold>NOTE: This must be a shell script</bold>)</para>
+<para>6) In PACKAGECODE, include all the code necessary to allow for an uninstallation of all files, in a function that can be called by <computeroutput>PACKAGECODE uninstall</computeroutput></para>
+<para>7) In PACKAGEDATA, include the version and dependencies (ex: <computeroutput>{&quot;version&quot;:&quot;1.0.0&quot;, &quot;dependencies&quot;:{&quot;test&quot;:&quot;1.0.0&quot;,&quot;test2&quot;:&quot;1.0.0&quot;}}</computeroutput>)</para>
+<para>8) Archive the whole directory into a tarball and make sure the extension is <computeroutput>.uspm</computeroutput></para>
+<para>9) Done!</para>
+<para>Example <computeroutput>PACKAGEDATA</computeroutput> file <programlisting filename=".json"><codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&quot;version&quot;:<sp/>&quot;1.0.0&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>&quot;dependencies&quot;:<sp/>{&quot;uspm&quot;:<sp/>&quot;1.0.0&quot;}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para>Example <computeroutput>PACKAGECODE</computeroutput> file <programlisting filename=".sh"><codeline><highlight class="normal">cd<sp/>package</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Install<sp/></highlight></codeline>
+<codeline><highlight class="normal">if<sp/>[<sp/>$1<sp/>==<sp/>&apos;install&apos;<sp/>]</highlight></codeline>
+<codeline><highlight class="normal">then</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>cp<sp/>-R<sp/>files/*<sp/>/usr/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Uninstall</highlight></codeline>
+<codeline><highlight class="normal">elif<sp/>[<sp/>$1<sp/>==<sp/>&apos;uninstall&apos;<sp/>]</highlight></codeline>
+<codeline><highlight class="normal">then</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>rm<sp/>/usr/local/bin/example</highlight></codeline>
+<codeline><highlight class="normal">f</highlight></codeline>
+</programlisting> </para>
+</sect2>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

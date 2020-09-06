@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="01-_types__of___u_s_p_m___packages_8md" kind="file" language="Markdown">
+    <compoundname>01-Types_of_USPM_Packages.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Types<sp/>of<sp/>USPM<sp/>packages</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">`packagename.uspm`<sp/>-<sp/>This<sp/>is<sp/>the<sp/>typical<sp/>package<sp/>name.<sp/>It<sp/>will<sp/>always<sp/>be<sp/>precompiled<sp/>binaries.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">`packagename-src.uspm`<sp/>-<sp/>This<sp/>is<sp/>a<sp/>package<sp/>that<sp/>is<sp/>grabbed<sp/>from<sp/>source.<sp/>There<sp/>are<sp/>2<sp/>general<sp/>types<sp/>accepted:</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>An<sp/>almost<sp/>empty<sp/>structure<sp/>with<sp/>a<sp/>command<sp/>to<sp/>pull<sp/>from<sp/>a<sp/>git<sp/>repo<sp/>within<sp/>the<sp/>`PACKAGECODE`<sp/>file</highlight></codeline>
+<codeline><highlight class="normal">or</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>A<sp/>package<sp/>with<sp/>the<sp/>default<sp/>`PACKAGECODE`<sp/>file<sp/>and<sp/>just<sp/>the<sp/>source<sp/>files<sp/>hosted<sp/>within<sp/>the<sp/>package.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">`packagename-tbc.uspm`<sp/>-<sp/>A<sp/>mix<sp/>between<sp/>the<sp/>two<sp/>above,<sp/>contains<sp/>the<sp/>source<sp/>files<sp/>within,<sp/>but<sp/>also<sp/>has<sp/>its<sp/>install<sp/>script</highlight></codeline>
+<codeline><highlight class="normal">be<sp/>to<sp/>compile<sp/>and<sp/>install<sp/>the<sp/>software.<sp/>Very<sp/>useful<sp/>when<sp/>there<sp/>are<sp/>a<sp/>lot<sp/>of<sp/>different<sp/>files<sp/>and<sp/>programs<sp/>going<sp/>everywhere</highlight></codeline>
+<codeline><highlight class="normal">or<sp/>if<sp/>you<sp/>have<sp/>a<sp/>need<sp/>to<sp/>give<sp/>the<sp/>user<sp/>ample<sp/>time<sp/>to<sp/>configure<sp/>certain<sp/>headers<sp/>or<sp/>configurations<sp/>beforehand.</highlight></codeline>
+    </programlisting>
+    <location file="docs/01-Types_of_USPM_Packages.md"/>
+  </compounddef>
+</doxygen>

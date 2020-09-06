@@ -1,0 +1,93 @@
+All notable changes to this project will be documented in this file.
+
+The format is based on {\texttt{ Keep a Changelog}}, and this project adheres to {\texttt{ Semantic Versioning}}.\doxysection{[\+Unreleased]}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md1}
+\doxysection{Added}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md2}
+
+\begin{DoxyItemize}
+\item Documentation
+\item {\ttfamily check\+\_\+if\+\_\+first\+\_\+run()} checks if the current run is the first one by checking for the main files.
+\item Checksums
+\item {\ttfamily uspm-\/chksum} can get the checksum of a file and also compare 2 files by checksum
+\end{DoxyItemize}\doxysection{Changed}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md3}
+
+\begin{DoxyItemize}
+\item Made uspp a shared library instead of static
+\item {\ttfamily uspm-\/mkpkg} is now ran outside of the package directory
+\item Split up the different software into their own folders to meet with uspm packaging plans
+\item {\ttfamily check\+\_\+dependencies\+\_\+and\+\_\+install()} is now {\ttfamily check\+\_\+for\+\_\+dependencies()}
+\item Moved {\ttfamily uspm} -\/$>$ {\ttfamily uspm-\/main} and {\ttfamily libuspp/uspm.\{c,h\}} -\/$>$ {\ttfamily libuspp/uspp.\{c,h\}}
+\end{DoxyItemize}\doxysection{Removed}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md4}
+
+\begin{DoxyItemize}
+\item Unnecessary print statements
+\item {\ttfamily install\+\_\+dep\+\_\+file()}
+\end{DoxyItemize}\doxysection{[1.\+2.\+1] -\/ 2020-\/08-\/3}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md5}
+\doxysection{Changed}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md6}
+
+\begin{DoxyItemize}
+\item Made it so both the clang and the G\+CC version are given.
+\end{DoxyItemize}\doxysection{[1.\+2.\+0] -\/ 2020-\/08-\/31}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md7}
+\doxysection{Added}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md8}
+
+\begin{DoxyItemize}
+\item The U\+S\+PP library
+\begin{DoxyItemize}
+\item a library that is used for U\+S\+PM and U\+S\+P\+M-\/extended to work
+\item replaces the source and header files that were a part of U\+S\+PM
+\end{DoxyItemize}
+\end{DoxyItemize}\doxysection{Changed}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md9}
+
+\begin{DoxyItemize}
+\item Moved all the excess source and header files to the new U\+S\+PP library
+\end{DoxyItemize}\doxysection{Removed}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md10}
+
+\begin{DoxyItemize}
+\item The \char`\"{}check dependencies\char`\"{} function because its very useless
+\end{DoxyItemize}\doxysection{[1.\+1.\+1] -\/ 2020-\/02-\/23}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md11}
+\doxysubsection{Fixed}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md12}
+
+\begin{DoxyItemize}
+\item Fixed uspm-\/extended where commands weren\textquotesingle{}t doing what they were supposed to do
+\end{DoxyItemize}\doxysection{[1.\+1.\+0] -\/ 2020-\/02-\/20}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md13}
+\doxysubsection{Added}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md14}
+
+\begin{DoxyItemize}
+\item Travis CI build configuration
+\item Manpage
+\item Ability to install/uninstall/check more than one package
+\item {\ttfamily uspm-\/mkpkg} tool that makes package creation easier
+\item Build status to R\+E\+A\+D\+ME
+\item Extended commands
+\item Added proper version checking for dependencies
+\end{DoxyItemize}\doxysubsection{Changed}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md15}
+
+\begin{DoxyItemize}
+\item Changed the default configuration\textquotesingle{}s mirror site.
+\item Changed {\ttfamily C\+Make\+Lists.\+txt} file to include {\ttfamily uspm-\/mkpkg}
+\item Changed location of {\ttfamily uspm} C source and header files
+\item Changed package creation instructions within the R\+E\+A\+D\+ME
+\item Dependency resolution now is seperate from normal install functions.
+\end{DoxyItemize}\doxysubsection{Fixed}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md16}
+
+\begin{DoxyItemize}
+\item Fixed bug where default mirror links to a nonexistent server
+\end{DoxyItemize}\doxysection{[1.\+0.\+1] -\/ 2020-\/02-\/04}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md17}
+\doxysubsection{Added}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md18}
+
+\begin{DoxyItemize}
+\item Option to use C\+Make instead of Makefile
+\end{DoxyItemize}\doxysubsection{Changed}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md19}
+
+\begin{DoxyItemize}
+\item Removed \char`\"{}\+C Edition\char`\"{} from R\+E\+A\+D\+ME
+\item Added install instructions for C\+Make
+\end{DoxyItemize}\doxysubsection{Fixed}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md20}
+
+\begin{DoxyItemize}
+\item Fixed bug where if config file doesn\textquotesingle{}t exist, it breaks.
+\end{DoxyItemize}\doxysection{[1.\+0.\+0] -\/ 2020-\/02-\/03}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md21}
+\doxysubsection{Added}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md22}
+
+\begin{DoxyItemize}
+\item Install, Uninstall, Check dependencies commands 
+\end{DoxyItemize}

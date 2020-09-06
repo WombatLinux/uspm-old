@@ -36,7 +36,18 @@ int compareSubstr(char *substr_version1, char *substr_version2,
     }
 }
 
-/** checks the difference between 2 versions */
+/*
+ * given versions [version1] and [version2] it compares the two versions
+ *
+ * returns > 0 if [version1] is newer
+ * returns < 0 if [version2] is newer
+ * returns 0 if the versions are the same
+ *
+ * uses semantic versioning, may work for non-semantic versioning.
+ *
+ * @param version1 current version
+ * @param version2 version to test against
+ */
 int check_version(char *version1, char *version2) {
     int len_version1 = strlen(version1);
     int len_version2 = strlen(version2);
@@ -81,7 +92,12 @@ int check_version(char *version1, char *version2) {
     return 0;
 }
 
-/* given a package, it looks through and installs necessary dependencies */
+/*
+ * Given [package] looks in the PACKAGEDATA and looks for any dependencies
+ * required for installation or runtime.
+ *
+ * @param package the package file
+ */
 int check_for_dependencies(char *package) {
     printf("Checking dependencies...\n");
 
@@ -127,7 +143,15 @@ int check_for_dependencies(char *package) {
     return 0;
 }
 
-/* installs package dependencies */
+/*
+ * given a (dependency) package name [package], it downloads and checks the version, and
+ * then compares it with the given minimum version [minversion]
+ *
+ * returns 0 for success and 1 for failure
+ *
+ * @param package the package file
+ * @param minversion the minimum version
+ */
 int install_dependency(char *package, char *minversion) {
     char *filename = concat(package, ".uspm");
 

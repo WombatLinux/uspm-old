@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="md_docs_01-_types_of__u_s_p_m__packages" kind="page">
+    <compoundname>md_docs_01-Types_of_USPM_Packages</compoundname>
+    <title>Types of USPM packages</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><computeroutput>packagename.uspm</computeroutput> - This is the typical package name. It will always be precompiled binaries.</para>
+<para><computeroutput>packagename-src.uspm</computeroutput> - This is a package that is grabbed from source. There are 2 general types accepted:<orderedlist>
+<listitem><para>An almost empty structure with a command to pull from a git repo within the <computeroutput>PACKAGECODE</computeroutput> file or</para>
+</listitem><listitem><para>A package with the default <computeroutput>PACKAGECODE</computeroutput> file and just the source files hosted within the package.</para>
+</listitem></orderedlist>
+</para>
+<para><computeroutput>packagename-tbc.uspm</computeroutput> - A mix between the two above, contains the source files within, but also has its install script be to compile and install the software. Very useful when there are a lot of different files and programs going everywhere or if you have a need to give the user ample time to configure certain headers or configurations beforehand. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -13,8 +13,6 @@ find_library (
 
 find_library(CURL_LIB curl)
 
-find_library(OPENSSL ssl)
-
 find_package(OpenSSL REQUIRED)
 
 message(STATUS "[${CJSON_LIB}] [${CURL_LIB}] [${OPENSSL}]")

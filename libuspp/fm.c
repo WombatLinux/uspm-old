@@ -16,6 +16,11 @@ struct MemoryStruct {
     size_t size;
 };
 
+/* concatenate strings
+ *
+ * @param s1 first string
+ * @param s2 second string
+ */
 char *concat(const char *s1, const char *s2) {
     char *result = malloc(strlen(s1) + strlen(s2) + 1); // +1 for the null-terminator
 
@@ -24,6 +29,12 @@ char *concat(const char *s1, const char *s2) {
     return result;
 }
 
+/*
+ * Given a filename/file location [file], attempts to parse as JSON
+ * and then loads it in as a cJSON object.
+ *
+ * @param file file to load
+ */
 cJSON *load_file(char *file) {
     if (access(file, F_OK) != -1) {
         /* declare a file pointer */
@@ -70,6 +81,11 @@ cJSON *load_file(char *file) {
     }
 }
 
+/*
+ * Writes a fresh new packages file
+ *
+ * @param out the char array to output to the file
+ */
 void write_packages_file(char *out) {
     char *outfile = concat(out, "\n");
 
@@ -83,6 +99,11 @@ void write_packages_file(char *out) {
     free(outfile);
 }
 
+/*
+ * Writes a fresh new config file
+ *
+ * @param out the char array to output to the file
+ */
 void write_config_file(char *out) {
     char *outfile = concat(out, "\n");
 
@@ -96,6 +117,12 @@ void write_config_file(char *out) {
     free(outfile);
 }
 
+/*
+ * Adds a package [packagename] to the list of packages along with its PACKAGEDATA contents [packagedata]
+ *
+ * @param packagename the Package
+ * @param packagedata the internal data
+ */
 int add_to_packages(char *packagename, cJSON *packagedata) {
     cJSON *root = load_file("packages.json");
 
@@ -110,6 +137,12 @@ int add_to_packages(char *packagename, cJSON *packagedata) {
     return 0;
 }
 
+/*
+ * Removes a package [packagename] from the list of packages along with its PACKAGEDATA contents [packagedata]
+ *
+ *
+ * @param packagename package to remove
+ */
 int remove_from_packages(char *packagename) {
     cJSON *root = load_file("packages.json");
     cJSON_DeleteItemFromObject(root, packagename);
@@ -128,6 +161,13 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
     return written;
 }
 
+/*
+ * Downloads a package [package] file from a mirror [mirror]
+ *
+ *
+ * @param mirror the web mirror to load from
+ * @param package the package
+ */
 int download_package(char *mirror, char *package) {
     CURL *curl;
     FILE *fp;
@@ -202,6 +242,12 @@ void create_config_file() {
     free(out);
 }
 
+/*
+ * Checks for the existence of a packages file
+ *
+ * Returns 1 if nonexistant
+ * Returns 0 if exists
+ */
 int check_packages_file() {
     if (access("packages.json", F_OK) != -1) {
         cJSON *root = load_file("packages.json");
@@ -214,6 +260,12 @@ int check_packages_file() {
     }
 }
 
+/*
+ * Checks for the existence of a config file
+ *
+ * Returns 1 if nonexistant
+ * Returns 0 if exists
+ */
 int check_config_file() {
     if (access("config.json", F_OK) != -1) {
         cJSON *root = load_file("packages.json");
@@ -226,12 +278,23 @@ int check_config_file() {
     }
 }
 
+/*
+ * Loads JSON from a char array [json]
+ *
+ * @param json the char array to load as a JSON object
+ */
 cJSON *load_json(char *json) {
     cJSON *out = cJSON_Parse(json);
 
     return out;
 }
 
+/*
+ * Performs a file [file] checksum and outputs the value to a char array [o]
+ *
+ * @param filename the file
+ * @param o the char array to output the data to
+ */
 void checksum(char *filename, char *o[16]) {
     unsigned char c[MD5_DIGEST_LENGTH];
     int i;
@@ -269,6 +332,12 @@ void checksum(char *filename, char *o[16]) {
     fclose (inFile);
 }
 
+/*
+ * Given two [a] and [b] checksums, compares them
+ *
+ * @param a first file's checksum
+ * @param b second file's checksum
+ */
 int checksum_compare(char *a, char *b) {
     int test = strcmp(a, b);
 
@@ -299,6 +368,11 @@ WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
     return realsize;
 }
 
+/*
+ * Gets the package.json file from a mirror [url]
+ *
+ * @param url the repo
+ */
 cJSON *get_repo_json(char* url) {
     CURL *curl_handle;
     CURLcode res;
@@ -358,6 +432,13 @@ cJSON *get_repo_json(char* url) {
     return data;
 }
 
+/*
+ * Verifies the checksum of a package [package] downloaded with the checksum of the
+ * mirror [mirror]
+ *
+ * @param package the package
+ * @param mirror the repo to pull from
+ */
 int verify_checksum(char *mirror, char *package) {
     cJSON *repoJSON =  get_repo_json(mirror);
     char *packageChecksum = cJSON_GetObjectItem(repoJSON, package)->valuestring;

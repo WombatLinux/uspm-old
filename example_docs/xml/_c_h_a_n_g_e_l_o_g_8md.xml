@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="_c_h_a_n_g_e_l_o_g_8md" kind="file" language="Markdown">
+    <compoundname>CHANGELOG.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Changelog</highlight></codeline>
+<codeline><highlight class="normal">All<sp/>notable<sp/>changes<sp/>to<sp/>this<sp/>project<sp/>will<sp/>be<sp/>documented<sp/>in<sp/>this<sp/>file.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>format<sp/>is<sp/>based<sp/>on<sp/>[Keep<sp/>a<sp/>Changelog](https://keepachangelog.com/en/1.0.0/),</highlight></codeline>
+<codeline><highlight class="normal">and<sp/>this<sp/>project<sp/>adheres<sp/>to<sp/>[Semantic<sp/>Versioning](https://semver.org/spec/v2.0.0.html).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>[Unreleased]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Added</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Documentation</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`check_if_first_run()`<sp/>checks<sp/>if<sp/>the<sp/>current<sp/>run<sp/>is<sp/>the<sp/>first<sp/>one<sp/>by<sp/>checking<sp/>for</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>main<sp/>files.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Checksums</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`uspm-chksum`<sp/>can<sp/>get<sp/>the<sp/>checksum<sp/>of<sp/>a<sp/>file<sp/>and<sp/>also<sp/>compare<sp/>2<sp/>files<sp/>by<sp/>checksum</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Changed</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Made<sp/>uspp<sp/>a<sp/>shared<sp/>library<sp/>instead<sp/>of<sp/>static</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`uspm-mkpkg`<sp/>is<sp/>now<sp/>ran<sp/>outside<sp/>of<sp/>the<sp/>package<sp/>directory</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Split<sp/>up<sp/>the<sp/>different<sp/>software<sp/>into<sp/>their<sp/>own<sp/>folders<sp/>to<sp/>meet<sp/>with<sp/>uspm<sp/>packaging<sp/>plans</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`check_dependencies_and_install()`<sp/>is<sp/>now<sp/>`check_for_dependencies()`</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Moved<sp/>`uspm`<sp/>-&gt;<sp/>`uspm-main`<sp/>and<sp/>`libuspp/uspm.{c,h}`<sp/>-&gt;<sp/>`libuspp/uspp.{c,h}`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Removed</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Unnecessary<sp/>print<sp/>statements</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`install_dep_file()`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>[1.2.1]<sp/>-<sp/>2020-08-3</highlight></codeline>
+<codeline><highlight class="normal">##<sp/>Changed</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Made<sp/>it<sp/>so<sp/>both<sp/>the<sp/>clang<sp/>and<sp/>the<sp/>GCC<sp/>version<sp/>are<sp/>given.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>[1.2.0]<sp/>-<sp/>2020-08-31</highlight></codeline>
+<codeline><highlight class="normal">##<sp/>Added</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>USPP<sp/>library<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>a<sp/>library<sp/>that<sp/>is<sp/>used<sp/>for<sp/>USPM<sp/>and<sp/>USPM-extended<sp/>to<sp/>work</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>-<sp/>replaces<sp/>the<sp/>source<sp/>and<sp/>header<sp/>files<sp/>that<sp/>were<sp/>a<sp/>part<sp/>of<sp/>USPM</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Changed</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Moved<sp/>all<sp/>the<sp/>excess<sp/>source<sp/>and<sp/>header<sp/>files<sp/>to<sp/>the<sp/>new<sp/>USPP<sp/>library</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Removed</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>&quot;check<sp/>dependencies&quot;<sp/>function<sp/>because<sp/>its<sp/>very<sp/>useless</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>[1.1.1]<sp/>-<sp/>2020-02-23</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>Fixed</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Fixed<sp/>uspm-extended<sp/>where<sp/>commands<sp/>weren&apos;t<sp/>doing<sp/>what<sp/>they<sp/>were<sp/>supposed<sp/>to<sp/>do</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>[1.1.0]<sp/>-<sp/>2020-02-20</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>Added<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Travis<sp/>CI<sp/>build<sp/>configuration</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Manpage</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Ability<sp/>to<sp/>install/uninstall/check<sp/>more<sp/>than<sp/>one<sp/>package</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`uspm-mkpkg`<sp/>tool<sp/>that<sp/>makes<sp/>package<sp/>creation<sp/>easier</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Build<sp/>status<sp/>to<sp/>README</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Extended<sp/>commands</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Added<sp/>proper<sp/>version<sp/>checking<sp/>for<sp/>dependencies</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Changed</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Changed<sp/>the<sp/>default<sp/>configuration&apos;s<sp/>mirror<sp/>site.<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Changed<sp/>`CMakeLists.txt`<sp/>file<sp/>to<sp/>include<sp/>`uspm-mkpkg`</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Changed<sp/>location<sp/>of<sp/>`uspm`<sp/>C<sp/>source<sp/>and<sp/>header<sp/>files</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Changed<sp/>package<sp/>creation<sp/>instructions<sp/>within<sp/>the<sp/>README</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Dependency<sp/>resolution<sp/>now<sp/>is<sp/>seperate<sp/>from<sp/>normal<sp/>install<sp/>functions.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Fixed</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Fixed<sp/>bug<sp/>where<sp/>default<sp/>mirror<sp/>links<sp/>to<sp/>a<sp/>nonexistent<sp/>server</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>[1.0.1]<sp/>-<sp/>2020-02-04</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>Added</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Option<sp/>to<sp/>use<sp/>CMake<sp/>instead<sp/>of<sp/>Makefile</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Changed</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Removed<sp/>&quot;C<sp/>Edition&quot;<sp/>from<sp/>README</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Added<sp/>install<sp/>instructions<sp/>for<sp/>CMake</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Fixed</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Fixed<sp/>bug<sp/>where<sp/>if<sp/>config<sp/>file<sp/>doesn&apos;t<sp/>exist,<sp/>it<sp/>breaks.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>[1.0.0]<sp/>-<sp/>2020-02-03</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>Added</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Install,<sp/>Uninstall,<sp/>Check<sp/>dependencies<sp/>commands</highlight></codeline>
+    </programlisting>
+    <location file="CHANGELOG.md"/>
+  </compounddef>
+</doxygen>

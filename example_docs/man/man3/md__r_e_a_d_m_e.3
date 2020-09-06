@@ -1,0 +1,139 @@
+.TH "md__r_e_a_d_m_e" 3 "Sat Sep 5 2020" "Version 1.3.0" "uspm" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+md__r_e_a_d_m_e \- Ultra Simple Package Manager 
+\fC\fP \fC\fP \fC\fP  []
+.PP
+Ultra Simple Package Manager (USPM) is a suite of executables that overall allow for the management of packages\&.
+.PP
+\fI\fBPLEASE NOTE\fP\fP: Releases on this GitHub \fI\fBWILL NOT\fP\fP work on Wombat Linux or other Musl-based systems, please use the provided uspm package for that specific operating system\&.
+.PP
+Here is a list of the current tools:
+.IP "\(bu" 2
+uspm: The main application that allows for the installation and uninstallation of software packages and their dependencies\&.
+.IP "\(bu" 2
+uspm-mkpkg: This optional application is useful for those who want to design USPM packages
+.IP "\(bu" 2
+uspm-extended: This optional application adds more commands and functions to \fCuspm\fP and is only there for those who want it\&.
+.PP
+.PP
+The project also contains \fClibuspp\fP, or Ultra Simple Package Processor, which contains the functions necessary to enable all the functionality of \fCuspm\fP
+.SH "How it works"
+.PP
+All packages come in \fC\&.uspm\fP files, which are just tarballs\&. Within the tarball there must be two included files\&.
+.PP
+\fCPACKAGECODE\fP is the install/uninstall script, it contains all the code necessary to install that package
+.PP
+\fCPACKAGEDATA\fP is the JSON data that will get added by the package manager to the master list\&.
+.PP
+The tarballs usually will contain the files necessary to install already compiled code\&.
+.SH "Building and Installing"
+.PP
+This package requires \fBat least\fP \fCcJSON\fP (\fCfound here\fP) and libcurl
+.PP
+There are 2 ways to install:
+.PP
+1) Through Make (this requires GCC) [\fI\fBnot recommended\fP\fP] 
+.PP
+.nf
+git clone https://github\&.com/afroraydude/uspm\&.git
+cd uspm
+make uspm
+make install
+
+.fi
+.PP
+.PP
+2) Through CMake (clang or gcc) 
+.PP
+.nf
+git clone https://github\&.com/afroraydude/uspm\&.git
+cd uspm
+mkdir build
+cd build
+cmake \&.\&.
+make
+make install
+
+.fi
+.PP
+.SH "How to create a package for USPM"
+.PP
+.SS "The easy way"
+1) Compile the package from source
+.PP
+2) Place all compiled files in a folder
+.PP
+3) Make a folder with the name of the package and place the previous folder in that
+.PP
+4) Enter the directory
+.PP
+5) Run \fCuspm-mkpkg\fP and follow instructions
+.PP
+6) Exit the directory, you should now have a \fC\&.uspm\fP package file\&. ex: 
+.PP
+.nf
+mkdir -p /tmp/package/files 
+
+mkdir build
+cd build
+
+\&.\&./configure --prefix=/tmp/package/files/
+make 
+make install
+
+cd /tmp/package
+uspm-mkpkg
+
+.fi
+.PP
+.SS "The hard way"
+1) Compile the package from source
+.PP
+2) Place all compiled files in a folder
+.PP
+3) Make a folder with the name of the package and place the previous folder in that
+.PP
+4) Inside the package folder, create two files: \fCPACKAGECODE\fP and \fCPACAKGEDATA\fP
+.PP
+5) In PACKAGECODE, include all the code necessary to migrate the compiled files into the system so that they are usable, put it in a function that can be called by \fCPACKAGECODE install\fP (\fBNOTE: This must be a shell script\fP)
+.PP
+6) In PACKAGECODE, include all the code necessary to allow for an uninstallation of all files, in a function that can be called by \fCPACKAGECODE uninstall\fP
+.PP
+7) In PACKAGEDATA, include the version and dependencies (ex: \fC{'version':'1\&.0\&.0', 'dependencies':{'test':'1\&.0\&.0','test2':'1\&.0\&.0'}}\fP)
+.PP
+8) Archive the whole directory into a tarball and make sure the extension is \fC\&.uspm\fP
+.PP
+9) Done!
+.PP
+Example \fCPACKAGEDATA\fP file 
+.PP
+.nf
+{
+  "version": "1\&.0\&.0",
+  "dependencies": {"uspm": "1\&.0\&.0"}
+}
+
+.fi
+.PP
+.PP
+Example \fCPACKAGECODE\fP file 
+.PP
+.nf
+cd package
+
+# Install 
+if [ $1 == 'install' ]
+then
+  cp -R files/* /usr/
+
+# Uninstall
+elif [ $1 == 'uninstall' ]
+then
+  rm /usr/local/bin/example
+f
+
+.fi
+.PP
+ 
