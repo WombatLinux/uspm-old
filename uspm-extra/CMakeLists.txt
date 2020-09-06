@@ -2,19 +2,6 @@ project(uspm)
 
 cmake_minimum_required(VERSION 3.10)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libuspp)
-include_directories(/usr/local/include)
-include_directories(/usr/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/uspm)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/uspm/include)
-
-get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
-foreach(dir ${dirs})
-    message(STATUS "dir='${dir}'")
-endforeach()
-
 AUX_SOURCE_DIRECTORY(${CMAKE_CURRENT_SOURCE_DIR} source)
 
 find_library (

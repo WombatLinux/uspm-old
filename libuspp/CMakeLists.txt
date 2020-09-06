@@ -11,18 +11,20 @@ find_library (
         NAMES cjson libcjson # what to look for
 )
 
+find_library (LIBARCHIVE_LIB NAMES libarchive archive)
+
 find_library(CURL_LIB curl)
 
 find_package(OpenSSL REQUIRED)
 
-message(STATUS "[${CJSON_LIB}] [${CURL_LIB}] [${OPENSSL}]")
+message(STATUS "[${CJSON_LIB}] [${CURL_LIB}] [${OPENSSL}] [${LIBARCHIVE_LIB}]")
 
 set(CMAKE_C_STANDARD 99)
 
 add_library(uspp SHARED dephandle.c dephandle.h fm.c fm.h uspp.c uspp.h)
 #add_library(uspm uspm.c uspm.h)
 
-target_link_libraries(uspp LINK_PUBLIC ${CJSON_LIB} curl OpenSSL::SSL)
+target_link_libraries(uspp LINK_PUBLIC ${CJSON_LIB} curl OpenSSL::SSL ${LIBARCHIVE_LIB})
 
 add_custom_target(uspp-install)
 add_custom_command(TARGET uspp-install COMMAND cmake --install .)
