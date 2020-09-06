@@ -58,3 +58,5 @@ dkms.conf
 build
 .DS_Store
 .vscode
+.uspm
+uspm-example-serverpm
