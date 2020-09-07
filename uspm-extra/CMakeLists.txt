@@ -40,6 +40,7 @@ if(NOT USPP_LIB)
 endif()
 
 if(DEFINED ENV{USE_EXTENDED_OVER_MAIN})
+message(STATUS "EXTENDED SUITE IS REPLACING MAIN PROGRAM")
 add_executable(uspm extended.c)
 
 target_link_libraries(uspm LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
