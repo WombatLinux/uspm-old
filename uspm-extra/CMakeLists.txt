@@ -40,11 +40,11 @@ if(NOT USPP_LIB)
 endif()
 
 if(DEFINED ENV{USE_EXTENDED_OVER_MAIN})
-add_executable(uspm-extended extended.c)
+add_executable(uspm extended.c)
 
-target_link_libraries(uspm-extended LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
+target_link_libraries(uspm LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
 
-install (TARGETS uspm-extended
+install (TARGETS uspm
         RUNTIME DESTINATION /usr/local/bin)
 else()
 add_executable(uspm-extended EXCLUDE_FROM_ALL extended.c)
