@@ -39,10 +39,18 @@ if(NOT USPP_LIB)
     message(FATAL_ERROR "uspp not found, please build and install from the libuspp directory")
 endif()
 
+if(DEFINED ENV{USE_EXTENDED_OVER_MAIN})
+add_executable(uspm-extended extended.c)
 
+target_link_libraries(uspm-extended LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
+
+install (TARGETS uspm-extended
+        RUNTIME DESTINATION /usr/local/bin)
+else()
 add_executable(uspm-extended EXCLUDE_FROM_ALL extended.c)
 
 target_link_libraries(uspm-extended LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
 
 install (TARGETS uspm-extended OPTIONAL
         RUNTIME DESTINATION /usr/local/bin)
+endif()
