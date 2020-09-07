@@ -23,11 +23,7 @@ all the functionality of `uspm`
 
 All packages come in `.uspm` files, which are just tarballs. Within the tarball there must be two included files. 
 
-`PACKAGECODE` is the install/uninstall script, it contains all the code necessary to install that package
-
-`PACKAGEDATA` is the JSON data that will get added by the package manager to the master list.
-
-The tarballs usually will contain the files necessary to install already compiled code.
+`PACKAGECODE` is the install/uninstall script, it contains all the code necessary to install that package.
 
 ## Building and Installing
 This package requires **at least** `cJSON` ([found here](https://github.com/DaveGamble/cJSON)) and libcurl
