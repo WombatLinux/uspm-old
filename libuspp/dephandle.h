@@ -15,7 +15,8 @@
  */
 int install_dependency(char *package, char *minversion);
 
-/*! given versions [version1] and [version2] it compares the two versions
+/*
+ * given versions [version1] and [version2] it compares the two versions
  *
  * returns > 0 if [version1] is newer
  * returns < 0 if [version2] is newer
@@ -28,7 +29,7 @@ int install_dependency(char *package, char *minversion);
  */
 int check_version(char* version1, char* version2);
 
-/*!
+/*
  * Given [package] looks in the PACKAGEDATA and looks for any dependencies
  * required for installation or runtime.
  *

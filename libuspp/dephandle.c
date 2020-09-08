@@ -8,6 +8,7 @@
 #include "dephandle.h"
 #include <stdlib.h>
 #include "uspp.h"
+#include "config.h"
 
 // utility function to compare each substring of version1 and
 // version2

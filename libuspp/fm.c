@@ -10,6 +10,7 @@
 #include <curl/curl.h>
 #include <openssl/md5.h>
 #include "fm.h"
+#include "config.h"
 
 struct MemoryStruct {
     char *memory;
@@ -192,8 +193,9 @@ int download_package(char *mirror, char *package) {
 
     free(url);
 
+#ifdef _CHECKSUM_
     if (verify_checksum(mirror,package) != 0) return 1;
-
+#endif
     return 0;
 }
 
