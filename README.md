@@ -1,9 +1,9 @@
 Ultra Simple Package Manager
 ============================
 
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/afroraydude/uspm?style=flat-square)](https://github.com/afroraydude/uspm/releases/latest)
-[![Travis (.com)](https://img.shields.io/travis/com/afroraydude/uspm?logo=travis&style=flat-square)](https://travis-ci.com/afroraydude/uspm)
-[![GitHub](https://img.shields.io/github/license/afroraydude/uspm?style=flat-square)](https://github.com/afroraydude/uspm/blob/master/LICENSE)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/afroraydude/uspm?style=flat-square)](https://github.com/wombatlinux/uspm/releases/latest)
+[![Travis (.com)](https://img.shields.io/travis/com/afroraydude/uspm?logo=travis&style=flat-square)](https://travis-ci.com/wombatlinux/uspm)
+[![GitHub](https://img.shields.io/github/license/afroraydude/uspm?style=flat-square)](https://github.com/wombatlinux/uspm/blob/master/LICENSE)
 
 Ultra Simple Package Manager (USPM) is a suite of executables that overall allow for the management of packages.
 
