@@ -39,13 +39,14 @@ if(NOT USPP_LIB)
     message(FATAL_ERROR "uspp not found, please build and install from the libuspp directory")
 endif()
 
-
+if(NOT DEFINED ENV{USE_EXTENDED_OVER_MAIN})
 add_executable(uspm uspm.c)
 
 target_link_libraries(uspm LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB})
 
 install (TARGETS uspm
         RUNTIME DESTINATION /usr/local/bin)
+endif()
 
 if (${APPLE})
     install (FILES uspm.1 DESTINATION /usr/local/share/man/man1)
