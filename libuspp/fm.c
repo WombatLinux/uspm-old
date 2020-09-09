@@ -230,7 +230,7 @@ void create_config_file() {
     root = cJSON_CreateObject();
 
     /* add data to uspm package */
-    cJSON_AddItemToObject(root, "mirror", cJSON_CreateString(("http://packages.afroraydude.com/uspm/")));
+    cJSON_AddItemToObject(root, "mirror", cJSON_CreateString(("http://repo.wombatlinux.org/core/")));
 
     out = cJSON_Print(root);
 
