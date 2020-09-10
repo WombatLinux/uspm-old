@@ -14,6 +14,8 @@ Here is a list of the current tools:
 dependencies.
 - uspm-mkpkg: This optional application is useful for those who want to design USPM packages
 - uspm-extended: This optional application adds more commands and functions to `uspm` and is only there for those who want it.
+  It can also be set to replace uspm in the build phase.
+- uspm-chksum: This optional application is useful to get checksums of generated package files.
 
 The project also contains `libuspp`, or Ultra Simple Package Processor, which contains the functions necessary to enable 
 all the functionality of `uspm`
@@ -57,11 +59,9 @@ make install
 
 3) Make a folder with the name of the package and place the previous folder in that
 
-4) Enter the directory
+4) Run `uspm-mkpkg` and follow instructions
 
-5) Run `uspm-mkpkg` and follow instructions
-
-6) Exit the directory, you should now have a `.uspm` package file.
+5) Exit the directory, you should now have a `.uspm` package file.
 ex:
 ```bash
 mkdir -p /tmp/package/files 

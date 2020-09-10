@@ -59,4 +59,5 @@ build
 .DS_Store
 .vscode
 .uspm
-uspm-example-serverpm
+uspm-example-server
+build-root

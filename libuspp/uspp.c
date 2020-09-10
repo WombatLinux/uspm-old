@@ -7,6 +7,7 @@
 #include "fm.h"
 #include "dephandle.h"
 #include "uspp.h"
+#include "config.h"
 
 /*
  * Given a package name [package], installs the package file (and, if necessary,
@@ -94,7 +95,8 @@ int uninstall_package(char *package) {
 }
 
 int check_if_first_run() {
-    if (check_config_file() == 1 ||
-            check_packages_file() == 1) return 1;
-    return 0;
+    int response = 0;
+    if (check_config_file() != 0) response = 1;
+    if (check_packages_file() != 0) response = 1;
+    return response;
 }
