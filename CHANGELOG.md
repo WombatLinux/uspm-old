@@ -31,8 +31,9 @@ the main files.
 ## [1.2.0] - 2020-08-31
 ## Added
 - The USPP library 
-    - a library that is used for USPM and USPM-extended to work
-    - replaces the source and header files that were a part of USPM
+- a library that is used for USPM and USPM-extended to work
+- replaces the source and header files that were a part of USPM
+- Configuration options for libuspp
 
 ## Changed
 - Moved all the excess source and header files to the new USPP library

@@ -10,6 +10,8 @@
 /* Enables the checksum checks within the installation process */
 #define _CHECKSUM_
 
+#define _DEBUG_
+
 #define _REPO_LOOKUP_
 
 #define _CACHE_MIRROR_

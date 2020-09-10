@@ -77,7 +77,7 @@ cJSON *load_file(char *file) {
 
         return root;
     } else {
-        printf("No file\n");
+        printf("No file %s\n", file);
         return NULL;
     }
 }
@@ -125,7 +125,11 @@ void write_config_file(char *out) {
  * @param packagedata the internal data
  */
 int add_to_packages(char *packagename, cJSON *packagedata) {
+    chdir("/var/uspm/storage/");
+
     cJSON *root = load_file("packages.json");
+
+
 
     cJSON_AddItemToObject(root, packagename, packagedata);
 
@@ -319,18 +323,7 @@ void checksum(char *filename, char *o[16]) {
         sprintf(part, "%02x", c[i]);
         //sprintf(o, "%02x", c[i]);
         sprintf(o, "%s%s", o, part);
-#ifdef DEBUG
-        printf("part %s\n",  part);
-#endif
-        //printf("%02x", c[i]);
     }
-#ifdef DEBUG
-    printf("o %s\n", o);
-    for(i = 0; i < MD5_DIGEST_LENGTH; i++) {
-        printf("%02x", c[i]);
-    }
-    printf (" %s\n", filename);
-#endif
     fclose (inFile);
 }
 
@@ -342,7 +335,6 @@ void checksum(char *filename, char *o[16]) {
  */
 int checksum_compare(char *a, char *b) {
     int test = strcmp(a, b);
-
     if (test != 0) {
         return 1;
     }
@@ -379,6 +371,10 @@ cJSON *get_repo_json(char* url) {
     CURL *curl_handle;
     CURLcode res;
 
+    chdir("adsfijo");
+
+    url = concat(url, "packages.json");
+
     struct MemoryStruct chunk;
 
     chunk.memory = malloc(1);  /* will be grown as needed by the realloc above */
@@ -411,15 +407,12 @@ cJSON *get_repo_json(char* url) {
                 curl_easy_strerror(res));
     }
     else {
-        /*
-         * Now, our chunk.memory points to a memory block that is chunk.size
-         * bytes big and contains the remote file.
-         *
-         * Do something nice with it!
-         */
-
+#ifdef _DEBUG_
         printf("%lu bytes retrieved\n", (unsigned long)chunk.size);
+        printf("data: %s\n", chunk.memory);
+#endif
     }
+
 
     /* cleanup curl stuff */
     curl_easy_cleanup(curl_handle);
@@ -442,15 +435,23 @@ cJSON *get_repo_json(char* url) {
  * @param mirror the repo to pull from
  */
 int verify_checksum(char *mirror, char *package) {
-    cJSON *repoJSON =  get_repo_json(mirror);
+    cJSON *repoJSON = get_repo_json(mirror);
     char *packageChecksum = cJSON_GetObjectItem(repoJSON, package)->valuestring;
 
     char *filename = concat(package,".uspm");
     char *fileChecksum[16];
     checksum(filename, fileChecksum);
+
     if(checksum_compare((char *) fileChecksum, packageChecksum) != 0) {
+#ifdef _DEBUG_
+        printf("%s - %s\n", fileChecksum, packageChecksum);
+        printf("bad package file\n");
+#endif
         return 1;
     } else {
+#ifdef _DEBUG_
+        printf("package file OK\n");
+#endif
         return 0;
     }
 }
