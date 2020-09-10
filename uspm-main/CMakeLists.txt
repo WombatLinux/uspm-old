@@ -44,6 +44,10 @@ add_executable(uspm uspm.c)
 
 target_link_libraries(uspm LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB})
 
+add_executable(uspm-test back.c)
+
+target_link_libraries(uspm-test LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB})
+
 install (TARGETS uspm
         RUNTIME DESTINATION /usr/local/bin)
 endif()

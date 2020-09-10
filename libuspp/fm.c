@@ -17,6 +17,11 @@ struct MemoryStruct {
     size_t size;
 };
 
+size_t blank(void *buffer, size_t size, size_t nmemb, void *userp)
+{
+    return size * nmemb;
+}
+
 /* concatenate strings
  *
  * @param s1 first string
@@ -130,7 +135,6 @@ int add_to_packages(char *packagename, cJSON *packagedata) {
     cJSON *root = load_file("packages.json");
 
 
-
     cJSON_AddItemToObject(root, packagename, packagedata);
 
     char *out = cJSON_Print(root);
@@ -166,6 +170,43 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
     return written;
 }
 
+int check_if_package_exists(char *mirror, char *folder, char *package) {
+    CURL *curl;
+    CURLcode res;
+    curl = curl_easy_init();
+
+    char *filename = concat(package, ".uspm");
+
+    char *url = concat(mirror, folder);
+
+    url = concat(url, filename);
+
+    if(curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, url);
+
+        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, blank);
+
+        res = curl_easy_perform(curl);
+
+        long http_code = 0;
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http_code);
+
+        if (http_code == 200 && res != CURLE_ABORTED_BY_CALLBACK)
+        {
+            curl_easy_cleanup(curl);
+            return 0;
+        }
+        else
+        {
+            curl_easy_cleanup(curl);
+            return 1;
+        }
+
+    }
+    return 1;
+}
+
 /*
  * Downloads a package [package] file from a mirror [mirror]
  *
@@ -177,7 +218,32 @@ int download_package(char *mirror, char *package) {
     CURL *curl;
     FILE *fp;
     CURLcode res;
-    char *url = concat(mirror, package);
+
+    int folder = 0;
+
+    char *url = mirror;
+
+    if (check_if_package_exists(mirror, "core/", package) == 0) {
+        folder = 1;
+
+    } else if (check_if_package_exists(mirror, "extra/", package) == 0) {
+        folder = 2;
+    } else if (check_if_package_exists(mirror, "community/", package) == 0) {
+        folder = 3;
+    }
+
+    switch(folder) {
+        case (1): url = concat(url, "core/"); break;
+        case (2): url = concat(url, "extra/"); break;
+        case (3): url = concat(url, "community/"); break;
+        default: return 1;
+    }
+
+    mirror = url;
+
+    url = concat(url, package);
+
+
     url = concat(url, ".uspm");
     printf("%s\n", url);
 
@@ -190,6 +256,25 @@ int download_package(char *mirror, char *package) {
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
         res = curl_easy_perform(curl);
+
+        if(res != CURLE_OK) {
+            printf("fail");
+            return 1;
+        }
+
+        long http_code = 0;
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http_code);
+
+        if (http_code == 200 && res != CURLE_ABORTED_BY_CALLBACK)
+        {
+            // success do not thing
+        }
+        else
+        {
+            printf("Failed to download file\n");
+            curl_easy_cleanup(curl);
+            return 1;
+        }
         /* always cleanup */
         curl_easy_cleanup(curl);
         fclose(fp);
@@ -198,7 +283,7 @@ int download_package(char *mirror, char *package) {
     free(url);
 
 #ifdef _CHECKSUM_
-    if (verify_checksum(mirror,package) != 0) return 1;
+    if (verify_checksum(mirror, package) != 0) return 1;
 #endif
     return 0;
 }
@@ -236,7 +321,7 @@ void create_config_file() {
     root = cJSON_CreateObject();
 
     /* add data to uspm package */
-    cJSON_AddItemToObject(root, "mirror", cJSON_CreateString(("http://repo.wombatlinux.org/core/")));
+    cJSON_AddItemToObject(root, "mirror", cJSON_CreateString(("http://repo.wombatlinux.org/")));
 
     out = cJSON_Print(root);
 
@@ -304,27 +389,27 @@ cJSON *load_json(char *json) {
 void checksum(char *filename, char *o[16]) {
     unsigned char c[MD5_DIGEST_LENGTH];
     int i;
-    FILE *inFile = fopen (filename, "rb");
+    FILE *inFile = fopen(filename, "rb");
     MD5_CTX mdContext;
     int bytes;
     unsigned char data[1024];
 
     if (inFile == NULL) {
-        printf ("%s can't be opened.\n", filename);
+        printf("%s can't be opened.\n", filename);
     }
 
 
-    MD5_Init (&mdContext);
-    while ((bytes = fread (data, 1, 1024, inFile)) != 0)
-        MD5_Update (&mdContext, data, bytes);
-    MD5_Final (c,&mdContext);
-    for(i = 0; i < MD5_DIGEST_LENGTH; i++) {
+    MD5_Init(&mdContext);
+    while ((bytes = fread(data, 1, 1024, inFile)) != 0)
+        MD5_Update(&mdContext, data, bytes);
+    MD5_Final(c, &mdContext);
+    for (i = 0; i < MD5_DIGEST_LENGTH; i++) {
         char *part[2];
         sprintf(part, "%02x", c[i]);
         //sprintf(o, "%02x", c[i]);
         sprintf(o, "%s%s", o, part);
     }
-    fclose (inFile);
+    fclose(inFile);
 }
 
 /*
@@ -342,13 +427,12 @@ int checksum_compare(char *a, char *b) {
 }
 
 static size_t
-WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
-{
+WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp) {
     size_t realsize = size * nmemb;
-    struct MemoryStruct *mem = (struct MemoryStruct *)userp;
+    struct MemoryStruct *mem = (struct MemoryStruct *) userp;
 
     char *ptr = realloc(mem->memory, mem->size + realsize + 1);
-    if(ptr == NULL) {
+    if (ptr == NULL) {
         /* out of memory! */
         printf("not enough memory (realloc returned NULL)\n");
         return 0;
@@ -367,7 +451,7 @@ WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
  *
  * @param url the repo
  */
-cJSON *get_repo_json(char* url) {
+cJSON *get_repo_json(char *url) {
     CURL *curl_handle;
     CURLcode res;
 
@@ -392,7 +476,7 @@ cJSON *get_repo_json(char* url) {
     curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
 
     /* we pass our 'chunk' struct to the callback function */
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&chunk);
+    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *) &chunk);
 
     /* some servers don't like requests that are made without a user-agent
        field, so we provide one */
@@ -402,13 +486,12 @@ cJSON *get_repo_json(char* url) {
     res = curl_easy_perform(curl_handle);
 
     /* check for errors */
-    if(res != CURLE_OK) {
+    if (res != CURLE_OK) {
         fprintf(stderr, "curl_easy_perform() failed: %s\n",
                 curl_easy_strerror(res));
-    }
-    else {
+    } else {
 #ifdef _DEBUG_
-        printf("%lu bytes retrieved\n", (unsigned long)chunk.size);
+        printf("%lu bytes retrieved\n", (unsigned long) chunk.size);
         printf("data: %s\n", chunk.memory);
 #endif
     }
@@ -438,11 +521,11 @@ int verify_checksum(char *mirror, char *package) {
     cJSON *repoJSON = get_repo_json(mirror);
     char *packageChecksum = cJSON_GetObjectItem(repoJSON, package)->valuestring;
 
-    char *filename = concat(package,".uspm");
+    char *filename = concat(package, ".uspm");
     char *fileChecksum[16];
     checksum(filename, fileChecksum);
 
-    if(checksum_compare((char *) fileChecksum, packageChecksum) != 0) {
+    if (checksum_compare((char *) fileChecksum, packageChecksum) != 0) {
 #ifdef _DEBUG_
         printf("%s - %s\n", fileChecksum, packageChecksum);
         printf("bad package file\n");
