@@ -26,6 +26,8 @@ find_library (
         NAMES uspp libuspp
 )
 
+add_custom_target(uspm-all make all uspm-extended uspm-mkpkg uspm-chksum)
+
 add_subdirectory(libuspp)
 add_subdirectory(uspm-extra)
 add_subdirectory(uspm-dev)

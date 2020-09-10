@@ -6,39 +6,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## Added
+## [1.3.0]
+### Added
 - Documentation
 - `check_if_first_run()` checks if the current run is the first one by checking for
 the main files.
 - Checksums
 - `uspm-chksum` can get the checksum of a file and also compare 2 files by checksum
+- Configuration file with multiple configuration options
 
-## Changed
+### Changed
 - Made uspp a shared library instead of static
 - `uspm-mkpkg` is now ran outside of the package directory
 - Split up the different software into their own folders to meet with uspm packaging plans
 - `check_dependencies_and_install()` is now `check_for_dependencies()`
 - Moved `uspm` -> `uspm-main` and `libuspp/uspm.{c,h}` -> `libuspp/uspp.{c,h}`
+- Mirrors are now just the root of the webserver, with 3 folders, one for each repo
+- Default mirror is now `http://repo.wombatlinux.org/`
 
-## Removed
+### Removed
 - Unnecessary print statements
 - `install_dep_file()`
 
 ## [1.2.1] - 2020-08-3
-## Changed
+### Changed
 - Made it so both the clang and the GCC version are given.
 
 ## [1.2.0] - 2020-08-31
-## Added
+### Added
 - The USPP library 
 - a library that is used for USPM and USPM-extended to work
 - replaces the source and header files that were a part of USPM
 - Configuration options for libuspp
 
-## Changed
+### Changed
 - Moved all the excess source and header files to the new USPP library
 
-## Removed
+### Removed
 - The "check dependencies" function because its very useless
 
 ## [1.1.1] - 2020-02-23
