@@ -33,8 +33,10 @@ script:
 before_deploy:
     - rm -rf ./*/{CMake}*
     - mkdir export
-    - mv uspm* export/
-    - mv libuspp export/
+    - mv uspm-main/uspm* export/
+    - mv uspm-dev/uspm* export/
+    - mv uspm-extra/uspm* export/
+    - mv libuspp/libuspp.so export/
     - cd export
     - tar cf uspm-linux.tar ./*
     - mv uspm-linux.tar ../../
