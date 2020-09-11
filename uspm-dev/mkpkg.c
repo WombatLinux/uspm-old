@@ -77,11 +77,6 @@ int createpkg() {
 
     system(command);
 
-    char *chksum;
-    checksum(packageFile, chksum);
-
-    printf("USPM Checksum (using MD5): %u\n", chksum);
-
     return 0;
 }
 
