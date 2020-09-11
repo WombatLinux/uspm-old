@@ -1,5 +1,7 @@
 Ultra Simple Package Manager
 ============================
+**QUICK NOTE:** USPM will be under maintenance mode until the full release of 
+[Wombat Linux](http://wombatlinux.org) Once finalized, USPM will continue development.
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/wombatlinux/uspm?style=flat-square)](https://github.com/wombatlinux/uspm/releases/latest)
 [![Travis (.com)](https://img.shields.io/travis/com/wombatlinux/uspm?logo=travis&style=flat-square)](https://travis-ci.com/wombatlinux/uspm)
