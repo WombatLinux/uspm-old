@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1]
+### Fixed
+- `uspm-mkconfig` can now exit normally
+
+### Removed
+- Checksumming from `uspm-mkpkg`, use `uspm-chksum`
+
 ## [1.3.0]
 ### Added
 - Documentation
