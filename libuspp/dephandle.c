@@ -152,6 +152,8 @@ int check_for_dependencies(char *package) {
  *
  * @param package the package file
  * @param minversion the minimum version
+ 
+ * TODO: Rewrite to utilize repo json
  */
 int install_dependency(char *package, char *minversion) {
     char *filename = concat(package, ".uspm");
