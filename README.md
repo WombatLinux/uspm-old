@@ -29,7 +29,8 @@ All packages come in `.uspm` files, which are just tarballs. Within the tarball 
 `PACKAGECODE` is the install/uninstall script, it contains all the code necessary to install that package.
 
 ## Building and Installing
-This package requires **at least** `cJSON` ([found here](https://github.com/DaveGamble/cJSON)) and libcurl
+This package requires **at least** `cJSON` ([found here](https://github.com/DaveGamble/cJSON)), zlib, a tar program, a 
+crypto library (either openssl or libressl) and libcurl
 
 There are 2 ways to install:
 
