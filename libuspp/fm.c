@@ -171,40 +171,17 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 }
 
 int check_if_package_exists(char *mirror, char *folder, char *package) {
-    CURL *curl;
-    CURLcode res;
-    curl = curl_easy_init();
-
-    char *filename = concat(package, ".uspm");
-
     char *url = concat(mirror, folder);
 
-    url = concat(url, filename);
+    cJSON *json = get_repo_json(url);
 
-    if(curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, url);
+    cJSON *packagejson = cJSON_GetObjectItem(json, package);
 
-        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, blank);
-
-        res = curl_easy_perform(curl);
-
-        long http_code = 0;
-        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http_code);
-
-        if (http_code == 200 && res != CURLE_ABORTED_BY_CALLBACK)
-        {
-            curl_easy_cleanup(curl);
-            return 0;
-        }
-        else
-        {
-            curl_easy_cleanup(curl);
-            return 1;
-        }
-
+    if (packagejson == NULL) {
+        return 1;
+    } else {
+        return 0;
     }
-    return 1;
 }
 
 /*
