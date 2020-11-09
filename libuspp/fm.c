@@ -171,12 +171,17 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 }
 
 int check_if_package_exists(char *mirror, char *folder, char *package) {
-
     char *url = concat(mirror, folder);
 
-    cJSON *json = get_repo_json(url)
+    cJSON *json = get_repo_json(url);
 
-    
+    cJSON *packagejson = cJSON_GetObjectItem(json, package);
+
+    if (packagejson == NULL) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 /*
@@ -427,6 +432,7 @@ cJSON *get_repo_json(char *url) {
     CURL *curl_handle;
     CURLcode res;
 
+    /* I am not deleting this out of fear */
     chdir("adsfijo");
 
     url = concat(url, "packages.json");

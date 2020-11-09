@@ -28,6 +28,10 @@ find_library (
 
 add_custom_target(uspm-all make all uspm-extended uspm-mkpkg uspm-chksum)
 
+#add_executable(libuspptest libuspptest.c)
+
+#target_link_libraries(libuspptest LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB})
+
 add_subdirectory(libuspp)
 add_subdirectory(uspm-extra)
 add_subdirectory(uspm-dev)

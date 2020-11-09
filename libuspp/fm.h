@@ -120,4 +120,6 @@ cJSON *get_repo_json(char* url);
  */
 int verify_checksum(char *mirror, char *package);
 
+int check_if_package_exists(char *mirror, char *folder, char *package);
+
 #endif //USPM_FM_H
