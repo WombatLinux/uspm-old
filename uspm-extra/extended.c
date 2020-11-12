@@ -56,11 +56,6 @@ int main(int argc, char * argv[]) {
         cJSON * package = root -> child;
 
         while (package) {
-          /*
-          char *command = concat("uspm i ", package->string);
-
-          system(command);
-          */
 
           install_package(package -> string);
 
@@ -72,11 +67,6 @@ int main(int argc, char * argv[]) {
         cJSON * package = root -> child;
 
         while (package) {
-          /*
-          char *command = concat("uspm u ", package->string);
-
-          system(command);
-          */
 
           uninstall_package(package -> string);
 

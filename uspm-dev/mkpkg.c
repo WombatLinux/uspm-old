@@ -28,13 +28,15 @@ int createpkg() {
     root = cJSON_CreateObject();
     dependencies = cJSON_CreateObject();
 
-    // create package details
+    /* package details */
     printf("What is the package name? \n");
     scanf("%s", name);
     printf("Enter the version: \n");
     scanf("%s", version);
     printf("%s\n", version);
 
+    /* dependencies */
+    /* use semantic pls */
     printf("Are there dependencies? (y/n) \n");
     scanf("%s", setbool);
     while(dependenciesDone == 1) {
@@ -55,6 +57,7 @@ int createpkg() {
         }
     }
 
+    /* go into folder */
     chdir(name);
 
     cJSON_AddItemToObject(root, "dependencies", dependencies);
@@ -63,18 +66,19 @@ int createpkg() {
     char *out = cJSON_Print(root);
     write_file("PACKAGEDATA", out);
 
-    out = "#!/bin/sh\ncd INSERTFOLDERHERE\n\nif [ $1 == 'install' ]\nthen\n\tINSERT INSTALL CODE HERE\nelif [ $1 == 'uninstall' ]\nthen\n\tINSERT UNINSTALL CODE HERE\nfi\n";
+    out1 = "#!/bin/sh\ncd ";
+    out2 = "\n\nif [ $1 == 'install' ]\nthen\n\t# INSERT INSTALL CODE HERE\nelif [ $1 == 'uninstall' ]\nthen\n\t# INSERT UNINSTALL CODE HERE\nfi\n";
+    out = concat(concat(out1, name), out2); /* stupid new concat system */
     write_file("PACKAGECODE", out);
-    system("vim PACKAGECODE");
+    system("vim PACKAGECODE"); /* assuming they have vim, brave */
 
     chdir("..");
 
+    /* create file for package */
     char *packageFile = concat(name, ".uspm");
     char *command = concat("tar cf ", packageFile);
     command = concat(command, " ");
-
     command = concat(command, name);
-
     system(command);
 
     return 0;
