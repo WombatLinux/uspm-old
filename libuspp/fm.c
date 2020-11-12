@@ -89,6 +89,20 @@ cJSON *load_file(char *file) {
 }
 
 /**
+ * Write data to a file
+ * @param filename the file to write to
+ * @param text the text to write to the file
+ */
+void write_file(char *filename, char *text) {
+    FILE *ptr;
+
+    ptr = fopen(filename, "w");
+
+    fprintf(ptr, "%s", text);
+    fclose(ptr);
+}
+
+/**
  * Writes a fresh new packages file
  *
  * @param out the char array to output to the file
@@ -96,14 +110,7 @@ cJSON *load_file(char *file) {
 void write_packages_file(char *out) {
     char *outfile = concat(out, "\n");
 
-    FILE *ptr;
-
-    ptr = fopen("packages.json", "w");
-
-    fprintf(ptr, "%s", outfile);
-    fclose(ptr);
-
-    free(outfile);
+    write_file("packages.json", outfile);
 }
 
 /**
@@ -114,14 +121,7 @@ void write_packages_file(char *out) {
 void write_config_file(char *out) {
     char *outfile = concat(out, "\n");
 
-    FILE *ptr;
-
-    ptr = fopen("config.json", "w");
-
-    fprintf(ptr, "%s", outfile);
-    fclose(ptr);
-
-    free(outfile);
+    write_file("config.json", outfile);
 }
 
 /**
