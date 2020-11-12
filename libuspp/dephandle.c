@@ -37,7 +37,7 @@ int compareSubstr(char *substr_version1, char *substr_version2,
     }
 }
 
-/*
+/**
  * given versions [version1] and [version2] it compares the two versions
  *
  * returns > 0 if [version1] is newer
@@ -93,7 +93,7 @@ int check_version(char *version1, char *version2) {
     return 0;
 }
 
-/*
+/**
  * Given [package] looks in the PACKAGEDATA and looks for any dependencies
  * required for installation or runtime.
  *
@@ -144,7 +144,7 @@ int check_for_dependencies(char *package) {
     return 0;
 }
 
-/*
+/**
  * given a (dependency) package name [package], it downloads and checks the version, and
  * then compares it with the given minimum version [minversion]
  *

@@ -1,4 +1,4 @@
-project(uspm-extra)
+project(uspm-test)
 
 cmake_minimum_required(VERSION 3.10)
 
@@ -39,19 +39,14 @@ if(NOT USPP_LIB)
     message(FATAL_ERROR "uspp not found, please build and install from the libuspp directory")
 endif()
 
-if(DEFINED ENV{USE_EXTENDED_OVER_MAIN})
-message(STATUS "EXTENDED SUITE IS REPLACING MAIN PROGRAM")
-add_executable(uspm extended.c)
+if(NOT DEFINED ENV{USE_EXTENDED_OVER_MAIN})
+add_executable(uspm-test test.c)
 
-target_link_libraries(uspm LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
+target_link_libraries(uspm-test LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB})
+endif()
 
-install (TARGETS uspm
-        RUNTIME DESTINATION /usr/local/bin)
+if (${APPLE})
+    install (FILES uspm.1 DESTINATION /usr/local/share/man/man1)
 else()
-add_executable(uspm-extended EXCLUDE_FROM_ALL extended.c)
-
-target_link_libraries(uspm-extended LINK_PUBLIC ${USPP_LIB} ${CJSON_LIB} curl)
-
-install (TARGETS uspm-extended OPTIONAL
-        RUNTIME DESTINATION /usr/local/bin)
+    install (FILES uspm.1 DESTINATION /usr/share/man/man1)
 endif()
