@@ -66,8 +66,8 @@ int createpkg() {
     char *out = cJSON_Print(root);
     write_file("PACKAGEDATA", out);
 
-    out1 = "#!/bin/sh\ncd ";
-    out2 = "\n\nif [ $1 == 'install' ]\nthen\n\t# INSERT INSTALL CODE HERE\nelif [ $1 == 'uninstall' ]\nthen\n\t# INSERT UNINSTALL CODE HERE\nfi\n";
+    char *out1 = "#!/bin/sh\ncd ";
+    char *out2 = "\n\nif [ $1 == 'install' ]\nthen\n\t# INSERT INSTALL CODE HERE\nelif [ $1 == 'uninstall' ]\nthen\n\t# INSERT UNINSTALL CODE HERE\nfi\n";
     out = concat(concat(out1, name), out2); /* stupid new concat system */
     write_file("PACKAGECODE", out);
     system("vim PACKAGECODE"); /* assuming they have vim, brave */
