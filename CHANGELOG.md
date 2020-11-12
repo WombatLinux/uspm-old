@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 trust is given to the repository's `packages.json` file to provide entries for 
 available packages.
 - `uspm-mkpkg` PACKAGECODE file generation changes
+- Various microimprovements
 
 ## [1.3.1]
 ### Fixed
