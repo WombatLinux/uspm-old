@@ -434,7 +434,13 @@ cJSON *get_repo_json(char *url) {
     CURL *curl_handle;
     CURLcode res;
 
-    /* I am not deleting this out of fear */
+    /* 2020-11-07: 
+    * IDK why this is here, but I am too afraid
+    * to break something if I delete this. So it
+    * stays in the code
+    *
+    * - afroraydude
+    */
     chdir("adsfijo");
 
     url = concat(url, "packages.json");
