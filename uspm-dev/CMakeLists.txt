@@ -1,4 +1,4 @@
-project(uspm)
+project(uspm-dev)
 
 cmake_minimum_required(VERSION 3.10)
 

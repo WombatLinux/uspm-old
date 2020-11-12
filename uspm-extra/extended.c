@@ -8,6 +8,7 @@
  *      \|_______|\_________\|__|     \|__|     \|__|
  *                \|_________|
  *                Extended Suite of Commands
+ *              Can be a replacement for USPM
  *
  *                   (c) 2020 afroraydude
  *
@@ -56,7 +57,6 @@ int main(int argc, char * argv[]) {
         cJSON * package = root -> child;
 
         while (package) {
-
           install_package(package -> string);
 
           package = package -> next;
