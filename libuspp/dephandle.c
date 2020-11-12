@@ -114,12 +114,14 @@ int check_for_dependencies(char *package) {
     cJSON *dependency = dependencies->child;
 
     while (dependency) {
-
+        /* try to load dependency from packages.json */
         cJSON *dependency_internal = cJSON_GetObjectItem(root, dependency->string);
+
+        /* load min version */
         char *minversion = dependency->valuestring;
 
+        /* if we have that package installed already */
         if (dependency_internal != NULL) {
-
             char *version = cJSON_GetObjectItem(dependency_internal, "version")->valuestring;
 
             if (check_version(version, minversion) < 0) {
@@ -136,7 +138,7 @@ int check_for_dependencies(char *package) {
                 return 1;
             }
         }
-        // do what we need to do
+        /* do what we need to do */
         dependency = dependency->next;
     }
 

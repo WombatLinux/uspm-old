@@ -27,6 +27,8 @@ int install_dependency(char *package, char *minversion);
  *
  * @param version1 current version
  * @param version2 version to test against
+ * 
+ * @return int
  */
 int check_version(char* version1, char* version2);
 
@@ -35,6 +37,8 @@ int check_version(char* version1, char* version2);
  * required for installation or runtime.
  *
  * @param package the package file
+ * 
+ * @return int true if task performed successfully
  */
 int check_for_dependencies(char *package);
 
