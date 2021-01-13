@@ -1,0 +1,3 @@
+[submodule "libuspp"]
+	path = libuspp
+	url = https://github.com/WombatLinux/libuspp.git

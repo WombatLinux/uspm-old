@@ -12,10 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Checking for a package in the repo no longer downloads the package file, instead,
 trust is given to the repository's `packages.json` file to provide entries for 
 available packages.
+- `uspm-mkpkg` PACKAGECODE file generation changes
+- Various microimprovements
 
 ## [1.3.1]
 ### Fixed
-- `uspm-mkconfig` can now exit normally
+- `uspm-mkpkg` can now exit normally
 
 ### Removed
 - Checksumming from `uspm-mkpkg`, use `uspm-chksum`

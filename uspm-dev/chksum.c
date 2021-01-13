@@ -2,15 +2,15 @@
 #include <zconf.h>
 
 int main(int argc, char *argv[]) {
-    char cwd[1024];
-    getcwd(cwd, sizeof(cwd));
-    printf("Current working dir: %s\n", cwd);
+    /* if just getting for one file */
     if (argc == 2) {
         char *chksum[16];
         checksum(argv[1], chksum);
         printf("%s:",argv[1]);
         printf(" %s\n",chksum);
-    } else if (argc == 3) {
+    } 
+    /* if comparing two files */
+    else if (argc == 3) { 
         char *chksum1[16];
         checksum(argv[1], chksum1);
         printf("%s:",argv[1]);
@@ -21,6 +21,7 @@ int main(int argc, char *argv[]) {
         printf("%s:",argv[2]);
         printf(" %s\n",chksum2);
 
+        /* use libuspp to comare */
         int x = checksum_compare(chksum1, chksum2);
         if (x != 0) {
             printf("Checksum compare returned false.\n");
