@@ -21,14 +21,14 @@ available packages.
 - Config is in a seperate location than storage
 - Storage location can now be modified
 
-## [1.3.1]
+## [1.3.1] 2020-09-11
 ### Fixed
 - `uspm-mkpkg` can now exit normally
 
 ### Removed
 - Checksumming from `uspm-mkpkg`, use `uspm-chksum`
 
-## [1.3.0]
+## [1.3.0] - 2020-09-10
 ### Added
 - Documentation
 - `check_if_first_run()` checks if the current run is the first one by checking for
@@ -50,7 +50,7 @@ the main files.
 - Unnecessary print statements
 - `install_dep_file()`
 
-## [1.2.1] - 2020-08-3
+## [1.2.1] - 2020-08-03
 ### Changed
 - Made it so both the clang and the GCC version are given.
 
