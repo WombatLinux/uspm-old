@@ -7,13 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Code comments
+- Multiple repositories support
+- More configuration options
+- More build configuration options
 
 ### Changed
+- Complete config redesign, with support for multiple repositories.
 - Checking for a package in the repo no longer downloads the package file, instead,
 trust is given to the repository's `packages.json` file to provide entries for 
 available packages.
 - `uspm-mkpkg` PACKAGECODE file generation changes
 - Various microimprovements
+- Config is in a seperate location than storage
+- Storage location can now be modified
 
 ## [1.3.1]
 ### Fixed
